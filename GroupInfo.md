@@ -10,3 +10,4 @@ The following document includes the following information:
 - Manfred Zheng
 
 ## Scrum Meetings
+To be completed.
