@@ -5,22 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentCreateAnnouncementBinding;
-import com.example.cscb07project.ui.createannouncement.CreateAnnouncementViewModel;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class CreateAnnouncementFragment extends Fragment {
     private FragmentCreateAnnouncementBinding binding;
