@@ -22,4 +22,16 @@
         android:name="com.example.cscb07project.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <!-- Consists of:
+         - ID for fragment
+         - Name of class implementing Fragment (class name prepended by package name)
+         - Label
+         - Layout XML file
+    -->
+    <fragment
+        android:id="@+id/nav_create_announcement"
+        android:name="com.example.cscb07project.ui.createannouncement.CreateAnnouncementFragment"
+        android:label="@string/menu_create_announcement"
+        tools:layout="@layout/fragment_create_announcement" />
 </navigation>
