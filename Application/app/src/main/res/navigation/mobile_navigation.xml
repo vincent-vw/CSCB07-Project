@@ -34,4 +34,9 @@
         android:name="com.example.cscb07project.ui.createannouncement.CreateAnnouncementFragment"
         android:label="@string/menu_create_announcement"
         tools:layout="@layout/fragment_create_announcement" />
+    <fragment
+        android:id="@+id/nav_view_announcements"
+        android:name="com.example.cscb07project.ui.viewannouncements.ViewAnnouncementsFragment"
+        android:label="@string/menu_view_announcements"
+        tools:layout="@layout/fragment_view_announcements" />
 </navigation>

@@ -21,5 +21,9 @@
             android:id="@+id/nav_create_announcement"
             android:icon="@android:drawable/ic_btn_speak_now"
             android:title="@string/menu_create_announcement" />
+        <item
+            android:id="@+id/nav_view_announcements"
+            android:icon="@android:drawable/picture_frame"
+            android:title="@string/menu_view_announcements" />
     </group>
 </menu>
