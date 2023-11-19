@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui.createannouncement;
+package com.example.cscb07project.ui;
 
 public class Announcement {
 

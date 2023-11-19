@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    FirebaseDatabase db;
+    public static FirebaseDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
