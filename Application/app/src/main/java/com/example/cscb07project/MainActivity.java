@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.cscb07project.ui.Announcement;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -88,6 +89,17 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void onClickPostAnnouncement(View view) {
+        DatabaseReference ref = db.getReference(); // Reference to the root node
+        // https://stackoverflow.com/questions/48654071/android-studio-how-can-i-put-this-activity-in-extends-fragment
+        EditText userText = (EditText) findViewById(R.id.editText_new_announcement); // Get the EditText widget (used for entering text)
+        String announcement = userText.getText().toString(); // Get the announcement typed
+        Announcement announcementObj = new Announcement("PlaceholderUsername", announcement); // New announcement object
+        userText.setText(""); // Clear userText
+        String key = db.getReference(announcement).push().getKey(); // Get a unique key
+        ref.child("announcements").child(key).setValue(announcementObj); // Set announcement with the unique key as key, announcement object as value
     }
 
 }
