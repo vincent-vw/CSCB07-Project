@@ -5,16 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Credit to: https://www.youtube.com/watch?v=BO5iCL7U6Lc&ab_channel=Stevdza-San -->
     <EditText
         android:id="@+id/editText_new_announcement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:ems="20"
         android:hint="New announcement"
         android:inputType="text"
         android:minHeight="48dp"
         android:textSize="14sp"
+        android:drawableStart="@drawable/custom_announcement_icon"
+        android:drawablePadding="10dp"
+        android:background="@drawable/custom_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="Enter a message to post as an announcement."
-        android:textColor="@color/teal_700"
+        android:textColor="@color/color4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,6 +44,8 @@
         android:layout_marginTop="8dp"
         android:onClick="onClickPostAnnouncement"
         android:text="Post announcement"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/custom_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
