@@ -1,6 +1,5 @@
 package com.example.cscb07project.ui.createaccount;
 
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -8,8 +7,6 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.google.firebase.database.DataSnapshot;
-
-import java.util.Objects;
 
 public class LoginFragmentPresenter extends Fragment {
     LoginFragmentView view;
@@ -20,28 +17,28 @@ public class LoginFragmentPresenter extends Fragment {
         this.model = model;
     }
 
-    public void checkStudentsDB(String username, String password) {
-        if (username.isEmpty() || password.isEmpty()) {
+    public void checkStudentsDB(User user) {
+        if (user.getUsername().isEmpty() || user.getPassword().isEmpty()) {
             createAnnouncement("Don't leave username or password blank!");
         }
         else {
-            model.queryStudentsDB(this, username, password);
+            model.queryStudentsDB(this, user);
         }
     }
 
-    public void checkAdminsDB(String username, String password) {
-        if (username.isEmpty() || password.isEmpty()) {
+    public void checkAdminsDB(User user) {
+        if (user.getUsername().isEmpty() || user.getPassword().isEmpty()) {
             createAnnouncement("Don't leave username or password blank!");
         }
         else {
-            model.queryAdminsDB(this, username, password);
+            model.queryAdminsDB(this, user);
         }
     }
 
-    public void setStudentsOutput(DataSnapshot dataSnapshot, String username, String password) {
+    public void setStudentsOutput(DataSnapshot dataSnapshot, User user) {
         if (dataSnapshot.exists()) {
-            if (password.equals(dataSnapshot.getValue())) {
-                createAnnouncement("Successfully Login! Welcome, Student " + username + "!");
+            if (user.getPassword().equals(dataSnapshot.getValue())) {
+                createAnnouncement("Successfully Login! Welcome, Student " + user.getUsername() + "!");
 
                 NavDirections action = LoginFragmentViewDirections.actionNavLoginToNavHome();
                 Navigation.findNavController(view.getView()).navigate(action);
@@ -55,10 +52,10 @@ public class LoginFragmentPresenter extends Fragment {
         }
     }
 
-    public void setAdminsOutput(DataSnapshot dataSnapshot, String username, String password) {
+    public void setAdminsOutput(DataSnapshot dataSnapshot, User user) {
         if (dataSnapshot.exists()) {
-            if (password.equals(dataSnapshot.getValue())) {
-                createAnnouncement("Successfully Login! Welcome, Administrator " + username + "!");
+            if (user.getPassword().equals(dataSnapshot.getValue())) {
+                createAnnouncement("Successfully Login! Welcome, Administrator " + user.getUsername() + "!");
 
                 // need revise later
                 NavDirections action = LoginFragmentViewDirections.actionNavLoginToNavHome();

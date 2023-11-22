@@ -20,10 +20,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.example.cscb07project.MainActivity;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-// problem: sign up same username
 
 public class SignUpFragment extends Fragment {
     private FragmentSignUpBinding binding;
@@ -92,12 +90,12 @@ public class SignUpFragment extends Fragment {
             CheckBox studentCheck = getView().findViewById(R.id.student_check);
             CheckBox adminCheck = getView().findViewById(R.id.admin_check);
             if (studentCheck.isChecked()) {
-                ref.child("students").child(username).setValue(password);
-                checkDataChange("students", username);
+                User student = new User(username, password, "students");
+                checkDataExists(student);
             }
             else if (adminCheck.isChecked()) {
-                ref.child("admins").child(username).setValue(password);
-                checkDataChange("admins", username);
+                User admin = new User(username, password, "admins");
+                checkDataExists(admin);
             }
             else {
                 Toast announcement = Toast.makeText(getActivity(),
@@ -112,9 +110,38 @@ public class SignUpFragment extends Fragment {
         }
     }
 
-    public void checkDataChange(String path, String username) {
+    public void checkDataExists(User user)
+    {
         DatabaseReference ref= MainActivity.db.getReference();
-        DatabaseReference query = ref.child(path).child(username);
+        DatabaseReference query = ref.child(user.getIdentity()).child(user.getUsername());
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Toast announcement = Toast.makeText(getActivity(),
+                            "There exists one account of this username! Please login!", Toast.LENGTH_SHORT);
+                    announcement.show();
+
+                    // navigate to login fragment
+                    NavDirections action = SignUpFragmentDirections.actionNavSignUpToNavLogin();
+                    Navigation.findNavController(getView()).navigate(action);
+                }
+                else {
+                    ref.child(user.getIdentity()).child(user.getUsername()).setValue(user);
+                    checkDataChange(user);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public void checkDataChange(User user) {
+        DatabaseReference ref= MainActivity.db.getReference();
+        DatabaseReference query = ref.child(user.getIdentity()).child(user.getUsername());
 
         query.addValueEventListener(new ValueEventListener() {
             @Override

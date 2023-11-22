@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,6 +21,9 @@ public class LoginFragmentView extends Fragment {
     private FragmentLoginBinding binding;
     private EditText userText;
     private EditText passText;
+    private CheckBox studentCheck;
+    private CheckBox adminCheck;
+
 
     // create login fragment
     public View onCreateView (@NonNull LayoutInflater inflater, ViewGroup container,
@@ -31,15 +33,14 @@ public class LoginFragmentView extends Fragment {
         View root = binding.getRoot();
         userText = root.findViewById(R.id.login_username_edit_text);
         passText = root.findViewById(R.id.login_password_edit_text);
+        studentCheck = root.findViewById(R.id.login_student_check);
+        adminCheck = root.findViewById(R.id.login_admin_check);
         return root;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // login_student_check & login_admin_check
-        CheckBox studentCheck = view.findViewById(R.id.login_student_check);
-        CheckBox adminCheck = view.findViewById(R.id.login_admin_check);
         studentCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -76,15 +77,15 @@ public class LoginFragmentView extends Fragment {
                 passText.setText("");
 
                 if (studentCheck.isChecked()) {
-                    presenter.checkStudentsDB(username, password);
+                    User student = new User(username, password, "students");
+                    presenter.checkStudentsDB(student);
                 }
                 else if (adminCheck.isChecked()) {
-                    presenter.checkAdminsDB(username, password);
+                    User admin = new User(username, password, "admins");
+                    presenter.checkAdminsDB(admin);
                 }
                 else {
-                    Toast announcement = Toast.makeText(getActivity(),
-                            "Please select students or admin!", Toast.LENGTH_SHORT);
-                    announcement.show();
+                    presenter.createAnnouncement("Please select students or admin!");
                 }
             }
         });
