@@ -44,6 +44,8 @@
         android:layout_marginTop="8dp"
         android:onClick="onClickPostAnnouncement"
         android:text="Post announcement"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/custom_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
