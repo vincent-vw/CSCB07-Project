@@ -1,10 +1,16 @@
 package com.example.cscb07project;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import com.example.cscb07project.ui.complaintForm.complaintFormFragment;
+
 
 import com.example.cscb07project.ui.Announcement;
 import com.google.android.material.snackbar.Snackbar;
@@ -104,5 +110,20 @@ public class MainActivity extends AppCompatActivity {
         String key = db.getReference(announcement).push().getKey(); // Get a unique key
         ref.child("announcements").child(key).setValue(announcementObj); // Set announcement with the unique key as key, announcement object as value
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.nav_complaint_form) {
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+            navController.navigate(R.id.nav_complaint_form);  // Use the same ID here
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 }
