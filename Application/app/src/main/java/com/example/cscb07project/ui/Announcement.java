@@ -3,8 +3,8 @@ package com.example.cscb07project.ui;
 public class Announcement {
 
     // Firebase requires fields to be public
-    public String username;
-    public String announcement;
+    private String username;
+    private String announcement;
 
     public Announcement(){}
 
@@ -13,4 +13,11 @@ public class Announcement {
         this.announcement = announcement;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getAnnouncement() {
+        return announcement;
+    }
 }
