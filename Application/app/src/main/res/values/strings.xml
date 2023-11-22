@@ -12,4 +12,10 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_create_announcement">Create Announcement</string>
     <string name="menu_view_announcements">View Announcements</string>
+
+    <string name="feedback_message">We value your feedback and encourage you to share any concerns or suggestions. </string>
+    <string name="complaint_hint">Please type your complaint here.</string>
+    <string name="submit_button_text">Submit</string>
+
+
 </resources>
