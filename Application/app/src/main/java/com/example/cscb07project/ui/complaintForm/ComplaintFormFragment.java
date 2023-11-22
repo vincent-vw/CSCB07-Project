@@ -16,19 +16,19 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cscb07project.R;
 
-import com.example.cscb07project.ui.createannouncement.CreateAnnouncementViewModel;
+import com.example.cscb07project.ui.Complaint;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class complaintFormFragment extends Fragment {
+public class ComplaintFormFragment extends Fragment {
 
     private EditText editTextComplaint;
     private Button buttonSubmit;
 
     private DatabaseReference databaseReference;
 
-    public complaintFormFragment() {
+    public ComplaintFormFragment() {
 
     }
 

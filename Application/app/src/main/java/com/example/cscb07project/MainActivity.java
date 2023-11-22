@@ -1,19 +1,14 @@
 package com.example.cscb07project;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
-import com.example.cscb07project.ui.complaintForm.complaintFormFragment;
-
 
 import com.example.cscb07project.ui.Announcement;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
