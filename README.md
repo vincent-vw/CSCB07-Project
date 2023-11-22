@@ -23,7 +23,7 @@ Follow these steps when working (based on https://www.atlassian.com/git/tutorial
   ```
   After setting up the tracking branch, ```git push``` can be invoked without any parameters to automatically push the new-feature branch to the remote repo
 
-4. Once work is finished, rebase your branch based on main (make sure your local main is sync'd with the remote main), then create a pull request for your branch. Now teammates comment and approve the pushed commits. Your updates appear in the pull request
+4. Once work is finished, rebase your branch based on main ('''git rebase main''' while in your branch; make sure your local main is sync'd with the remote main), then create a pull request for your branch. Now teammates comment and approve the pushed commits. Your updates appear in the pull request
 
 ## Tools Used
 - Git
