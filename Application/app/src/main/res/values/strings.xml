@@ -11,8 +11,11 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_create_announcement">Create Announcement</string>
-
-    <!-- fragment_login, fragment_sign_up-->
+    <string name="menu_login">Login</string>
+    <string name="menu_sign_up">Sign Up</string>
+    <string name="menu_view_announcements">View Announcements</string>
+  
+    <!-- fragment_login, fragment_sign_up -->
     <string name="title_name">APP</string>
     <string name="username_text">Username</string>
     <string name="username_hint">Enter your username!</string>
@@ -23,7 +26,9 @@
     <string name="student_check_text">Student</string>
     <string name="admin_check_text">Admin</string>
     <string name="sign_up_button_text">Sign up</string>
-    <string name="menu_login">Login</string>
-    <string name="menu_sign_up">Sign Up</string>
+
+    <string name="feedback_message">We value your feedback and encourage you to share any concerns or suggestions. </string>
+    <string name="complaint_hint">Please type your complaint here.</string>
+    <string name="submit_button_text">Submit</string>
 
 </resources>
