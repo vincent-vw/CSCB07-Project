@@ -23,9 +23,6 @@ public class CreateAnnouncementFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        CreateAnnouncementViewModel createannouncementViewModel =
-                new ViewModelProvider(this).get(CreateAnnouncementViewModel.class);
-
         binding = FragmentCreateAnnouncementBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 

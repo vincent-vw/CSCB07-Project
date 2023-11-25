@@ -28,17 +28,9 @@ public class ComplaintFormFragment extends Fragment {
 
     private DatabaseReference databaseReference;
 
-    public ComplaintFormFragment() {
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ComplaintFormViewModel complaintformviewmodel =
-                new ViewModelProvider(this).get(ComplaintFormViewModel.class);
-
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_complaint_form, container, false);
 

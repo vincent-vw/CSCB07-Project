@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_create_announcement,
+                R.id.nav_home, R.id.nav_create_announcement,
                 R.id.nav_view_announcements, R.id.nav_sign_up, R.id.nav_login)
                 .setOpenableLayout(drawer)
                 .build();
@@ -97,16 +97,16 @@ public class MainActivity extends AppCompatActivity {
         ref.child("announcements").child(key).setValue(announcementObj); // Set announcement with the unique key as key, announcement object as value
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
 
-        if (id == R.id.nav_complaint_form) {
-            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-            navController.navigate(R.id.nav_complaint_form);  // Use the same ID here
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//        if (id == R.id.nav_complaint_form) {
+//            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+//            navController.navigate(R.id.nav_complaint_form);  // Use the same ID here
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }
