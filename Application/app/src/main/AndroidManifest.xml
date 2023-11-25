@@ -12,17 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CSCB07Project"
         tools:targetApi="31">
+        <!-- android:name: class name of activity -->
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.CSCB07Project.NoActionBar">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
