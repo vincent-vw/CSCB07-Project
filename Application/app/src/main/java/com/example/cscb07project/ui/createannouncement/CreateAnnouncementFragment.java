@@ -29,7 +29,25 @@ public class CreateAnnouncementFragment extends Fragment {
         // Link to realtime database
         db = MainActivity.db;
 
+        root.findViewById(R.id.button_new_announcement).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickPostAnnouncement();
+            }
+        });
+
         return root;
+    }
+
+    public void onClickPostAnnouncement() {
+        DatabaseReference ref = db.getReference(); // Reference to the root node
+        // https://stackoverflow.com/questions/48654071/android-studio-how-can-i-put-this-activity-in-extends-fragment
+        EditText userText = (EditText) getView().findViewById(R.id.editText_new_announcement); // Get the EditText widget (used for entering text)
+        String announcement = userText.getText().toString(); // Get the announcement typed
+        Announcement announcementObj = new Announcement("PlaceholderUsername", announcement); // New announcement object
+        userText.setText(""); // Clear userText
+        String key = db.getReference(announcement).push().getKey(); // Get a unique key
+        ref.child("announcements").child(key).setValue(announcementObj); // Set announcement with the unique key as key, announcement object as value
     }
 
     @Override
