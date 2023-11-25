@@ -9,6 +9,9 @@ import androidx.navigation.Navigation;
 import com.example.cscb07project.ui.User;
 import com.google.firebase.database.DataSnapshot;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class LoginFragmentPresenter extends Fragment {
     LoginFragmentView view;
     LoginFragmentModel model;
@@ -38,7 +41,9 @@ public class LoginFragmentPresenter extends Fragment {
 
     public void setStudentsOutput(DataSnapshot dataSnapshot, User user) {
         if (dataSnapshot.exists()) {
-            if (user.getPassword().equals(dataSnapshot.getValue())) {
+            HashMap<String, String> map = (HashMap<String, String>) dataSnapshot.getValue();
+            String password = map.get("password");
+            if (user.getPassword().equals(password)) {
                 createAnnouncement("Successfully Login! Welcome, Student " + user.getUsername() + "!");
 
                 NavDirections action = LoginFragmentViewDirections.actionNavLoginToNavHome();
@@ -55,7 +60,9 @@ public class LoginFragmentPresenter extends Fragment {
 
     public void setAdminsOutput(DataSnapshot dataSnapshot, User user) {
         if (dataSnapshot.exists()) {
-            if (user.getPassword().equals(dataSnapshot.getValue())) {
+            HashMap<String, String> map = (HashMap<String, String>) dataSnapshot.getValue();
+            String password = map.get("password");
+            if (user.getPassword().equals(password)) {
                 createAnnouncement("Successfully Login! Welcome, Administrator " + user.getUsername() + "!");
 
                 // need revise later
