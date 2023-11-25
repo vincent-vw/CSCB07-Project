@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.example.cscb07project.ui.User;
 import com.google.firebase.database.DataSnapshot;
 
 public class LoginFragmentPresenter extends Fragment {

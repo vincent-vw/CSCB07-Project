@@ -2,6 +2,7 @@ package com.example.cscb07project.ui.createaccount;
 
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentLoginBinding;
+import com.example.cscb07project.ui.User;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

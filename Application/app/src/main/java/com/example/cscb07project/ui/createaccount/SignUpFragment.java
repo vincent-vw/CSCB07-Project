@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentSignUpBinding;
+import com.example.cscb07project.ui.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
