@@ -1,8 +1,11 @@
-package com.example.cscb07project.ui.createaccount;
+package com.example.cscb07project.ui.account;
+
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.ui.User;
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +40,8 @@ public class LoginFragmentPresenter extends Fragment {
             assert userFromDB != null;
 
             if (user.getPassword().equals(userFromDB.getPassword())) {
+                MainActivity.user = user;
+                view.signInSuccessful(user);
                 view.outputToast("Successfully logged in! Welcome, " + user.getUsername() + "!");
                 Navigation.findNavController(view.getView()).navigate(R.id.action_nav_login_to_nav_home);
             } else {

@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_create_announcement" />
     <fragment
         android:id="@+id/nav_login"
-        android:name="com.example.cscb07project.ui.createaccount.LoginFragmentView"
+        android:name="com.example.cscb07project.ui.account.LoginFragmentView"
         android:label="@string/menu_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_sign_up"
-        android:name="com.example.cscb07project.ui.createaccount.SignUpFragment"
+        android:name="com.example.cscb07project.ui.account.SignUpFragment"
         android:label="@string/menu_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
@@ -48,7 +48,7 @@
         tools:layout="@layout/fragment_view_announcements" />
     <fragment
         android:id="@+id/nav_complaint_form"
-        android:name="com.example.cscb07project.ui.complaintForm.ComplaintFormFragment"
+        android:name="com.example.cscb07project.ui.complaintform.ComplaintFormFragment"
         android:label="Complaint Form"
         tools:layout="@layout/fragment_complaint_form" />
 

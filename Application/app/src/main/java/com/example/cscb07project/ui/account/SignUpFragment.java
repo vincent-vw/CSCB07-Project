@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui.createaccount;
+package com.example.cscb07project.ui.account;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

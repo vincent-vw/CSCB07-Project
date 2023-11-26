@@ -1,6 +1,7 @@
-package com.example.cscb07project.ui.createaccount;
+package com.example.cscb07project.ui.account;
 
 import com.example.cscb07project.R;
+import com.example.cscb07project.ui.User;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -60,5 +62,10 @@ public class LoginFragmentView extends Fragment {
     public void outputToast(String text) {
         Toast announcement = Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
         announcement.show();
+    }
+
+    public void signInSuccessful(User user) {
+        TextView textView = (TextView) getActivity().findViewById(R.id.text_username);
+        textView.setText(user.getUsername());
     }
 }

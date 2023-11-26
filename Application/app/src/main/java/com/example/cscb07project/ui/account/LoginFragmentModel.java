@@ -1,4 +1,6 @@
-package com.example.cscb07project.ui.createaccount;
+package com.example.cscb07project.ui.account;
+
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
