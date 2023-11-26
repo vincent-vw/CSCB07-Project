@@ -81,7 +81,7 @@ public class FeedbackFormFragment extends Fragment {
 
         String additionalComments = editTextAdditionalComments.getText().toString().trim();
 
-        // Check for empty fields (except for additional comments)
+        // Check for empty fields
         if (!TextUtils.isEmpty(event) && !TextUtils.isEmpty(comment) && !TextUtils.isEmpty(username)) {
             // Generate a unique key for the feedback
             String key = databaseReference.push().getKey();
@@ -94,7 +94,7 @@ public class FeedbackFormFragment extends Fragment {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     if (error == null) {
-                        // Success
+                        // no errors
                         clearForm();
                         Toast.makeText(requireContext(), "Feedback submitted successfully", Toast.LENGTH_SHORT).show();
                     } else {
