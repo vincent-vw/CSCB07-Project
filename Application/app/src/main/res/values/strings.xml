@@ -28,6 +28,8 @@
     <string name="sign_up_button_text">Sign up</string>
 
     <string name="feedback_message">We value your feedback and encourage you to share any concerns or suggestions. </string>
+    <string name="enter_username_hint">Enter your username</string>
+    <string name="anonymous_text">Anonymous</string>
     <string name="complaint_hint">Please type your complaint here.</string>
     <string name="submit_button_text">Submit</string>
 
