@@ -72,8 +72,6 @@ public class ComplaintFormFragment extends Fragment {
                 }
             }
 
-            // Store the complaint into the instance of Complaint
-            Complaint complaint = new Complaint(username, complaintText);
 
             // Generate a unique key for the complaint
             String key = databaseReference.push().getKey();
@@ -92,7 +90,7 @@ public class ComplaintFormFragment extends Fragment {
             HashMap<String, Object> complaintMap = new HashMap<>();
             complaintMap.put("username", complaint.getUsername());
             complaintMap.put("status", complaint.getStatus());
-            complaintMap.put("text", complaint.getComplaint());
+            complaintMap.put("text", complaint.getText());
             complaintMap.put("timeSubmitted", complaint.getTimeSubmitted());
 
             // Send the complaint to Firebase
