@@ -16,7 +16,7 @@
         android:gravity="center"
         android:text="@string/feedback_message"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="19sp"
         android:textStyle="bold"
         android:contentDescription="@null"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,11 +26,39 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.503" />
 
+
+    <EditText
+        android:id="@+id/editTextStudentId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints="text"
+        android:hint="Enter your username"
+        android:inputType="text"
+        android:padding="16dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMessage" />
+
+    <CheckBox
+        android:id="@+id/checkBoxAnonymous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="16dp"
+        android:text="Anonymous"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStudentId" />
+
     <EditText
         android:id="@+id/editTextComplaint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="180dp"
         android:autofillHints="text"
         android:hint="@string/complaint_hint"
         android:inputType="textMultiLine"
@@ -38,7 +66,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintHorizontal_bias="0.366"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMessage" />
 
@@ -46,11 +74,15 @@
         android:id="@+id/buttonSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/submit_button_text"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
+        android:text="@string/submit_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextComplaint" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextComplaint"
+        app:layout_constraintVertical_bias="0.644" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
