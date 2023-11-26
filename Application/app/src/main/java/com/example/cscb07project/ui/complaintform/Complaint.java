@@ -32,7 +32,7 @@ public class Complaint {
         return status;
     }
 
-    public String getComplaint() {
+    public String getText() {
         return complaint;
     }
 
