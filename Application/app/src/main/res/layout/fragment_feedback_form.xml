@@ -53,64 +53,64 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <EditText
-        android:id="@+id/editTextEvent"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="360dp"
-        android:hint="@string/hint_event"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/editTextEvent"
+            android:layout_width="411dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="380dp"
+            android:hint="@string/hint_event"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editTextUsername"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="412dp"
-        android:hint="@string/hint_username"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="411dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="436dp"
+            android:hint="@string/hint_username"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editTextComment"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="468dp"
-        android:hint="@string/hint_comment"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        <EditText
+            android:id="@+id/editTextComment"
+            android:layout_width="411dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="492dp"
+            android:hint="@string/hint_comment"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editTextNumericRating"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/editTextNumericRating"
+            android:layout_width="411dp"
+            android:layout_height="wrap_content"
 
-        android:layout_marginTop="524dp"
-        android:hint="@string/hint_numeric_rating"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+            android:layout_marginTop="548dp"
+            android:hint="@string/hint_numeric_rating"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <EditText
             android:id="@+id/editTextAdditionalComments"
             android:layout_width="411dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="584dp"
+            android:layout_marginTop="604dp"
             android:hint="@string/hint_additional_comments"
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="132dp"
-            android:layout_marginTop="664dp"
+            android:layout_marginTop="680dp"
             android:layout_marginEnd="132dp"
             android:text="@string/submit_feedback"
             app:layout_constraintEnd_toEndOf="parent"
