@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui.feedback;
+package com.example.cscb07project.ui;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

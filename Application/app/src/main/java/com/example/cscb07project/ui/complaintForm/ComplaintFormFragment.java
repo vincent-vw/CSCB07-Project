@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cscb07project.R;
 
+import com.example.cscb07project.ui.Complaint;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -71,9 +72,6 @@ public class ComplaintFormFragment extends Fragment {
                     return;
                 }
             }
-
-            // Store the complaint into the instance of Complaint
-            Complaint complaint = new Complaint(username, complaintText);
 
             // Generate a unique key for the complaint
             String key = databaseReference.push().getKey();
