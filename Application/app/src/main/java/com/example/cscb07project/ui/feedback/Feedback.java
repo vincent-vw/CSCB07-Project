@@ -23,7 +23,7 @@ public class Feedback {
         this.numericRating = numericRating;
         this.additionalComments = additionalComments;
 
-        // Format the timestamp in the desired format
+        // Format of time
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd-HH:mm", Locale.getDefault());
         this.timeSubmitted = dateFormat.format(new Date());
     }
