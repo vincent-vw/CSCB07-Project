@@ -21,7 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 public class ComplaintFormFragment extends Fragment {
     private EditText editTextComplaint;
