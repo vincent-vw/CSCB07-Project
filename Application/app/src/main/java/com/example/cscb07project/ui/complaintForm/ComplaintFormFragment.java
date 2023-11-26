@@ -9,21 +9,24 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.cscb07project.R;
+
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
-import com.example.cscb07project.R;
-public class ComplaintFormFragment extends Fragment{
+public class ComplaintFormFragment extends Fragment {
     private EditText editTextComplaint;
-    private EditText editTextUTORid;
+    private EditText editTextUsername;
     private CheckBox checkBoxAnonymous;
-
 
     // Firebase
     private DatabaseReference databaseReference;
@@ -40,7 +43,7 @@ public class ComplaintFormFragment extends Fragment{
 
         // Initialize UI components
         editTextComplaint = view.findViewById(R.id.editTextComplaint);
-        editTextUTORid = view.findViewById(R.id.editTextStudentId);
+        editTextUsername = view.findViewById(R.id.editTextStudentId);
         checkBoxAnonymous = view.findViewById(R.id.checkBoxAnonymous);
         Button buttonSubmit = view.findViewById(R.id.buttonSubmit);
 
@@ -58,17 +61,17 @@ public class ComplaintFormFragment extends Fragment{
     private void submitComplaint() {
         // Get complaint text from EditText
         String complaintText = editTextComplaint.getText().toString().trim();
-        String UTORid = editTextUTORid.getText().toString().trim();
+        String username = editTextUsername.getText().toString().trim();
         boolean isAnonymous = checkBoxAnonymous.isChecked();
 
         if (!complaintText.isEmpty()) {
-            // Clear the UTORid if anonymous is checked
+            // Clear the username if anonymous is checked
             if (isAnonymous) {
-                UTORid = "unavailable";
+                username = "unavailable";
             } else {
-                // Show error message if UTORid is empty and not anonymous
-                if (UTORid.isEmpty()) {
-                    editTextUTORid.setError("Please enter your UTORid.");
+                // Show error message if username is empty and not anonymous
+                if (username.isEmpty()) {
+                    editTextUsername.setError("Please enter your username.");
                     return;
                 }
             }
@@ -84,13 +87,11 @@ public class ComplaintFormFragment extends Fragment{
                 status = "Identified";
             }
 
-
             // create an instance of Complaint
-            Complaint complaint = new Complaint(UTORid, status, complaintText);
+            Complaint complaint = new Complaint(username, status, complaintText);
 
-            // Create a HashMap to define the order in Firebase
             HashMap<String, Object> complaintMap = new HashMap<>();
-            complaintMap.put("UTORid", complaint.getUTORid());
+            complaintMap.put("username", complaint.getUsername());
             complaintMap.put("status", complaint.getStatus());
             complaintMap.put("text", complaint.getText());
             complaintMap.put("timeSubmitted", complaint.getTimeSubmitted());
@@ -102,10 +103,10 @@ public class ComplaintFormFragment extends Fragment{
                     if (error == null) {
                         // Success
                         editTextComplaint.setText("");
-                        editTextUTORid.setText("");
+                        editTextUsername.setText("");
                         checkBoxAnonymous.setChecked(false);
-                        // Disable the UTORid EditText if anonymous is checked
-                        editTextUTORid.setEnabled(!isAnonymous);
+                        // Disable the username EditText if anonymous is checked
+                        editTextUsername.setEnabled(!isAnonymous);
                         Toast.makeText(requireContext(), "Complaint submitted successfully", Toast.LENGTH_SHORT).show();
                     } else {
                         // Handle the error
@@ -113,10 +114,7 @@ public class ComplaintFormFragment extends Fragment{
                     }
                 }
             });
-        } else {
-            // when the user types no message
-            editTextComplaint.setError("Please enter your complaint.");
         }
     }
-
 }
+

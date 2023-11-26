@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class Complaint {
-    private String UTORid;
+    private String username;
     private String status;
     private String text;
     private String timeSubmitted; // Modified to store formatted time
@@ -15,8 +15,8 @@ public class Complaint {
 
     }
 
-    public Complaint(String UTORid, String status, String text) {
-        this.UTORid = UTORid;
+    public Complaint(String username, String status, String text) {
+        this.username = username;
         this.status = status;
         this.text = text;
 
@@ -25,8 +25,8 @@ public class Complaint {
         this.timeSubmitted = dateFormat.format(new Date());
     }
 
-    public String getUTORid() {
-        return UTORid;
+    public String getUsername() {
+        return username;
     }
 
     public String getStatus() {
@@ -44,11 +44,12 @@ public class Complaint {
     // Method to convert Complaint object to HashMap
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> complaintMap = new HashMap<>();
-        complaintMap.put("UTORid", UTORid);
+        complaintMap.put("username", username);
         complaintMap.put("status", status);
         complaintMap.put("text", text);
         complaintMap.put("timeSubmitted", timeSubmitted);
         return complaintMap;
     }
 }
+
 
