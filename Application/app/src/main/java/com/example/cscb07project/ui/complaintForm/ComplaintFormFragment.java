@@ -26,14 +26,11 @@ public class ComplaintFormFragment extends Fragment {
     private EditText editTextComplaint;
     private EditText editTextUsername;
     private CheckBox checkBoxAnonymous;
-
-    // Firebase
     private DatabaseReference databaseReference;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_complaint_form, container, false);
 
@@ -41,10 +38,10 @@ public class ComplaintFormFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference("complaints");
 
         // Initialize UI components
-        editTextComplaint = view.findViewById(R.id.editTextComplaint);
+        editTextComplaint = view.findViewById(R.id.editText_complaint);
         editTextUsername = view.findViewById(R.id.editTextStudentId);
         checkBoxAnonymous = view.findViewById(R.id.checkBoxAnonymous);
-        Button buttonSubmit = view.findViewById(R.id.buttonSubmit);
+        Button buttonSubmit = view.findViewById(R.id.button_new_complaint);
 
         // onClickListener for Submit
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +72,9 @@ public class ComplaintFormFragment extends Fragment {
                 }
             }
 
+            // Store the complaint into the instance of Complaint
+            Complaint complaint = new Complaint(username, complaintText);
+
             // Generate a unique key for the complaint
             String key = databaseReference.push().getKey();
 
@@ -86,13 +86,13 @@ public class ComplaintFormFragment extends Fragment {
                 status = "Identified";
             }
 
-            // create an instance of Complaint
+            // Create an instance of Complaint
             Complaint complaint = new Complaint(username, status, complaintText);
 
             HashMap<String, Object> complaintMap = new HashMap<>();
             complaintMap.put("username", complaint.getUsername());
             complaintMap.put("status", complaint.getStatus());
-            complaintMap.put("text", complaint.getText());
+            complaintMap.put("text", complaint.getComplaint());
             complaintMap.put("timeSubmitted", complaint.getTimeSubmitted());
 
             // Send the complaint to Firebase

@@ -12,38 +12,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginFragmentModel extends Fragment {
-    private FirebaseDatabase db;
+    private DatabaseReference databaseReference;
 
     public LoginFragmentModel() {
-        this.db = FirebaseDatabase.getInstance("https://cscb07project-c6a1c-default-rtdb.firebaseio.com/");
+        databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void queryStudentsDB(LoginFragmentPresenter presenter, User user) {
-        DatabaseReference ref = MainActivity.db.getReference();
-        DatabaseReference query = ref.child(user.getIdentity()).child(user.getUsername());
+    public void queryDB(LoginFragmentPresenter presenter, User user) {
+        DatabaseReference query = databaseReference.child(user.getIdentity()).child(user.getUsername());
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                presenter.setStudentsOutput(dataSnapshot, user);
+                presenter.signInFinalize(dataSnapshot, user);
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
-
-    public void queryAdminsDB(LoginFragmentPresenter presenter, User user) {
-        DatabaseReference ref = MainActivity.db.getReference();
-        DatabaseReference query = ref.child(user.getIdentity()).child(user.getUsername());
-
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                presenter.setAdminsOutput(dataSnapshot, user);
-            }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }

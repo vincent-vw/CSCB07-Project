@@ -8,17 +8,16 @@ import java.util.Locale;
 public class Complaint {
     private String username;
     private String status;
-    private String text;
+    private String complaint;
     private String timeSubmitted;
 
     public Complaint() {
-
     }
 
-    public Complaint(String username, String status, String text) {
+    public Complaint(String username, String status, String complaint) {
         this.username = username;
         this.status = status;
-        this.text = text;
+        this.complaint = complaint;
 
         // Format the timestamp in the desired format
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd-HH:mm", Locale.getDefault());
@@ -33,8 +32,8 @@ public class Complaint {
         return status;
     }
 
-    public String getText() {
-        return text;
+    public String getComplaint() {
+        return complaint;
     }
 
     public String getTimeSubmitted() {
@@ -45,7 +44,7 @@ public class Complaint {
         HashMap<String, Object> complaintMap = new HashMap<>();
         complaintMap.put("username", username);
         complaintMap.put("status", status);
-        complaintMap.put("text", text);
+        complaintMap.put("text", complaint);
         complaintMap.put("timeSubmitted", timeSubmitted);
         return complaintMap;
     }

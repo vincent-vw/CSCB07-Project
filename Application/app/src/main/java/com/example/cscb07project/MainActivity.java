@@ -45,22 +45,13 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_create_announcement,
+                R.id.nav_home, R.id.nav_create_announcement,
                 R.id.nav_view_announcements, R.id.nav_sign_up, R.id.nav_login)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-//        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-////                        .setAction("Action", null).show();
-//                navController.navigate(R.id.nav_view_announcements);
-//            }
-//        });
 
         // Link to realtime database
         db = FirebaseDatabase.getInstance("https://cscb07project-c6a1c-default-rtdb.firebaseio.com/");
@@ -95,30 +86,16 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void onClickPostAnnouncement(View view) {
-        DatabaseReference ref = db.getReference(); // Reference to the root node
-        // https://stackoverflow.com/questions/48654071/android-studio-how-can-i-put-this-activity-in-extends-fragment
-        EditText userText = (EditText) findViewById(R.id.editText_new_announcement); // Get the EditText widget (used for entering text)
-        String announcement = userText.getText().toString(); // Get the announcement typed
-        Announcement announcementObj = new Announcement("PlaceholderUsername", announcement); // New announcement object
-        userText.setText(""); // Clear userText
-        String key = db.getReference(announcement).push().getKey(); // Get a unique key
-        ref.child("announcements").child(key).setValue(announcementObj); // Set announcement with the unique key as key, announcement object as value
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.nav_complaint_form) {
-            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-            navController.navigate(R.id.nav_complaint_form);  // Use the same ID here
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
+//        if (id == R.id.nav_complaint_form) {
+//            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+//            navController.navigate(R.id.nav_complaint_form);  // Use the same ID here
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }

@@ -1,112 +1,64 @@
 package com.example.cscb07project.ui.createaccount;
 
 import com.example.cscb07project.R;
-import com.example.cscb07project.databinding.FragmentLoginBinding;
-import com.example.cscb07project.ui.User;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 public class LoginFragmentView extends Fragment {
     private LoginFragmentPresenter presenter;
-    private FragmentLoginBinding binding;
     private EditText userText;
     private EditText passText;
-    private CheckBox studentCheck;
-    private CheckBox adminCheck;
+    private RadioGroup radioGroup;
 
-
-    // create login fragment
-    public View onCreateView (@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
-        binding = FragmentLoginBinding.inflate(inflater, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+
         presenter = new LoginFragmentPresenter(this, new LoginFragmentModel());
-        View root = binding.getRoot();
-        userText = root.findViewById(R.id.login_username_edit_text);
-        passText = root.findViewById(R.id.login_password_edit_text);
-        studentCheck = root.findViewById(R.id.login_student_check);
-        adminCheck = root.findViewById(R.id.login_admin_check);
-        return root;
+
+        userText = (EditText) view.findViewById(R.id.login_username_edit_text);
+        passText = (EditText) view.findViewById(R.id.login_password_edit_text);
+        radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup_login);
+
+        return view;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        studentCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    adminCheck.setChecked(false);
-                    adminCheck.setEnabled(false);
-                }
-                else {
-                    adminCheck.setEnabled(true);
-                }
-            }
-        });
-        adminCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    studentCheck.setChecked(false);
-                    studentCheck.setEnabled(false);
-                }
-                else {
-                    studentCheck.setEnabled(true);
-                }
-            }
-        });
-
-        // login_button
-        view.findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // get user input
-                String username = userText.getText().toString();
-                String password = passText.getText().toString();
+                String username = userText.getText().toString().trim();
+                String password = passText.getText().toString().trim();
                 userText.setText("");
                 passText.setText("");
+                int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
 
-                if (studentCheck.isChecked()) {
-                    User student = new User(username, password, "students");
-                    presenter.checkStudentsDB(student);
-                }
-                else if (adminCheck.isChecked()) {
-                    User admin = new User(username, password, "admins");
-                    presenter.checkAdminsDB(admin);
-                }
-                else {
-                    presenter.createAnnouncement("Please select students or admin!");
-                }
+                presenter.signIn(username, password, checkedRadioButtonId);
             }
         });
 
-        // no_account_button
         view.findViewById(R.id.no_account_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavDirections action = LoginFragmentViewDirections.actionNavLoginToNavSignUp();
-                Navigation.findNavController(view).navigate(action);
+                Navigation.findNavController(view).navigate(R.id.action_nav_login_to_nav_sign_up);
             }
         });
     }
 
-    public void onDestroyView () {
-        super.onDestroyView();
-        binding = null;
-    }
-
-    public FragmentLoginBinding getBinding() {
-        return binding;
+    public void outputToast(String text) {
+        Toast announcement = Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
+        announcement.show();
     }
 }

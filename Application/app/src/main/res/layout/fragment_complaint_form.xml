@@ -7,7 +7,7 @@
     android:background="@drawable/mh3g">
 
     <TextView
-        android:id="@+id/textViewMessage"
+        android:id="@+id/text_complaint_form_instructions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextStudentId" />
 
     <EditText
-        android:id="@+id/editTextComplaint"
+        android:id="@+id/editText_complaint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
@@ -68,10 +68,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.366"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMessage" />
+        app:layout_constraintTop_toBottomOf="@+id/text_complaint_form_instructions" />
 
     <Button
-        android:id="@+id/buttonSubmit"
+        android:id="@+id/button_new_complaint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -81,8 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextComplaint"
+        app:layout_constraintTop_toBottomOf="@+id/editText_complaint"
         app:layout_constraintVertical_bias="0.644" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
