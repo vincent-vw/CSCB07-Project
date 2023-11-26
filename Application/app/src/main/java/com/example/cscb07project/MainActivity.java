@@ -10,13 +10,9 @@ import android.widget.Toast;
 
 import com.example.cscb07project.ui.Announcement;
 import com.example.cscb07project.ui.User;
+import com.google.android.material.color.DynamicColors;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.datastore.preferences.core.MutablePreferences;
-import androidx.datastore.preferences.core.Preferences;
-import androidx.datastore.preferences.core.PreferencesKeys;
-import androidx.datastore.preferences.rxjava2.RxPreferenceDataStoreBuilder;
-import androidx.datastore.rxjava2.RxDataStore;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
