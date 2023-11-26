@@ -39,7 +39,7 @@
     <string name="hint_comment">Please enter your comment</string>
     <string name="hint_username">Please enter your username</string>
     <string name="hint_numeric_rating">Please enter your numeric rating</string>
-    <string name="hint_additional_comments">Please type any additional Comments</string>
+    <string name="hint_additional_comments">Please type any additional comments</string>
     <string name="submit_feedback">Submit Feedback</string>
 
 </resources>
