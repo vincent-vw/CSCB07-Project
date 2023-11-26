@@ -100,7 +100,7 @@ public class ComplaintFormFragment extends Fragment {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     if (error == null) {
-                        // Success
+                        // No error
                         editTextComplaint.setText("");
                         editTextUsername.setText("");
                         checkBoxAnonymous.setChecked(false);

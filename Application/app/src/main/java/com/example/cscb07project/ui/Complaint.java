@@ -9,7 +9,7 @@ public class Complaint {
     private String username;
     private String status;
     private String text;
-    private String timeSubmitted; // Modified to store formatted time
+    private String timeSubmitted;
 
     public Complaint() {
 
@@ -41,7 +41,6 @@ public class Complaint {
         return timeSubmitted;
     }
 
-    // Method to convert Complaint object to HashMap
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> complaintMap = new HashMap<>();
         complaintMap.put("username", username);
