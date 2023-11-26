@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mh3g">
+    android:background="@drawable/mh3">
+
 
     <TextView
         android:id="@+id/text_complaint_form_instructions"
@@ -24,23 +25,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.503" />
-
+        app:layout_constraintVertical_bias="0.196" />
 
     <EditText
         android:id="@+id/editTextStudentId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="107dp"
-        android:layout_marginTop="162dp"
+        android:layout_marginTop="256dp"
         android:layout_marginEnd="107dp"
         android:autofillHints="text"
-        android:hint="Enter your username"
+        android:hint="@string/enter_username"
         android:inputType="text"
         android:padding="16dp"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,11 +50,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
-        android:layout_marginTop="236dp"
+        android:layout_marginTop="360dp"
         android:layout_marginEnd="153dp"
-        android:text="Anonymous"
+        android:text="@string/anonymous"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +63,7 @@
         android:id="@+id/editText_complaint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="364dp"
         android:autofillHints="text"
         android:hint="@string/complaint_hint"
         android:inputType="textMultiLine"
@@ -81,9 +83,9 @@
         android:text="@string/submit_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_complaint"
-        app:layout_constraintVertical_bias="0.644" />
+        app:layout_constraintVertical_bias="0.446" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
