@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui;
+package com.example.cscb07project.ui.complaintForm;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,16 +8,17 @@ import java.util.Locale;
 public class Complaint {
     private String username;
     private String status;
-    private String complaint;
+    private String text;
     private String timeSubmitted;
 
     public Complaint() {
+
     }
 
-    public Complaint(String username, String status, String complaint) {
+    public Complaint(String username, String status, String text) {
         this.username = username;
         this.status = status;
-        this.complaint = complaint;
+        this.text = text;
 
         // Format the timestamp in the desired format
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd-HH:mm", Locale.getDefault());
@@ -32,20 +33,23 @@ public class Complaint {
         return status;
     }
 
-    public String getComplaint() {
-        return complaint;
+    public String getText() {
+        return text;
     }
 
     public String getTimeSubmitted() {
         return timeSubmitted;
     }
 
+
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> complaintMap = new HashMap<>();
         complaintMap.put("username", username);
         complaintMap.put("status", status);
-        complaintMap.put("text", complaint);
+        complaintMap.put("text", text);
         complaintMap.put("timeSubmitted", timeSubmitted);
         return complaintMap;
     }
 }
+
+

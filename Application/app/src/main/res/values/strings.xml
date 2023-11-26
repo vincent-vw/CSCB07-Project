@@ -31,4 +31,15 @@
     <string name="complaint_hint">Please type your complaint here.</string>
     <string name="submit_button_text">Submit</string>
 
+    <string name="feedback_prompt">
+        We value your feedback on the events. Kindly complete each text box below. For the numeric rating, please use a scale of 1 to 10, where 1 indicates the least favorable and 10 represents the most favorable experience.
+    </string>
+
+    <string name="hint_event">Please enter your event</string>
+    <string name="hint_comment">Please enter your comment</string>
+    <string name="hint_username">Please enter your username</string>
+    <string name="hint_numeric_rating">Please enter your numeric rating</string>
+    <string name="hint_additional_comments">Please type any additional Comments</string>
+    <string name="submit_feedback">Submit Feedback</string>
+
 </resources>
