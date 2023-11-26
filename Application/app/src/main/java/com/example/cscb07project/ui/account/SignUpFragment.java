@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui.createaccount;
+package com.example.cscb07project.ui.account;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -27,6 +28,7 @@ public class SignUpFragment extends Fragment {
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+
         databaseReference = FirebaseDatabase.getInstance().getReference();
         return view;
     }

@@ -2,8 +2,7 @@
     <string name="app_name">CSCB07Project</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Not Signed In</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -34,7 +33,7 @@
     <string name="submit_button_text">Submit</string>
 
     <string name="feedback_prompt">
-        We value your feedback on the events. Kindly complete each text box below. For the numeric rating, please use a scale of 1 to 10, where 1 indicates the least favorable and 10 represents the most favorable experience.
+        We value your feedback on the events. Kindly complete the form below. For the numeric rating, please use a scale of 1 to 10, where 1 indicates the least favorable and 10 represents the most favorable experience.
     </string>
 
     <string name="hint_event">Please enter your event</string>
