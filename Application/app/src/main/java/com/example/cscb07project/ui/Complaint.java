@@ -1,19 +1,19 @@
 package com.example.cscb07project.ui;
 
 public class Complaint {
-    private String text;
     private String username;
+    private String complaint;
 
     public Complaint() {
     }
 
-    public Complaint(String text, String username) {
-        this.text = text;
+    public Complaint(String username, String complaint) {
         this.username = username;
+        this.complaint = complaint;
     }
 
     public String getText() {
-        return text;
+        return complaint;
     }
 
     public String getUsername(){

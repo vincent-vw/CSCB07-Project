@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cscb07project.R;
 
@@ -22,10 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ComplaintFormFragment extends Fragment {
-
     private EditText editTextComplaint;
     private Button buttonSubmit;
-
     private DatabaseReference databaseReference;
 
     @Override
@@ -38,8 +35,8 @@ public class ComplaintFormFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference("complaints");
 
         // Initialize UI components
-        editTextComplaint = view.findViewById(R.id.editTextComplaint);
-        buttonSubmit = view.findViewById(R.id.buttonSubmit);
+        editTextComplaint = view.findViewById(R.id.editText_complaint);
+        buttonSubmit = view.findViewById(R.id.button_new_complaint);
 
         // onClickListener for the "Submit" button
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
@@ -59,11 +56,11 @@ public class ComplaintFormFragment extends Fragment {
         if (!complaintText.isEmpty()) {
             String username = "AnonymousHuman";
 
+            // Store the complaint into the instance of Complaint
+            Complaint complaint = new Complaint(username, complaintText);
+
             // Generate a unique key for the complaint
             String key = databaseReference.push().getKey();
-
-            // Store the complaint into the instance of Complaint
-            Complaint complaint = new Complaint(complaintText, username);
 
             // Send the complaint to Firebase
             databaseReference.child(key).setValue(complaint, new DatabaseReference.CompletionListener() {
@@ -76,7 +73,6 @@ public class ComplaintFormFragment extends Fragment {
                     } else {
                         // Handle the error
                         Toast.makeText(requireContext(), "Failed to submit complaint. Please try again.", Toast.LENGTH_SHORT).show();
-
                     }
                 }
             });
