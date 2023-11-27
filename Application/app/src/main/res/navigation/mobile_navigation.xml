@@ -51,7 +51,6 @@
         android:name="com.example.cscb07project.ui.complaintform.ComplaintFormFragment"
         android:label="Complaint Form"
         tools:layout="@layout/fragment_complaint_form" />
-
     <fragment
         android:id="@+id/nav_feedback"
         android:name="com.example.cscb07project.ui.feedback.FeedbackFormFragment"
