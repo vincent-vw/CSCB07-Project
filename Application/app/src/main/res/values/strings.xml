@@ -31,7 +31,7 @@
     <string name="submit_button_text">Submit</string>
 
     <string name="feedback_prompt">
-        We value your feedback on the events. Kindly complete the form below. For the numeric rating, please use a scale of 1 to 10, where 1 indicates the least favorable and 10 represents the most favorable experience.
+        We value your feedback on the events. Kindly complete the form below. For the numeric rating, please use a scale of 1 to 10, where 1 indicates the least favorable and 10 represents the most favorable experience. Press the submit button to submit your feedback.
     </string>
 
     <string name="hint_event">Please enter your event</string>
@@ -40,5 +40,7 @@
     <string name="hint_numeric_rating">Please enter your numeric rating</string>
     <string name="hint_additional_comments">Please type any additional comments</string>
     <string name="submit_feedback">Submit Feedback</string>
+    <string name="enter_username">Enter your username</string>
+    <string name="anonymous">Anonymous</string>
 
 </resources>
