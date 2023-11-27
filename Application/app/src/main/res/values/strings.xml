@@ -43,4 +43,7 @@
     <string name="hint_additional_comments">Please type any additional comments</string>
     <string name="submit_feedback">Submit Feedback</string>
 
+    <string name="menu_complaint_form">Complaint Form</string>
+    <string name="menu_feedback_form">Feedback Form</string>
+
 </resources>

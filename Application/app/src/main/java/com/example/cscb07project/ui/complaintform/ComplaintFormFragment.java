@@ -3,6 +3,7 @@ package com.example.cscb07project.ui.complaintform;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,8 +13,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 
 import com.google.firebase.database.DatabaseError;
@@ -43,6 +48,7 @@ public class ComplaintFormFragment extends Fragment {
         checkBoxAnonymous = view.findViewById(R.id.checkBoxAnonymous);
         Button buttonSubmit = view.findViewById(R.id.button_new_complaint);
 
+
         // onClickListener for Submit
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +59,7 @@ public class ComplaintFormFragment extends Fragment {
 
         return view;
     }
+
 
     private void submitComplaint() {
         // Get complaint text from EditText

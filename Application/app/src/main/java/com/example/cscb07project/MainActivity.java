@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import com.example.cscb07project.R;
 import io.reactivex.rxjava3.core.Single;
 
 public class MainActivity extends AppCompatActivity {
@@ -105,4 +106,14 @@ public class MainActivity extends AppCompatActivity {
 //
 //        return super.onOptionsItemSelected(item);
 //    }
+
+
+
+    private void openActionBarMenu() {
+        invalidateOptionsMenu();
+    }
+
+
+
+
 }
