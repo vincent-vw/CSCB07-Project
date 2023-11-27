@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui;
+package com.example.cscb07project.ui.complaintform;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,7 +32,7 @@ public class Complaint {
         return status;
     }
 
-    public String getComplaint() {
+    public String getText() {
         return complaint;
     }
 

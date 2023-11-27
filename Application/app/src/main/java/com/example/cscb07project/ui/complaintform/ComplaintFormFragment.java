@@ -3,20 +3,25 @@ package com.example.cscb07project.ui.complaintform;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 
-import com.example.cscb07project.ui.Complaint;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -44,6 +49,7 @@ public class ComplaintFormFragment extends Fragment {
         checkBoxAnonymous = view.findViewById(R.id.checkBoxAnonymous);
         Button buttonSubmit = view.findViewById(R.id.button_new_complaint);
 
+
         // onClickListener for Submit
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,8 +58,27 @@ public class ComplaintFormFragment extends Fragment {
             }
         });
 
+        // Disable the username EditText if anonymous is checked
+        editTextUsername.setEnabled(!checkBoxAnonymous.isChecked());
+
+        // Set up listener for CheckBox changes
+        checkBoxAnonymous.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Disable the username EditText if anonymous is checked
+                editTextUsername.setEnabled(!isChecked);
+
+                // Clear the username EditText if anonymous is checked
+                if (isChecked) {
+                    editTextUsername.setText("");
+                }
+            }
+        });
+
+
         return view;
     }
+
 
     private void submitComplaint() {
         // Get complaint text from EditText
@@ -73,6 +98,7 @@ public class ComplaintFormFragment extends Fragment {
                 }
             }
 
+
             // Generate a unique key for the complaint
             String key = databaseReference.push().getKey();
 
@@ -90,7 +116,7 @@ public class ComplaintFormFragment extends Fragment {
             HashMap<String, Object> complaintMap = new HashMap<>();
             complaintMap.put("username", complaint.getUsername());
             complaintMap.put("status", complaint.getStatus());
-            complaintMap.put("text", complaint.getComplaint());
+            complaintMap.put("text", complaint.getText());
             complaintMap.put("timeSubmitted", complaint.getTimeSubmitted());
 
             // Send the complaint to Firebase

@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.cscb07project.R;
 
-import com.example.cscb07project.ui.Feedback;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -82,7 +81,7 @@ public class FeedbackFormFragment extends Fragment {
 
         String additionalComments = editTextAdditionalComments.getText().toString().trim();
 
-        // Check for empty fields (except for additional comments)
+        // Check for empty fields
         if (!TextUtils.isEmpty(event) && !TextUtils.isEmpty(comment) && !TextUtils.isEmpty(username)) {
             // Generate a unique key for the feedback
             String key = databaseReference.push().getKey();
@@ -95,7 +94,7 @@ public class FeedbackFormFragment extends Fragment {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     if (error == null) {
-                        // Success
+                        // no errors
                         clearForm();
                         Toast.makeText(requireContext(), "Feedback submitted successfully", Toast.LENGTH_SHORT).show();
                     } else {
