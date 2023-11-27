@@ -34,6 +34,26 @@
         <activity
             android:name=".ui.requirement.Q2_comp" />
         <activity
+            android:name=".ui.requirement.Q3A_math"/>
+        <activity
+            android:name=".ui.requirement.Q3B_math"/>
+        <activity
+            android:name=".ui.requirement.Q3A_stat"/>
+        <activity
+            android:name=".ui.requirement.Q3B_stat"/>
+        <activity
+            android:name=".ui.requirement.Q3C_stat"/>
+        <activity
+            android:name=".ui.requirement.Q3A_comp" />
+        <activity
+            android:name=".ui.requirement.Q3B_comp" />
+        <activity
+            android:name=".ui.requirement.Q2_math" />
+        <activity
+            android:name=".ui.requirement.Q2_stat" />
+        <activity
+            android:name=".ui.requirement.Q2_comp" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
