@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -54,6 +55,18 @@ public class ComplaintFormFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 submitComplaint();
+            }
+        });
+
+        // Disable the username EditText if anonymous is checked
+        editTextUsername.setEnabled(!checkBoxAnonymous.isChecked());
+
+        // Set up listener for CheckBox changes
+        checkBoxAnonymous.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Disable the username EditText if anonymous is checked
+                editTextUsername.setEnabled(!isChecked);
             }
         });
 
