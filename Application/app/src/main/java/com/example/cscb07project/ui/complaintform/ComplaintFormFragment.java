@@ -67,8 +67,14 @@ public class ComplaintFormFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // Disable the username EditText if anonymous is checked
                 editTextUsername.setEnabled(!isChecked);
+
+                // Clear the username EditText if anonymous is checked
+                if (isChecked) {
+                    editTextUsername.setText("");
+                }
             }
         });
+
 
         return view;
     }
