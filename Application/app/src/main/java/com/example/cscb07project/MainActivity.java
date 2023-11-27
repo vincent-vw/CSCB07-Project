@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static FirebaseDatabase db;
     public static User user;
 
-    @Override
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -79,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
             }
         });
-    }
+    }*/
 
-    /*@Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
-        // Passing each menu ID as a set of Ids because each
         // menu should be considered as top-level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_create_announcement,
@@ -115,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        // Link to the real-time database
+
         db = FirebaseDatabase.getInstance("https://cscb07project-c6a1c-default-rtdb.firebaseio.com/");
 
         DatabaseReference query = db.getReference().child("announcements");
@@ -132,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
             }
         });
-    }*/
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
