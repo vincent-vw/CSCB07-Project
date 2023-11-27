@@ -34,4 +34,9 @@
         android:name="com.example.cscb07project.ui.createannouncement.CreateAnnouncementFragment"
         android:label="@string/menu_create_announcement"
         tools:layout="@layout/fragment_create_announcement" />
+    <fragment
+        android:id="@+id/nav_require"
+        android:name="com.example.cscb07project.ui.requirement.RequireFragment"
+        android:label="@string/check_post"
+        tools:layout="@layout/questions" />
 </navigation>
