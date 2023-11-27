@@ -1,11 +1,8 @@
 package com.example.cscb07project.ui.account;
 
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.ui.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
