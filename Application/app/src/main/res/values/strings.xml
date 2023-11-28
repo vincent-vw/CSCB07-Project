@@ -2,8 +2,7 @@
     <string name="app_name">CSCB07Project</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Not Signed In</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -11,67 +10,6 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_create_announcement">Create Announcement</string>
-
-    <string name="check_post">Check your CMS POSt requirements</string>
-    <string name="applying_to">Which program are you considering applying to?</string>
-    <string name="comp_program">Computer Science Program</string>
-    <string name="math_program">Mathematical Program</string>
-    <string name="stat_program">Statistic Program</string>
-    <string name="specialization">Which type of specialization?</string>
-
-    <string name="compsci">Computer Science</string>
-    <string name="stat">Statistics</string>
-    <string name="math">Mathematics</string>
-
-    <string name="apply_to_you">Which one of the following applies to you</string>
-    <string name="minor">Minor</string>
-    <string name="major_or_special">Major or specialist</string>
-    <string name="major">Major</string>
-    <string name="special">Specialist</string>
-
-    <string name="criteria">These are the criteria for your chosen program</string>
-    <string name="four_credit">4 Credits</string>
-    <string name="CSCA08">passed CSCA08</string>
-    <string name="CSCA48">passed CSCA48</string>
-    <string name="one_of">passed 1 of CSCA67/MATA67, MATA22/A23, MATA30/A31/A32</string>
-    <string name="check">check</string>
-
-    <string name="GPA_2.5">A GPA of at least 2.5</string>
-    <string name="B_CSCA48">A grade of at least B in CSCA48</string>
-    <string name="C_in_2">A grade of at least C- in 2 of CSCA67/MATA67, MATA22, MATA37</string>
-    <string name="at_least_A">At least an A- in both CSC/MAT A67 and MAT A31 the first time that they complete those courses</string>
-    <string name="CSCA67">passed CSC/MATA67</string>
-    <string name="MATA22">passed MATA22</string>
-    <string name="MATA37">passed MATA37</string>
-
-    <string name="CSCA08_or_CSCA20">passed CSCA08 or CSCA20</string>
-    <string name="GPA_of_2">A GPA of at least 2.0 across CSC/MAT A67, MAT A22, MAT A31, MAT A37</string>
-    <string name="MATA30_or_MATA31">passed MATA30 or MATA31</string>
-    <string name="MATA36_or_MATA37">passed MATA36 or MATA37</string>
-    <string name="GPA_2.3">A GPA of at least 2.3</string>
-
-    <string name="B_in_1">At least B in one of CSC/MAT A67, MAT A22, MAT A37</string>
-    <string name="GPA_of_3">A GPA of at least 2.5 across CSC/MAT A67, MAT A22, MAT A31, MAT A37</string>
-    <string name="B_in_2">At least B in two of CSC/MAT A67, MAT A22, MAT A37</string>
-    <string name="MATA31">passed MATA31</string>
-    <string name="GPA_2">A GPA of at least 2</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_q1">q1</string>
-    <string name="title_activity_q2a">q2a</string>
-    <string name="first_fragment_label">fflabel</string>
-    <string name="second_fragment_label">sflabel</string>
-    <string name="POSt">POSt requirement</string>
-    <string name="back">back</string>
-
-    <string name="com_min">Computer science minor</string>
-    <string name="com_maj_spec">Computer science major or specialist</string>
-    <string name="math_maj">Mathematics major</string>
-    <string name="math_spec">Mathematics specialist</string>
-    <string name="stat_min">Statistics minor</string>
-    <string name="stat_maj">Statistics major</string>
-    <string name="stat_spec">Statistics Specialist</string>
-
     <string name="menu_view_complaints">View Complaints</string>
     <string name="menu_login">Login</string>
     <string name="menu_sign_up">Sign Up</string>
