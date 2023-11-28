@@ -2,8 +2,7 @@
     <string name="app_name">CSCB07Project</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Not Signed In</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -12,4 +11,35 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_create_announcement">Create Announcement</string>
     <string name="menu_view_complaints">View Complaints</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_sign_up">Sign Up</string>
+    <string name="menu_view_announcements">View Announcements</string>
+  
+    <!-- fragment_login, fragment_sign_up -->
+    <string name="title_name">APP</string>
+    <string name="username_text">Username</string>
+    <string name="username_hint">Enter your username!</string>
+    <string name="password_text">Password</string>
+    <string name="password_hint">Enter your password!</string>
+    <string name="no_account_button_text">Have no account?</string>
+    <string name="login_button_text">Login</string>
+    <string name="student_check_text">Student</string>
+    <string name="admin_check_text">Admin</string>
+    <string name="sign_up_button_text">Sign up</string>
+
+    <string name="feedback_message">We value your feedback and encourage you to share any concerns or suggestions. </string>
+    <string name="complaint_hint">Please type your complaint here.</string>
+    <string name="submit_button_text">Submit</string>
+
+    <string name="feedback_prompt">
+        We value your feedback on the events. Kindly complete the form below. For the numeric rating, please use a scale of 1 to 10, where 1 indicates the least favorable and 10 represents the most favorable experience.
+    </string>
+
+    <string name="hint_event">Please enter your event</string>
+    <string name="hint_comment">Please enter your comment</string>
+    <string name="hint_username">Please enter your username</string>
+    <string name="hint_numeric_rating">Please enter your numeric rating</string>
+    <string name="hint_additional_comments">Please type any additional comments</string>
+    <string name="submit_feedback">Submit Feedback</string>
+
 </resources>

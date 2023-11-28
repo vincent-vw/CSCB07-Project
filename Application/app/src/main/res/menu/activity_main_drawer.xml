@@ -10,14 +10,6 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-        <item
             android:id="@+id/nav_create_announcement"
             android:icon="@android:drawable/ic_btn_speak_now"
             android:title="@string/menu_create_announcement" />
@@ -25,5 +17,16 @@
             android:id="@+id/nav_view_complaints"
             android:icon="@android:drawable/arrow_down_float"
             android:title="@string/menu_view_complaints" />
+            android:id="@+id/nav_view_announcements"
+            android:icon="@android:drawable/picture_frame"
+            android:title="@string/menu_view_announcements" />
+        <item
+            android:id="@+id/nav_complaint_form"
+            android:icon="@android:drawable/ic_dialog_alert"
+            android:title="Complaint Form" />
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@android:drawable/ic_dialog_email"
+            android:title="Feedback Form" />
     </group>
 </menu>
