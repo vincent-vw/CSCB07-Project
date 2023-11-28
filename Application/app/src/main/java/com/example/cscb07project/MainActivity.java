@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 import com.example.cscb07project.ui.Announcement;
 import com.example.cscb07project.ui.User;
 import com.google.android.material.color.DynamicColors;
@@ -27,10 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import io.reactivex.rxjava3.core.Single;
-
 public class MainActivity extends AppCompatActivity {
-
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     public static FirebaseDatabase db;
@@ -52,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_create_announcement,
                 R.id.nav_view_announcements, R.id.nav_sign_up, R.id.nav_login,
-                R.id.nav_complaint_form, R.id.nav_feedback, R.id.nav_view_complaints)
+                R.id.nav_complaint_form, R.id.nav_feedback, R.id.nav_view_complaints,
+                        R.id.nav_require)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -79,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
