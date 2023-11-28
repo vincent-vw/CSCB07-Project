@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentViewComplaintsBinding;
+import com.example.cscb07project.ui.Complaint;
 
 import java.util.ArrayList;
 import java.util.List;
