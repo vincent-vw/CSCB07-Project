@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_create_announcement,
                 R.id.nav_view_announcements, R.id.nav_sign_up, R.id.nav_login,
-                R.id.nav_complaint_form, R.id.nav_feedback)
+                R.id.nav_complaint_form, R.id.nav_feedback, R.id.nav_view_complaints)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);

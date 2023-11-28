@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui;
+package com.example.cscb07project.ui.viewcomplaints;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,6 +12,13 @@ public class Complaint {
     private String timeSubmitted;
 
     public Complaint() {
+        username = "temp";
+    }
+
+    //TODO firebase retrieves as json? use json parser instead of a custom map?
+    //TODO from data to object, need to finish
+    public Complaint(String json) {
+
     }
 
     public Complaint(String username, String status, String complaint) {
@@ -32,7 +39,7 @@ public class Complaint {
         return status;
     }
 
-    public String getComplaint() {
+    public String getText() {
         return complaint;
     }
 
@@ -40,6 +47,7 @@ public class Complaint {
         return timeSubmitted;
     }
 
+    //TODO firebase retrieves as json? use json parser instead of a custom map?
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> complaintMap = new HashMap<>();
         complaintMap.put("username", username);
@@ -47,5 +55,11 @@ public class Complaint {
         complaintMap.put("text", complaint);
         complaintMap.put("timeSubmitted", timeSubmitted);
         return complaintMap;
+    }
+
+    //TODO use to string to show a complaint text?
+    @Override
+    public String toString() {
+        return "good format";
     }
 }
