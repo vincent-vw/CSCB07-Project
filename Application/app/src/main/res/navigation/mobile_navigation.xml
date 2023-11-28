@@ -4,39 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/nav_login">
-
+    <!-- Consists of:
+        - ID for fragment
+        - Name of class implementing Fragment (class name prepended by package name)
+        - Label
+        - Layout XML file
+   -->
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.cscb07project.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.cscb07project.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.cscb07project.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <!-- Consists of:
-         - ID for fragment
-         - Name of class implementing Fragment (class name prepended by package name)
-         - Label
-         - Layout XML file
-    -->
     <fragment
         android:id="@+id/nav_create_announcement"
         android:name="com.example.cscb07project.ui.createannouncement.CreateAnnouncementFragment"
         android:label="@string/menu_create_announcement"
         tools:layout="@layout/fragment_create_announcement" />
     <fragment
+        android:id="@+id/nav_view_complaints"
+        android:name="com.example.cscb07project.ui.viewcomplaints.ViewComplaintsFragment"
+        android:label="@string/menu_view_complaints"
+        tools:layout="@layout/fragment_view_complaints" />
+    <fragment
         android:id="@+id/nav_login"
-        android:name="com.example.cscb07project.ui.createaccount.LoginFragmentView"
+        android:name="com.example.cscb07project.ui.account.LoginFragmentView"
         android:label="@string/menu_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -48,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_sign_up"
-        android:name="com.example.cscb07project.ui.createaccount.SignUpFragment"
+        android:name="com.example.cscb07project.ui.account.SignUpFragment"
         android:label="@string/menu_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
@@ -62,7 +53,7 @@
         tools:layout="@layout/fragment_view_announcements" />
     <fragment
         android:id="@+id/nav_complaint_form"
-        android:name="com.example.cscb07project.ui.complaintForm.ComplaintFormFragment"
+        android:name="com.example.cscb07project.ui.complaintform.ComplaintFormFragment"
         android:label="Complaint Form"
         tools:layout="@layout/fragment_complaint_form" />
     <fragment
@@ -74,5 +65,14 @@
             android:id="@+id/action_nav_schedule_events_self"
             app:destination="@id/nav_schedule_events" />
     </fragment>
-
+    <fragment
+        android:id="@+id/nav_feedback"
+        android:name="com.example.cscb07project.ui.feedback.FeedbackFormFragment"
+        android:label="Feedback Form"
+        tools:layout="@layout/fragment_feedback_form" />
+    <fragment
+        android:id="@+id/nav_require"
+        android:name="com.example.cscb07project.ui.requirement.RequireFragment"
+        android:label="@string/check_post"
+        tools:layout="@layout/fragment_require" />
 </navigation>

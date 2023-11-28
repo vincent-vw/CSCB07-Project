@@ -12,14 +12,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CSCB07Project"
         tools:targetApi="31">
+        <!-- android:name: class name of activity -->
+        <activity
+            android:name=".ui.requirement.Q3A_math"/>
+        <activity
+            android:name=".ui.requirement.Q3B_math"/>
+        <activity
+            android:name=".ui.requirement.Q3A_stat"/>
+        <activity
+            android:name=".ui.requirement.Q3B_stat"/>
+        <activity
+            android:name=".ui.requirement.Q3C_stat"/>
+        <activity
+            android:name=".ui.requirement.Q3A_comp" />
+        <activity
+            android:name=".ui.requirement.Q3B_comp" />
+        <activity
+            android:name=".ui.requirement.Q2_math" />
+        <activity
+            android:name=".ui.requirement.Q2_stat" />
+        <activity
+            android:name=".ui.requirement.Q2_comp" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.CSCB07Project.NoActionBar">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

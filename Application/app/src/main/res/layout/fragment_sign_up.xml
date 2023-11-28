@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/sign_up_username_edit_text"
+        android:id="@+id/editText_username_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -46,17 +46,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/sign_up_button"
+        android:id="@+id/button_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="@string/sign_up_button_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/student_check" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_sign_up" />
 
     <EditText
-        android:id="@+id/sign_up_password_edit_text"
+        android:id="@+id/editText_password_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -83,24 +83,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
-        android:id="@+id/student_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RadioGroup
+        android:id="@+id/radioGroup_sign_up"
+        android:layout_width="186dp"
+        android:layout_height="70dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/student_check_text"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_password_edit_text" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_password_sign_up">
 
-    <CheckBox
-        android:id="@+id/admin_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/admin_check_text"
-        app:layout_constraintStart_toEndOf="@+id/student_check"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_password_edit_text" />
+        <RadioButton
+            android:id="@+id/radioButton_student_sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Student" />
+
+        <RadioButton
+            android:id="@+id/radioButton_admin_sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Admin" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

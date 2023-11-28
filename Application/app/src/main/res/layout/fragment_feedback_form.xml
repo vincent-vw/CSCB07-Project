@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view_complaint_form"
+        android:id="@+id/card_view_feedback_form"
         style="?attr/materialCardViewFilledStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="194dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/complaint_form" />
+                app:srcCompat="@drawable/feedback_form" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,14 +34,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Got a complaint?"
+                    android:text="Got some feedback?"
                     android:textAppearance="?attr/textAppearanceTitleLarge" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Enter a message below to create a complaint to staff members at UTSC."
+                    android:text="@string/feedback_prompt"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary" />
             </LinearLayout>
@@ -49,56 +49,73 @@
     </com.google.android.material.card.MaterialCardView>
 
     <EditText
-        android:id="@+id/editTextStudentId"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextEvent"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        android:autofillHints="text"
-        android:hint="Enter your username"
+        android:layout_marginTop="368dp"
+        android:hint="@string/hint_event"
         android:inputType="text"
-        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_view_complaint_form" />
-
-    <CheckBox
-        android:id="@+id/checkBoxAnonymous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Anonymous"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextStudentId" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editText_complaint"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextComment"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:autofillHints="text"
-        android:hint="@string/complaint_hint"
-        android:inputType="textMultiLine"
-        android:padding="16dp"
+        android:layout_marginTop="424dp"
+        android:hint="@string/hint_comment"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxAnonymous" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/sliderNumericRating"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_margin="8dp"
+        android:layout_marginTop="52dp"
+        android:stepSize="1.0"
+        android:valueFrom="0.0"
+        android:valueTo="10.0"
+        app:layout_constraintTop_toBottomOf="@+id/editTextComment"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <EditText
+        android:id="@+id/editTextAdditionalComments"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="580dp"
+        android:hint="@string/hint_additional_comments"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button_new_complaint"
+        android:id="@+id/buttonSubmitFeedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="80dp"
-        android:text="@string/submit_button_text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="648dp"
+        android:layout_marginEnd="132dp"
+        android:text="@string/submit_feedback"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_complaint"
-        app:layout_constraintVertical_bias="0.117" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
