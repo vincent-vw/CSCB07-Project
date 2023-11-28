@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 
 import com.example.cscb07project.ui.Feedback;
@@ -23,11 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 public class FeedbackFormFragment extends Fragment {
     private EditText editTextEvent;
     private EditText editTextComment;
-    private EditText editTextUsername;
     private EditText editTextNumericRating;
     private EditText editTextAdditionalComments;
     private Button buttonSubmitFeedback;
-
     private DatabaseReference databaseReference;
 
     @Override
@@ -43,7 +43,6 @@ public class FeedbackFormFragment extends Fragment {
         // Initialize UI components
         editTextEvent = view.findViewById(R.id.editTextEvent);
         editTextComment = view.findViewById(R.id.editTextComment);
-        editTextUsername = view.findViewById(R.id.editTextUsername);
         editTextNumericRating = view.findViewById(R.id.editTextNumericRating);
         editTextAdditionalComments = view.findViewById(R.id.editTextAdditionalComments);
         buttonSubmitFeedback = view.findViewById(R.id.buttonSubmitFeedback);
@@ -63,8 +62,8 @@ public class FeedbackFormFragment extends Fragment {
         // Get feedback details from EditText
         String event = editTextEvent.getText().toString().trim();
         String comment = editTextComment.getText().toString().trim();
-        String username = editTextUsername.getText().toString().trim();
         String numericRatingStr = editTextNumericRating.getText().toString().trim();
+        String username = MainActivity.user.getUsername();
         int numericRating = 0;
 
         try {
@@ -83,7 +82,7 @@ public class FeedbackFormFragment extends Fragment {
         String additionalComments = editTextAdditionalComments.getText().toString().trim();
 
         // Check for empty fields (except for additional comments)
-        if (!TextUtils.isEmpty(event) && !TextUtils.isEmpty(comment) && !TextUtils.isEmpty(username)) {
+        if (!TextUtils.isEmpty(event) && !TextUtils.isEmpty(comment)) {
             // Generate a unique key for the feedback
             String key = databaseReference.push().getKey();
 
@@ -105,19 +104,15 @@ public class FeedbackFormFragment extends Fragment {
                 }
             });
         } else {
-            // prompting the user to fill in all required fields
+            // Prompting the user to fill in all required fields
             Toast.makeText(requireContext(), "Please fill in all required fields", Toast.LENGTH_SHORT).show();
         }
     }
 
-
     private void clearForm() {
         editTextEvent.setText("");
         editTextComment.setText("");
-        editTextUsername.setText("");
         editTextNumericRating.setText("");
         editTextAdditionalComments.setText("");
     }
 }
-
-
