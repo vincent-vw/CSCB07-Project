@@ -10,13 +10,12 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cscb07project.R;
-import com.example.cscb07project.databinding.FragmentNavRequireBinding;
+import com.example.cscb07project.databinding.FragmentRequireBinding;
 
 public class RequireFragment extends Fragment{
-    private FragmentNavRequireBinding binding;
+    private FragmentRequireBinding binding;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class RequireFragment extends Fragment{
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentNavRequireBinding.inflate(inflater, container, false);
+        binding = FragmentRequireBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         //Find the views

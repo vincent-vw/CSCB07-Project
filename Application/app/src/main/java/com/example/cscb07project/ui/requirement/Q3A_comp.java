@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cscb07project.R;
-import com.example.cscb07project.databinding.FragmentNavRequireBinding;
 
 public class Q3A_comp extends AppCompatActivity{
     @Override
