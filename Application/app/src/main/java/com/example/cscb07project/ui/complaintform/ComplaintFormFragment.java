@@ -1,6 +1,5 @@
 package com.example.cscb07project.ui.complaintform;
 
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

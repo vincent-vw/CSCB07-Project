@@ -17,6 +17,7 @@ import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 
 import com.example.cscb07project.ui.Feedback;
+import com.google.android.material.slider.Slider;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class FeedbackFormFragment extends Fragment {
     private EditText editTextEvent;
     private EditText editTextComment;
-    private EditText editTextNumericRating;
+    private Slider sliderNumericRating;
     private EditText editTextAdditionalComments;
     private Button buttonSubmitFeedback;
     private DatabaseReference databaseReference;
@@ -43,7 +44,7 @@ public class FeedbackFormFragment extends Fragment {
         // Initialize UI components
         editTextEvent = view.findViewById(R.id.editTextEvent);
         editTextComment = view.findViewById(R.id.editTextComment);
-        editTextNumericRating = view.findViewById(R.id.editTextNumericRating);
+        sliderNumericRating = view.findViewById(R.id.sliderNumericRating);
         editTextAdditionalComments = view.findViewById(R.id.editTextAdditionalComments);
         buttonSubmitFeedback = view.findViewById(R.id.buttonSubmitFeedback);
 
@@ -62,23 +63,8 @@ public class FeedbackFormFragment extends Fragment {
         // Get feedback details from EditText
         String event = editTextEvent.getText().toString().trim();
         String comment = editTextComment.getText().toString().trim();
-        String numericRatingStr = editTextNumericRating.getText().toString().trim();
+        int numericRating = (int)sliderNumericRating.getValue();
         String username = MainActivity.user.getUsername();
-        int numericRating = 0;
-
-        try {
-            numericRating = Integer.parseInt(numericRatingStr);
-
-            if (numericRating < 1 || numericRating > 10) {
-                Toast.makeText(requireContext(), "Please enter a numeric rating between 1 and 10", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        } catch (NumberFormatException e) {
-            // When the user types an invalid numeric rating
-            Toast.makeText(requireContext(), "Please enter a valid numeric rating", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
         String additionalComments = editTextAdditionalComments.getText().toString().trim();
 
         // Check for empty fields (except for additional comments)
@@ -112,7 +98,6 @@ public class FeedbackFormFragment extends Fragment {
     private void clearForm() {
         editTextEvent.setText("");
         editTextComment.setText("");
-        editTextNumericRating.setText("");
         editTextAdditionalComments.setText("");
     }
 }
