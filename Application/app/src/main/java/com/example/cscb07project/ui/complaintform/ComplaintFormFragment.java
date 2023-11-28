@@ -114,4 +114,3 @@ public class ComplaintFormFragment extends Fragment {
         }
     }
 }
-
