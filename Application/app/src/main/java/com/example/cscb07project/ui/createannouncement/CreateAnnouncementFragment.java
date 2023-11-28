@@ -7,52 +7,49 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentCreateAnnouncementBinding;
+import com.example.cscb07project.ui.Announcement;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class CreateAnnouncementFragment extends Fragment {
-    private FragmentCreateAnnouncementBinding binding;
-    FirebaseDatabase db;
+    private DatabaseReference databaseReference;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        CreateAnnouncementViewModel createannouncementViewModel =
-                new ViewModelProvider(this).get(CreateAnnouncementViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_create_announcement, container, false);
 
-        binding = FragmentCreateAnnouncementBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        databaseReference = FirebaseDatabase.getInstance().getReference("announcements");
 
-        root.findViewById(R.id.button_new_announcement).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_new_announcement).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickPostAnnouncement();
+                postAnnouncement();
             }
         });
 
-        // Link to realtime database
-        db = FirebaseDatabase.getInstance("https://cscb07project-c6a1c-default-rtdb.firebaseio.com/");
-
-        return root;
+        return view;
     }
 
-    public void onClickPostAnnouncement(){
-        DatabaseReference ref = db.getReference(); // Reference to the root node
-        // https://stackoverflow.com/questions/48654071/android-studio-how-can-i-put-this-activity-in-extends-fragment
-        EditText userText = (EditText) getView().findViewById(R.id.editText_new_announcement); // Get the EditText widget (used for entering text)
-        String announcement = userText.getText().toString();
-        userText.setText(""); // Clear userText
-        String key = db.getReference(announcement).push().getKey(); // Get a unique key
-        ref.child("announcements").child(key).setValue(announcement); // Set announcement with the unique key as key, announcement as value
-    }
+    public void postAnnouncement() {
+        EditText userText = (EditText) getView().findViewById(R.id.editText_new_announcement);
+        String announcementText = userText.getText().toString().trim();
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+        if (!announcementText.isEmpty()) {
+            Announcement announcement = new Announcement("PlaceholderUsername", announcementText);
+            String key = databaseReference.push().getKey();
+
+            databaseReference.child(key).setValue(announcement);
+            userText.setText("");
+        } else {
+            userText.setError("Please enter your announcement.");
+        }
     }
 }
