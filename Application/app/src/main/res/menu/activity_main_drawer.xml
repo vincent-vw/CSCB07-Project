@@ -29,5 +29,9 @@
             android:id="@+id/nav_complaint_form"
             android:icon="@android:drawable/ic_dialog_alert"
             android:title="Complaint Form" />
+        <item
+            android:id="@+id/nav_schedule_events"
+            android:icon="@android:drawable/ic_dialog_alert"
+            android:title="@string/menu_schedule_events" />
     </group>
 </menu>

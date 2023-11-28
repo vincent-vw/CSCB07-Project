@@ -65,5 +65,14 @@
         android:name="com.example.cscb07project.ui.complaintForm.ComplaintFormFragment"
         android:label="Complaint Form"
         tools:layout="@layout/fragment_complaint_form" />
+    <fragment
+        android:id="@+id/nav_schedule_events"
+        android:name="com.example.cscb07project.ui.events.ScheduleEventsFragment"
+        android:label="@string/menu_schedule_events"
+        tools:layout="@layout/fragment_schedule_events" >
+        <action
+            android:id="@+id/action_nav_schedule_events_self"
+            app:destination="@id/nav_schedule_events" />
+    </fragment>
 
 </navigation>

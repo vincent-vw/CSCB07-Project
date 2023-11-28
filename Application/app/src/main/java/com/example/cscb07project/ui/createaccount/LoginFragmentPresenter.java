@@ -9,7 +9,6 @@ import androidx.navigation.Navigation;
 import com.example.cscb07project.ui.User;
 import com.google.firebase.database.DataSnapshot;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LoginFragmentPresenter extends Fragment {

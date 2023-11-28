@@ -25,7 +25,6 @@ public class LoginFragmentView extends Fragment {
     private CheckBox studentCheck;
     private CheckBox adminCheck;
 
-
     // create login fragment
     public View onCreateView (@NonNull LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
