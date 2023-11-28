@@ -14,6 +14,7 @@
     <string name="menu_login">Login</string>
     <string name="menu_sign_up">Sign Up</string>
     <string name="menu_view_announcements">View Announcements</string>
+    <string name="menu_schedule_events">Schedule Events</string>
   
     <!-- fragment_login, fragment_sign_up -->
     <string name="title_name">APP</string>
@@ -30,6 +31,14 @@
     <string name="feedback_message">We value your feedback and encourage you to share any concerns or suggestions. </string>
     <string name="complaint_hint">Please type your complaint here.</string>
     <string name="submit_button_text">Submit</string>
+
+    <!-- fragment_schedule_events -->
+    <string name="title_hint">Please enter the title!</string>
+    <string name="discription_hint">Please enter the description!</string>
+    <string name="date_hint">Enter the date in YYYY/MM/DD</string>
+    <string name="time_hint">Enter the time in HH/MM in 24-hour</string>
+    <string name="participantlimit_hint">Enter the number of participants</string>
+    <string name="schedule_button">Schedule</string>
 
     <string name="feedback_prompt">
         We value your feedback on the events. Kindly complete the form below. For the numeric rating, please use a scale of 1 to 10, where 1 indicates the least favorable and 10 represents the most favorable experience.
