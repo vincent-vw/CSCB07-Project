@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static FirebaseDatabase db;
     public static User user;
 
-    /*@Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -79,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
             }
         });
-    }*/
+    }
 
-    @Override
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
             }
         });
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
