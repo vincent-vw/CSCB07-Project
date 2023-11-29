@@ -1,0 +1,79 @@
+Index: app/src/main/java/com/example/cscb07project/ui/complaintForm/ComplaintFormFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.cscb07project.ui.complaintForm;\n\n\nimport android.os.Bundle;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.Button;\nimport android.widget.CheckBox;\nimport android.widget.EditText;\nimport android.widget.Toast;\n\nimport androidx.annotation.NonNull;\nimport androidx.annotation.Nullable;\nimport androidx.fragment.app.Fragment;\n\nimport com.example.cscb07project.R;\n\nimport com.google.firebase.database.DatabaseError;\nimport com.google.firebase.database.DatabaseReference;\nimport com.google.firebase.database.FirebaseDatabase;\n\nimport java.util.HashMap;\n\npublic class ComplaintFormFragment extends Fragment {\n    private EditText editTextComplaint;\n    private EditText editTextUsername;\n    private CheckBox checkBoxAnonymous;\n    private DatabaseReference databaseReference;\n\n    @Override\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\n                             Bundle savedInstanceState) {\n        // Inflate the layout for this fragment\n        View view = inflater.inflate(R.layout.fragment_complaint_form, container, false);\n\n        // Initialize Firebase\n        databaseReference = FirebaseDatabase.getInstance().getReference(\"complaints\");\n\n        // Initialize UI components\n        editTextComplaint = view.findViewById(R.id.editText_complaint);\n        editTextUsername = view.findViewById(R.id.editTextStudentId);\n        checkBoxAnonymous = view.findViewById(R.id.checkBoxAnonymous);\n        Button buttonSubmit = view.findViewById(R.id.button_new_complaint);\n\n        // onClickListener for Submit\n        buttonSubmit.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                submitComplaint();\n            }\n        });\n\n        return view;\n    }\n\n    private void submitComplaint() {\n        // Get complaint text from EditText\n        String complaintText = editTextComplaint.getText().toString().trim();\n        String username = editTextUsername.getText().toString().trim();\n        boolean isAnonymous = checkBoxAnonymous.isChecked();\n\n        if (!complaintText.isEmpty()) {\n            // Clear the username if anonymous is checked\n            if (isAnonymous) {\n                username = \"unavailable\";\n            } else {\n                // Show error message if username is empty and not anonymous\n                if (username.isEmpty()) {\n                    editTextUsername.setError(\"Please enter your username.\");\n                    return;\n                }\n            }\n\n            // Store the complaint into the instance of Complaint\n            Complaint complaint = new Complaint(username, complaintText);\n\n            // Generate a unique key for the complaint\n            String key = databaseReference.push().getKey();\n\n            // Determine the status based on the anonymity\n            String status;\n            if (isAnonymous) {\n                status = \"Anonymous\";\n            } else {\n                status = \"Identified\";\n            }\n\n            // Create an instance of Complaint\n            Complaint complaint = new Complaint(username, status, complaintText);\n\n            HashMap<String, Object> complaintMap = new HashMap<>();\n            complaintMap.put(\"username\", complaint.getUsername());\n            complaintMap.put(\"status\", complaint.getStatus());\n            complaintMap.put(\"text\", complaint.getComplaint());\n            complaintMap.put(\"timeSubmitted\", complaint.getTimeSubmitted());\n\n            // Send the complaint to Firebase\n            databaseReference.child(key).setValue(complaintMap, new DatabaseReference.CompletionListener() {\n                @Override\n                public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {\n                    if (error == null) {\n                        // No error\n                        editTextComplaint.setText(\"\");\n                        editTextUsername.setText(\"\");\n                        checkBoxAnonymous.setChecked(false);\n                        // Disable the username EditText if anonymous is checked\n                        editTextUsername.setEnabled(!isAnonymous);\n                        Toast.makeText(requireContext(), \"Complaint submitted successfully\", Toast.LENGTH_SHORT).show();\n                    } else {\n                        // Handle the error\n                        Toast.makeText(requireContext(), \"Failed to submit complaint. Please try again.\", Toast.LENGTH_SHORT).show();\n                    }\n                }\n            });\n        }\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/cscb07project/ui/complaintForm/ComplaintFormFragment.java b/app/src/main/java/com/example/cscb07project/ui/complaintForm/ComplaintFormFragment.java
+--- a/app/src/main/java/com/example/cscb07project/ui/complaintForm/ComplaintFormFragment.java	(revision 9a8a2ffb20ce634cd2eb4ec3f9ca5357cf3ac8cd)
++++ b/app/src/main/java/com/example/cscb07project/ui/complaintForm/ComplaintFormFragment.java	(date 1700975580959)
+@@ -21,16 +21,20 @@
+ import com.google.firebase.database.FirebaseDatabase;
+ 
+ import java.util.HashMap;
++import java.util.LinkedHashMap;
+ 
+ public class ComplaintFormFragment extends Fragment {
+     private EditText editTextComplaint;
+     private EditText editTextUsername;
+     private CheckBox checkBoxAnonymous;
++
++    // Firebase
+     private DatabaseReference databaseReference;
+ 
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
++
+         // Inflate the layout for this fragment
+         View view = inflater.inflate(R.layout.fragment_complaint_form, container, false);
+ 
+@@ -38,10 +42,10 @@
+         databaseReference = FirebaseDatabase.getInstance().getReference("complaints");
+ 
+         // Initialize UI components
+-        editTextComplaint = view.findViewById(R.id.editText_complaint);
++        editTextComplaint = view.findViewById(R.id.editTextComplaint);
+         editTextUsername = view.findViewById(R.id.editTextStudentId);
+         checkBoxAnonymous = view.findViewById(R.id.checkBoxAnonymous);
+-        Button buttonSubmit = view.findViewById(R.id.button_new_complaint);
++        Button buttonSubmit = view.findViewById(R.id.buttonSubmit);
+ 
+         // onClickListener for Submit
+         buttonSubmit.setOnClickListener(new View.OnClickListener() {
+@@ -72,9 +76,6 @@
+                 }
+             }
+ 
+-            // Store the complaint into the instance of Complaint
+-            Complaint complaint = new Complaint(username, complaintText);
+-
+             // Generate a unique key for the complaint
+             String key = databaseReference.push().getKey();
+ 
+@@ -86,13 +87,13 @@
+                 status = "Identified";
+             }
+ 
+-            // Create an instance of Complaint
++            // create an instance of Complaint
+             Complaint complaint = new Complaint(username, status, complaintText);
+ 
+             HashMap<String, Object> complaintMap = new HashMap<>();
+             complaintMap.put("username", complaint.getUsername());
+             complaintMap.put("status", complaint.getStatus());
+-            complaintMap.put("text", complaint.getComplaint());
++            complaintMap.put("text", complaint.getText());
+             complaintMap.put("timeSubmitted", complaint.getTimeSubmitted());
+ 
+             // Send the complaint to Firebase
+@@ -100,7 +101,7 @@
+                 @Override
+                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                     if (error == null) {
+-                        // No error
++                        // Success
+                         editTextComplaint.setText("");
+                         editTextUsername.setText("");
+                         checkBoxAnonymous.setChecked(false);

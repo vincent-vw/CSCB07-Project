@@ -1,0 +1,19 @@
+Index: app/src/main/java/com/example/cscb07project/ui/complaintForm/Complaint.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.cscb07project.ui.complaintForm;\n\nimport java.text.SimpleDateFormat;\nimport java.util.Date;\nimport java.util.HashMap;\nimport java.util.Locale;\n\npublic class Complaint {\n    private String username;\n    private String status;\n    private String text;\n    private String timeSubmitted; // Modified to store formatted time\n\n    public Complaint() {\n\n    }\n\n    public Complaint(String username, String status, String text) {\n        this.username = username;\n        this.status = status;\n        this.text = text;\n\n        // Format the timestamp in the desired format\n        SimpleDateFormat dateFormat = new SimpleDateFormat(\"yyyy-MMMM-dd-HH:mm\", Locale.getDefault());\n        this.timeSubmitted = dateFormat.format(new Date());\n    }\n\n    public String getUsername() {\n        return username;\n    }\n\n    public String getStatus() {\n        return status;\n    }\n\n    public String getText() {\n        return text;\n    }\n\n    public String getTimeSubmitted() {\n        return timeSubmitted;\n    }\n\n    // Method to convert Complaint object to HashMap\n    public HashMap<String, Object> toHashMap() {\n        HashMap<String, Object> complaintMap = new HashMap<>();\n        complaintMap.put(\"username\", username);\n        complaintMap.put(\"status\", status);\n        complaintMap.put(\"text\", text);\n        complaintMap.put(\"timeSubmitted\", timeSubmitted);\n        return complaintMap;\n    }\n}\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/cscb07project/ui/complaintForm/Complaint.java b/app/src/main/java/com/example/cscb07project/ui/complaintForm/Complaint.java
+--- a/app/src/main/java/com/example/cscb07project/ui/complaintForm/Complaint.java	(revision 1aac0346747132f80e3545a02ffc62284c176364)
++++ b/app/src/main/java/com/example/cscb07project/ui/complaintForm/Complaint.java	(date 1700974272468)
+@@ -9,7 +9,7 @@
+     private String username;
+     private String status;
+     private String text;
+-    private String timeSubmitted; // Modified to store formatted time
++    private String timeSubmitted;
+ 
+     public Complaint() {
+ 

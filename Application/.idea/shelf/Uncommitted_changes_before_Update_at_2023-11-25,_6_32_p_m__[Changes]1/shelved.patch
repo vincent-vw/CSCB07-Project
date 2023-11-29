@@ -1,0 +1,89 @@
+Index: app/src/main/res/layout/fragment_complaint_form.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"@drawable/mh3g\">\n\n    <TextView\n        android:id=\"@+id/textViewMessage\"\n        android:layout_width=\"0dp\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"16dp\"\n        android:layout_marginEnd=\"18dp\"\n        android:layout_marginBottom=\"500dp\"\n        android:gravity=\"center\"\n        android:text=\"@string/feedback_message\"\n        android:textColor=\"#FFFFFF\"\n        android:textSize=\"18sp\"\n        android:textStyle=\"bold\"\n        android:contentDescription=\"@null\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.0\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.503\" />\n\n    <EditText\n        android:id=\"@+id/editTextComplaint\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"176dp\"\n        android:autofillHints=\"text\"\n        android:hint=\"@string/complaint_hint\"\n        android:inputType=\"textMultiLine\"\n        android:padding=\"16dp\"\n        android:textColor=\"#FFFFFF\"\n        android:textColorHint=\"#FFFFFF\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.384\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/textViewMessage\" />\n\n    <Button\n        android:id=\"@+id/buttonSubmit\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"@string/submit_button_text\"\n        android:layout_marginStart=\"80dp\"\n        android:layout_marginEnd=\"80dp\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/editTextComplaint\" />\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_complaint_form.xml b/app/src/main/res/layout/fragment_complaint_form.xml
+--- a/app/src/main/res/layout/fragment_complaint_form.xml	
++++ b/app/src/main/res/layout/fragment_complaint_form.xml	
+@@ -16,7 +16,7 @@
+         android:gravity="center"
+         android:text="@string/feedback_message"
+         android:textColor="#FFFFFF"
+-        android:textSize="18sp"
++        android:textSize="19sp"
+         android:textStyle="bold"
+         android:contentDescription="@null"
+         app:layout_constraintBottom_toBottomOf="parent"
+@@ -26,11 +26,40 @@
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintVertical_bias="0.503" />
+ 
++
++    <EditText
++        android:id="@+id/editTextStudentId"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="16dp"
++        android:layout_marginEnd="8dp"
++        android:autofillHints="text"
++        android:hint="Enter Student ID"
++        android:inputType="text"
++        android:padding="16dp"
++        android:textColor="#FFFFFF"
++        android:textColorHint="#FFFFFF"
++        app:layout_constraintEnd_toEndOf="parent"
++
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textViewMessage" />
++
++    <CheckBox
++        android:id="@+id/checkBoxAnonymous"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="144dp"
++        android:layout_marginTop="16dp"
++        android:text="Anonymous"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/editTextStudentId" />
++
+     <EditText
+         android:id="@+id/editTextComplaint"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginTop="176dp"
++        android:layout_marginTop="180dp"
+         android:autofillHints="text"
+         android:hint="@string/complaint_hint"
+         android:inputType="textMultiLine"
+@@ -38,7 +67,7 @@
+         android:textColor="#FFFFFF"
+         android:textColorHint="#FFFFFF"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.384"
++        app:layout_constraintHorizontal_bias="0.366"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/textViewMessage" />
+ 
+@@ -46,11 +75,15 @@
+         android:id="@+id/buttonSubmit"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="@string/submit_button_text"
+         android:layout_marginStart="80dp"
+         android:layout_marginEnd="80dp"
++        android:text="@string/submit_button_text"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.503"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/editTextComplaint" />
++        app:layout_constraintTop_toBottomOf="@+id/editTextComplaint"
++        app:layout_constraintVertical_bias="0.644" />
++
++
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file

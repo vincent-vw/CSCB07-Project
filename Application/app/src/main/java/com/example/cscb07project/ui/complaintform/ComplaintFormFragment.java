@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -43,11 +44,26 @@ public class ComplaintFormFragment extends Fragment {
         checkBoxAnonymous = view.findViewById(R.id.checkBoxAnonymous);
         Button buttonSubmit = view.findViewById(R.id.button_new_complaint);
 
+
         // onClickListener for Submit
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 submitComplaint();
+            }
+        });
+
+        checkBoxAnonymous.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // If anonymous is checked, clear the username and disable the EditText
+                if (isChecked) {
+                    editTextUsername.setText("");
+                    editTextUsername.setEnabled(false);
+                } else {
+                    // If not anonymous, do any necessary cleanup or re-enable the EditText
+                    editTextUsername.setEnabled(true);
+                }
             }
         });
 
