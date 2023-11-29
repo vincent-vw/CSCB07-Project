@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/create_announcement" />
+                app:srcCompat="@drawable/view_announcements" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/create_announcement" />
+                app:srcCompat="@drawable/view_events" />
 
             <LinearLayout
                 android:layout_width="match_parent"
