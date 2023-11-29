@@ -86,14 +86,8 @@ public class ComplaintFormFragment extends Fragment {
             // Create an instance of Complaint
             Complaint complaint = new Complaint(username, status, complaintText);
 
-            HashMap<String, Object> complaintMap = new HashMap<>();
-            complaintMap.put("username", complaint.getUsername());
-            complaintMap.put("status", complaint.getStatus());
-            complaintMap.put("text", complaint.getComplaint());
-            complaintMap.put("timeSubmitted", complaint.getTimeSubmitted());
-
             // Send the complaint to Firebase
-            databaseReference.child(key).setValue(complaintMap, new DatabaseReference.CompletionListener() {
+            databaseReference.child(key).setValue(complaint.toString(), new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     if (error == null) {

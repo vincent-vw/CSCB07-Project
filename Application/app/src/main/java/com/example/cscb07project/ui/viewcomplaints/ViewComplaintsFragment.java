@@ -55,7 +55,7 @@ public class ViewComplaintsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("1", complaintsPreviewList.get(position));
-                initializeViewSingleComplaintPage(viewComplaintsViewModel.getComplaintManager().getComplaint(Integer.parseInt(complaintsPreviewList.get(position).split(":")[0])));
+                initializeViewSingleComplaintPage(viewComplaintsViewModel.getComplaintManager().getComplaint(Integer.parseInt(complaintsPreviewList.get(position).split(":")[0]) - 1));
             }
         });
 
@@ -66,13 +66,13 @@ public class ViewComplaintsFragment extends Fragment {
             public void onClick(View view) {
                 complaintsPreviewList.clear();
                 //TODO no direct way of dealing with async calls :(
-                // viewComplaintsViewModel.getComplaintManager().refreshComplaints();
-                Map<Integer, Complaint> complaintsMap = viewComplaintsViewModel.getComplaintManager().getAllComplaints();
-                for (int key : complaintsMap.keySet()) {
-                    Complaint complaint = complaintsMap.get(key);
+                List<Complaint> complaintList = viewComplaintsViewModel.getComplaintManager().getAllComplaintsSortedBySubmitTime();
+                int complaintCount = 1;
+                for (Complaint complaint : complaintList) {
                     //TODO good preview string?
-                    complaintsPreviewList.add(key + ":" + complaint.getUsername());
+                    complaintsPreviewList.add(complaintCount++ + ":" + complaint.getUsername()+"add dates, is viewed by admin etc.");
                 }
+                viewComplaintsViewModel.getComplaintManager().refreshComplaints();
                 arrayAdapter.notifyDataSetChanged();
             }
         });
