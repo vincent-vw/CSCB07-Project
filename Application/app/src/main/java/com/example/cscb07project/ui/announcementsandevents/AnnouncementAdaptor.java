@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui.viewannouncements;
+package com.example.cscb07project.ui.announcementsandevents;
 
 import android.view.LayoutInflater;
 import android.view.View;

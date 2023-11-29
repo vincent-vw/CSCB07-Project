@@ -18,9 +18,9 @@
             android:icon="@android:drawable/arrow_down_float"
             android:title="@string/menu_view_complaints" />
         <item
-            android:id="@+id/nav_view_announcements"
+            android:id="@+id/nav_announcements_and_events"
             android:icon="@android:drawable/picture_frame"
-            android:title="@string/menu_view_announcements" />
+            android:title="@string/menu_announcements_and_events" />
         <item
             android:id="@+id/nav_complaint_form"
             android:icon="@android:drawable/ic_dialog_alert"

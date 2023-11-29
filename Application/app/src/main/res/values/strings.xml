@@ -15,7 +15,8 @@
     <string name="menu_sign_up">Sign Up</string>
     <string name="menu_view_announcements">View Announcements</string>
     <string name="menu_schedule_events">Schedule Events</string>
-  
+    <string name="menu_announcements_and_events">Announcements and Events</string>
+
     <!-- fragment_login, fragment_sign_up -->
     <string name="title_name">APP</string>
     <string name="username_text">Username</string>
@@ -110,5 +111,6 @@
     <string name="stat_min">Statistics minor</string>
     <string name="stat_maj">Statistics major</string>
     <string name="stat_spec">Statistics Specialist</string>
+    <string name="menu_view_events">View Events</string>
 
 </resources>

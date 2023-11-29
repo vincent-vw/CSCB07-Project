@@ -9,17 +9,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 
 import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentScheduleEventsBinding;
-import com.example.cscb07project.databinding.FragmentSignUpBinding;
 import com.example.cscb07project.ui.Date;
 import com.example.cscb07project.ui.Event;
 import com.example.cscb07project.ui.Time;
-import com.example.cscb07project.ui.createaccount.SignUpFragmentDirections;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 
 public class ScheduleEventsFragment extends Fragment {
     private FragmentScheduleEventsBinding binding;
@@ -111,7 +106,7 @@ public class ScheduleEventsFragment extends Fragment {
     }
 
     public void checkDataExists(Event event) {
-        DatabaseReference ref= MainActivity.db.getReference();
+        DatabaseReference ref = MainActivity.db.getReference();
         DatabaseReference query = ref.child("events").child(event.getTitle());
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
