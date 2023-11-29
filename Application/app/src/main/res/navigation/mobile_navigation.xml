@@ -26,6 +26,11 @@
         android:label="@string/menu_view_complaints"
         tools:layout="@layout/fragment_view_complaints" />
     <fragment
+        android:id="@+id/nav_view_feedback"
+        android:name="com.example.cscb07project.ui.viewfeedback.ViewFeedbackFragment"
+        android:label="@string/menu_view_feedback"
+        tools:layout="@layout/fragment_view_feedback" />
+    <fragment
         android:id="@+id/nav_login"
         android:name="com.example.cscb07project.ui.account.LoginFragmentView"
         android:label="@string/menu_login"
