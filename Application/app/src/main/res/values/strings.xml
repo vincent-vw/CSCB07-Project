@@ -101,5 +101,6 @@
     <string name="stat_min">Statistics minor</string>
     <string name="stat_maj">Statistics major</string>
     <string name="stat_spec">Statistics Specialist</string>
+    <string name="menu_view_feedback">View Feedback</string>
 
 </resources>

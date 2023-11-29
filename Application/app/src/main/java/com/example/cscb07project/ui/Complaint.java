@@ -26,12 +26,11 @@ public class Complaint {
         timeSubmitted = System.currentTimeMillis();
         isAdminViewed = false;
     }
-    //TODO try catch
     public static Complaint JsonToComplaint(String json){
         try {
             return new ObjectMapper().readValue(json, Complaint.class);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            return new Complaint();
         }
     }
 
@@ -55,13 +54,12 @@ public class Complaint {
         return isAdminViewed;
     }
 
-    //TODO use to string to show a complaint text?
     @Override
     public String toString() {
         try {
             return new ObjectMapper().writeValueAsString(this);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            return complaint;
         }
     }
 }

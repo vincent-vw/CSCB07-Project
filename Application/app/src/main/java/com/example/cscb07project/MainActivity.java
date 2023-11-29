@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_create_announcement,
                 R.id.nav_view_announcements, R.id.nav_sign_up, R.id.nav_login,
-                R.id.nav_complaint_form, R.id.nav_feedback, R.id.nav_view_complaints,
-                        R.id.nav_require)
+                R.id.nav_complaint_form, R.id.nav_feedback, R.id.nav_view_complaints, R.id.nav_view_feedback,
+                R.id.nav_require)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     Toast myToast = Toast.makeText(MainActivity.this, "Announcements posted.", Toast.LENGTH_SHORT);
                     myToast.show();
                 }
@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

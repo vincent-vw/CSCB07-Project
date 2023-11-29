@@ -55,6 +55,7 @@
         android:layout_marginTop="368dp"
         android:hint="@string/hint_event"
         android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/editTextComment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +84,7 @@
         android:stepSize="1.0"
         android:valueFrom="0.0"
         android:valueTo="10.0"
+        app:layout_constraintBottom_toTopOf="@+id/editTextAdditionalComments"
         app:layout_constraintTop_toBottomOf="@+id/editTextComment"
         tools:layout_editor_absoluteX="8dp" />
 
@@ -93,6 +95,7 @@
         android:layout_marginTop="580dp"
         android:hint="@string/hint_additional_comments"
         android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSubmitFeedback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,13 +107,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="132dp"
-        android:layout_marginTop="648dp"
         android:layout_marginEnd="132dp"
         android:text="@string/submit_feedback"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

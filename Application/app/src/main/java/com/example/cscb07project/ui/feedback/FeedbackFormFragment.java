@@ -76,7 +76,7 @@ public class FeedbackFormFragment extends Fragment {
             Feedback feedback = new Feedback(event, comment, username, numericRating, additionalComments);
 
             // Send the feedback to Firebase
-            databaseReference.child(key).setValue(feedback.toHashMap(), new DatabaseReference.CompletionListener() {
+            databaseReference.child(key).setValue(feedback.toString(), new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     if (error == null) {
