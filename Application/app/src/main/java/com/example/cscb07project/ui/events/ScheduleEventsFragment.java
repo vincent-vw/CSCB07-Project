@@ -14,8 +14,10 @@ import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentScheduleEventsBinding;
 import com.example.cscb07project.ui.Date;
+import com.example.cscb07project.ui.DatePickerFragment;
 import com.example.cscb07project.ui.Event;
 import com.example.cscb07project.ui.Time;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,13 +28,12 @@ import java.text.SimpleDateFormat;
 
 public class ScheduleEventsFragment extends Fragment {
     private FragmentScheduleEventsBinding binding;
-    private SimpleDateFormat dateFormat;
     private SimpleDateFormat timeFormat;
+    private DatePickerFragment datePickerFragment;
 
-    public View onCreateView (LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
         binding = FragmentScheduleEventsBinding.inflate(inflater, container, false);
-        dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         timeFormat = new SimpleDateFormat("HH:mm");
         return binding.getRoot();
     }
@@ -40,9 +41,17 @@ public class ScheduleEventsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        datePickerFragment = new DatePickerFragment();
+
         binding.getRoot().findViewById(R.id.schedule_button).setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 setSchedule();
+            }
+        });
+
+        binding.getRoot().findViewById(R.id.button_date).setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                datePickerFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
             }
         });
     }
@@ -51,35 +60,22 @@ public class ScheduleEventsFragment extends Fragment {
         // EditText objects
         EditText titleText = getView().findViewById(R.id.event_title_edit_text);
         EditText descriptionText = getView().findViewById(R.id.event_discription_edit_text);
-        EditText dateText = getView().findViewById(R.id.event_date_edit_text);
         EditText timeText = getView().findViewById(R.id.event_time_edit_text);
         EditText participantLimitText = getView().findViewById(R.id.participantlimit_edit_text);
 
         // String objects of EditText
         String title = titleText.getText().toString();
         String description = descriptionText.getText().toString();
-        String date = dateText.getText().toString();
         String time = timeText.getText().toString();
         String limit = participantLimitText.getText().toString();
 
-        clearAllEditText(titleText, descriptionText, dateText, timeText, participantLimitText);
-
         // create Event object
-        if (!title.isEmpty() && !description.isEmpty() && !date.isEmpty() && !time.isEmpty() && !limit.isEmpty()) {
-            Date d = null;
+        if (!title.isEmpty() && !description.isEmpty() && datePickerFragment.getDay() != 0
+                && !time.isEmpty() && !limit.isEmpty()) {
+            Date d = new Date(Integer.toString(datePickerFragment.getYear()),
+                    Integer.toString(datePickerFragment.getMonth()),
+                    Integer.toString(datePickerFragment.getDay()));
             Time t = null;
-
-            // check if date is in correct format
-            // if so, assign it to Date object d
-            try {
-                dateFormat.parse(date);
-                String[] dateArray = date.split("/");
-                d = new Date(dateArray[0], dateArray[1], dateArray[2]);
-            }
-            catch (ParseException e) {
-                createAnnouncement("Input an incorrect format of date!");
-                return;
-            }
 
             // check if time is in correct format
             // if so, assign it to Time object t
@@ -100,9 +96,13 @@ public class ScheduleEventsFragment extends Fragment {
             checkDataExists(event);
         }
         else {
-            // if any string in EditText is empty
-            createAnnouncement("Please don't leave any block blank!");
+            createAnnouncement("Please don't leave any fields blank!");
         }
+
+        clearAllEditText(titleText, descriptionText, timeText, participantLimitText);
+        datePickerFragment.setYear(0);
+        datePickerFragment.setMonth(0);
+        datePickerFragment.setDay(0);
     }
 
     public void checkDataExists(Event event) {
@@ -144,11 +144,10 @@ public class ScheduleEventsFragment extends Fragment {
         });
     }
 
-    public void clearAllEditText(EditText title, EditText description, EditText date,
+    public void clearAllEditText(EditText title, EditText description,
                                  EditText time, EditText limit) {
         title.setText("");
         description.setText("");
-        date.setText("");
         time.setText("");
         limit.setText("");
     }
