@@ -22,7 +22,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
 public class FeedbackFormFragment extends Fragment {
     private EditText editTextEvent;
     private EditText editTextComment;
