@@ -7,8 +7,6 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
     <string name="menu_create_announcement">Create Announcement</string>
     <string name="menu_view_complaints">View Complaints</string>
     <string name="menu_login">Login</string>
@@ -53,10 +51,10 @@
     <string name="submit_feedback">Submit Feedback</string>
 
     <string name="check_post">Check your CMS POSt requirements</string>
-    <string name="applying_to">Which Program are you considering applying to?</string>
+    <string name="applying_to">Which program are you considering applying to?</string>
     <string name="comp_program">Computer Science Program</string>
     <string name="math_program">Mathematical Program</string>
-    <string name="stat_program">Statistic Program</string>
+    <string name="stat_program">Statistics Program</string>
     <string name="specialization">Which type of specialization?</string>
 
     <string name="compsci">Computer Science</string>
@@ -95,14 +93,12 @@
     <string name="B_in_2">At least B in two of CSC/MAT A67, MAT A22, MAT A37</string>
     <string name="MATA31">passed MATA31</string>
     <string name="GPA_2">A GPA of at least 2</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_q1">q1</string>
     <string name="title_activity_q2a">q2a</string>
-    <string name="first_fragment_label">fflabel</string>
-    <string name="second_fragment_label">sflabel</string>
-    <string name="POSt">POSt requirement</string>
-    <string name="back">back</string>
+    <string name="POSt">POSt Requirements</string>
+    <string name="back">Back</string>
 
     <string name="com_min">Computer science minor</string>
     <string name="com_maj_spec">Computer science major or specialist</string>
@@ -110,7 +106,7 @@
     <string name="math_spec">Mathematics specialist</string>
     <string name="stat_min">Statistics minor</string>
     <string name="stat_maj">Statistics major</string>
-    <string name="stat_spec">Statistics Specialist</string>
+    <string name="stat_spec">Statistics specialist</string>
     <string name="menu_view_events">View Events</string>
 
 </resources>
