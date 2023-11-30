@@ -40,7 +40,7 @@
     <string name="schedule_button">Schedule</string>
 
     <string name="feedback_prompt">
-        We value your feedback on the events. Kindly complete the form below. For the numeric rating, please use a scale of 1 to 10, where 1 indicates the least favorable and 10 represents the most favorable experience. You may scroll down to hit the submit button at the end.
+        We value your feedback on the events. Kindly complete the form below. For the numeric rating, please use a scale of 1 to 10, where 1 indicates the least favorable and 10 represents the most favorable experience.
     </string>
 
     <string name="hint_event">Please enter your event</string>

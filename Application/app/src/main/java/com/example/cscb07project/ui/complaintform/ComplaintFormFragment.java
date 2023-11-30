@@ -44,7 +44,6 @@ public class ComplaintFormFragment extends Fragment {
         checkBoxAnonymous = view.findViewById(R.id.checkBoxAnonymous);
         Button buttonSubmit = view.findViewById(R.id.button_new_complaint);
 
-
         // onClickListener for Submit
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

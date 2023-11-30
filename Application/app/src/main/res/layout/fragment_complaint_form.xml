@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="194dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/mh4" />
+                app:srcCompat="@drawable/complaint_form" />
 
             <LinearLayout
                 android:layout_width="match_parent"
