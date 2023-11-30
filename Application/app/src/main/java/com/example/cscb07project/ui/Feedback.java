@@ -1,5 +1,8 @@
 package com.example.cscb07project.ui;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,9 +14,10 @@ public class Feedback {
     private String username;
     private int numericRating;
     private String additionalComments;
-    private String timeSubmitted;
+    private Long timeSubmitted;
 
     public Feedback() {
+
     }
 
     public Feedback(String event, String comment, String username, int numericRating, String additionalComments) {
@@ -24,8 +28,15 @@ public class Feedback {
         this.additionalComments = additionalComments;
 
         // Format of time
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd-HH:mm", Locale.getDefault());
-        this.timeSubmitted = dateFormat.format(new Date());
+        timeSubmitted = System.currentTimeMillis();
+    }
+
+    public static Feedback JsonToFeedback(String json){
+        try {
+            return new ObjectMapper().readValue(json, Feedback.class);
+        } catch (JsonProcessingException e) {
+            return new Feedback();
+        }
     }
 
     public String getEvent() {
@@ -48,20 +59,17 @@ public class Feedback {
         return additionalComments;
     }
 
-    public String getTimeSubmitted() {
+    public Long getTimeSubmitted() {
         return timeSubmitted;
     }
 
-    // Method to convert Feedback object to HashMap
-    public HashMap<String, Object> toHashMap() {
-        HashMap<String, Object> feedbackMap = new HashMap<>();
-        feedbackMap.put("event", event);
-        feedbackMap.put("comment", comment);
-        feedbackMap.put("username", username);
-        feedbackMap.put("numericRating", numericRating);
-        feedbackMap.put("additionalComments", additionalComments);
-        feedbackMap.put("timeSubmitted", timeSubmitted);
-        return feedbackMap;
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return comment;
+        }
     }
 }
 
