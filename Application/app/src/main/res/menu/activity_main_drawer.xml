@@ -18,6 +18,10 @@
             android:icon="@android:drawable/arrow_down_float"
             android:title="@string/menu_view_complaints" />
         <item
+            android:id="@+id/nav_view_feedback"
+            android:icon="@android:drawable/arrow_down_float"
+            android:title="@string/menu_view_feedback" />
+        <item
             android:id="@+id/nav_announcements_and_events"
             android:icon="@android:drawable/picture_frame"
             android:title="@string/menu_announcements_and_events" />

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,10 @@ import com.example.cscb07project.databinding.FragmentScheduleEventsBinding;
 import com.example.cscb07project.ui.Date;
 import com.example.cscb07project.ui.Event;
 import com.example.cscb07project.ui.Time;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,17 +28,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class ScheduleEventsFragment extends Fragment {
     private FragmentScheduleEventsBinding binding;
-    private SimpleDateFormat dateFormat;
-    private SimpleDateFormat timeFormat;
+    private Date date;
+    private Time time;
 
-    public View onCreateView (LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
         binding = FragmentScheduleEventsBinding.inflate(inflater, container, false);
-        dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        timeFormat = new SimpleDateFormat("HH:mm");
         return binding.getRoot();
     }
 
@@ -45,64 +50,86 @@ public class ScheduleEventsFragment extends Fragment {
                 setSchedule();
             }
         });
+
+        binding.getRoot().findViewById(R.id.button_date).setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                MaterialDatePicker<Long> materialDatePicker = MaterialDatePicker.Builder.datePicker()
+                        .setTitleText("Select Date")
+                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                        .build();
+                materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+                    @Override
+                    public void onPositiveButtonClick(Long selection) {
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+                        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+                        String dateString = dateFormat.format(new java.util.Date(selection));
+                        String[] dateArray = dateString.split("/");
+                        date = new Date(dateArray[0], dateArray[1], dateArray[2]);
+                        TextView selectedDate = (TextView) getView().findViewById(R.id.text_selected_date);
+                        selectedDate.setText(dateString);
+                    }
+                });
+                materialDatePicker.show(getActivity().getSupportFragmentManager(), "dateTag");
+            }
+        });
+
+        binding.getRoot().findViewById(R.id.button_time).setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                MaterialTimePicker materialTimePicker = new MaterialTimePicker.Builder()
+                        .setTimeFormat(TimeFormat.CLOCK_12H)
+                        .setHour(12)
+                        .setMinute(10)
+                        .setTitleText("Select Time")
+                        .build();
+                materialTimePicker.addOnPositiveButtonClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        String hourString = String.format(Locale.getDefault(),
+                                "%02d", materialTimePicker.getHour());
+                        String minString = String.format(Locale.getDefault(),
+                                "%02d", materialTimePicker.getMinute());
+                        time = new Time(hourString, minString);
+                        TextView selectedTime = (TextView) getView().findViewById(R.id.text_selected_time);
+                        selectedTime.setText(hourString + ":" + minString);
+                    }
+                });
+                materialTimePicker.show(getActivity().getSupportFragmentManager(), "timeTag");
+            }
+        });
     }
 
     public void setSchedule() {
         // EditText objects
         EditText titleText = getView().findViewById(R.id.event_title_edit_text);
         EditText descriptionText = getView().findViewById(R.id.event_discription_edit_text);
-        EditText dateText = getView().findViewById(R.id.event_date_edit_text);
-        EditText timeText = getView().findViewById(R.id.event_time_edit_text);
         EditText participantLimitText = getView().findViewById(R.id.participantlimit_edit_text);
 
         // String objects of EditText
         String title = titleText.getText().toString();
         String description = descriptionText.getText().toString();
-        String date = dateText.getText().toString();
-        String time = timeText.getText().toString();
         String limit = participantLimitText.getText().toString();
 
-        clearAllEditText(titleText, descriptionText, dateText, timeText, participantLimitText);
-
         // create Event object
-        if (!title.isEmpty() && !description.isEmpty() && !date.isEmpty() && !time.isEmpty() && !limit.isEmpty()) {
-            Date d = null;
-            Time t = null;
-
-            // check if date is in correct format
-            // if so, assign it to Date object d
-            try {
-                dateFormat.parse(date);
-                String[] dateArray = date.split("/");
-                d = new Date(dateArray[0], dateArray[1], dateArray[2]);
-            }
-            catch (ParseException e) {
-                createAnnouncement("Input an incorrect format of date!");
-                return;
-            }
-
-            // check if time is in correct format
-            // if so, assign it to Time object t
-            try {
-                timeFormat.parse(time);
-                String[] timeArray = time.split(":");
-                t = new Time(timeArray[0], timeArray[1]);
-            }
-            catch (ParseException e) {
-                createAnnouncement("Input an incorrect format of time!");
-                return;
-            }
+        if (!title.isEmpty() && !description.isEmpty() && date != null
+                && time != null && !limit.isEmpty()) {
 
             // create event object
-            Event event = new Event(title, description, d, t, limit);
+            Event event = new Event(title, description, date, time, limit);
 
             // check if this event is in database
             checkDataExists(event);
         }
         else {
-            // if any string in EditText is empty
-            createAnnouncement("Please don't leave any block blank!");
+            createAnnouncement("Please don't leave any fields blank!");
         }
+
+        clearAllEditText(titleText, descriptionText, participantLimitText);
+        date = null;
+        time = null;
+        TextView selectedDate = (TextView) getView().findViewById(R.id.text_selected_date);
+        selectedDate.setText("Please select a date");
+        TextView selectedTime = (TextView) getView().findViewById(R.id.text_selected_time);
+        selectedTime.setText("Please select a time");
     }
 
     public void checkDataExists(Event event) {
@@ -144,12 +171,10 @@ public class ScheduleEventsFragment extends Fragment {
         });
     }
 
-    public void clearAllEditText(EditText title, EditText description, EditText date,
-                                 EditText time, EditText limit) {
+    public void clearAllEditText(EditText title, EditText description,
+                                 EditText limit) {
         title.setText("");
         description.setText("");
-        date.setText("");
-        time.setText("");
         limit.setText("");
     }
 
