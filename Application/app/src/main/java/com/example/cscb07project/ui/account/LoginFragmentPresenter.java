@@ -1,9 +1,7 @@
 package com.example.cscb07project.ui.account;
 
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
@@ -43,13 +41,13 @@ public class LoginFragmentPresenter extends Fragment {
                 MainActivity.user = user;
                 view.signInSuccessful(user);
                 view.outputToast("Successfully logged in! Welcome, " + user.getUsername() + "!");
-                Navigation.findNavController(view.getView()).navigate(R.id.action_nav_login_to_nav_home);
+                view.navigate(R.id.action_nav_login_to_nav_home);
             } else {
                 view.outputToast("Incorrect password. Please try again.");
             }
         } else {
             view.outputToast("No username found. Please sign up.");
-            Navigation.findNavController(view.getView()).navigate(R.id.action_nav_login_to_nav_sign_up);
+            view.navigate(R.id.action_nav_login_to_nav_sign_up);
         }
     }
 }

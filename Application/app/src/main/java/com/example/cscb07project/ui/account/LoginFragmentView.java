@@ -12,8 +12,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -68,5 +68,9 @@ public class LoginFragmentView extends Fragment {
     public void signInSuccessful(User user) {
         TextView textView = (TextView) getActivity().findViewById(R.id.text_username);
         textView.setText(user.getUsername());
+    }
+
+    public void navigate(int id) {
+        Navigation.findNavController(getView()).navigate(id);
     }
 }
