@@ -61,7 +61,22 @@
     <color name="md_theme_dark_surfaceTint">#FFB95C</color>
     <color name="md_theme_dark_outlineVariant">#504539</color>
     <color name="md_theme_dark_scrim">#000000</color>
+    <color name="teal_200">#008080</color>
+    <color name="purple_700">#700CB3</color>
+    <color name="purple_200">#CE93D8</color>
+    <color name="purple_500">#9C27B0</color>
+    <color name="teal_700">#00796B</color>
+
+    <color name="colorPrimary">#ee6055</color>
+    <color name="colorPrimaryVariant">#EF4335</color>
+    <color name="color1">#ffd97d</color>
+    <color name="color2">#aaf683</color>
+    <color name="color3">#60d394</color>
+    <color name="color4">#ff9b85</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="hint">#80000000</color>
+    <color name="gray">#8A8584</color>
+    <color name="colorPrimaryDark">#301934</color>
+    <color name="colorAccent">#013220</color>
 </resources>

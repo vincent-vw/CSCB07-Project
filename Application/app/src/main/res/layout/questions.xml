@@ -43,9 +43,10 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
         android:text="@string/comp_program"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"/>
 
     <Button
         android:id="@+id/button2"
@@ -55,6 +56,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="24dp"
         android:text="@string/math_program"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
@@ -67,6 +69,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="24dp"
         android:text="@string/stat_program"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />

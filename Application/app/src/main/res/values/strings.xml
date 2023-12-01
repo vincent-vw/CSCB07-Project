@@ -15,8 +15,7 @@
     <string name="menu_sign_up">Sign Up</string>
     <string name="menu_view_announcements">View Announcements</string>
     <string name="menu_schedule_events">Schedule Events</string>
-    <string name="menu_announcements_and_events">Announcements and Events</string>
-
+  
     <!-- fragment_login, fragment_sign_up -->
     <string name="title_name">APP</string>
     <string name="username_text">Username</string>
@@ -73,12 +72,12 @@
     <string name="four_credit">4 Credits</string>
     <string name="CSCA08">passed CSCA08</string>
     <string name="CSCA48">passed CSCA48</string>
-    <string name="one_of">passed 1 of CSCA67/MATA67, MATA22/A23, MATA30/A31/A32</string>
+    <string name="one_of">passed 1 of CSCA67/MATA67, \nMATA22/A23, MATA30/A31/A32</string>
     <string name="check">check</string>
 
     <string name="GPA_2.5">A GPA of at least 2.5</string>
     <string name="B_CSCA48">A grade of at least B in CSCA48</string>
-    <string name="C_in_2">A grade of at least C- in 2 of CSCA67/MATA67, MATA22, MATA37</string>
+    <string name="C_in_2">A grade of at least C- in 2 of CSCA67\n/MATA67, MATA22, MATA37</string>
     <string name="at_least_A">At least an A- in both CSC/MAT A67 and MAT A31 the first time that they complete those courses</string>
     <string name="CSCA67">passed CSC/MATA67</string>
     <string name="MATA22">passed MATA22</string>
@@ -90,9 +89,9 @@
     <string name="MATA36_or_MATA37">passed MATA36 or MATA37</string>
     <string name="GPA_2.3">A GPA of at least 2.3</string>
 
-    <string name="B_in_1">At least B in one of CSC/MAT A67, MAT A22, MAT A37</string>
+    <string name="B_in_1">At least B in one of CSC/MAT A67, \nMAT A22, MAT A37</string>
     <string name="GPA_of_3">A GPA of at least 2.5 across CSC/MAT A67, MAT A22, MAT A31, MAT A37</string>
-    <string name="B_in_2">At least B in two of CSC/MAT A67, MAT A22, MAT A37</string>
+    <string name="B_in_2">At least B in two of CSC/MAT A67, \nMAT A22, MAT A37</string>
     <string name="MATA31">passed MATA31</string>
     <string name="GPA_2">A GPA of at least 2</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -111,6 +110,23 @@
     <string name="stat_min">Statistics minor</string>
     <string name="stat_maj">Statistics major</string>
     <string name="stat_spec">Statistics Specialist</string>
-    <string name="menu_view_events">View Events</string>
+
+    <string name="upcoming_events">Upcoming Events</string>
+    <string name="event">Event: </string>
+    <string name="description">Description: </string>
+    <string name="date">Date: </string>
+    <string name="time">Time: </string>
+    <string name="limit">Participant limit: </string>
+    <string name="rsvp">RSVP</string>
+
+    <string name="admin_panel">Admin Panel</string>
+    <string name="view_individual">View Individual Complaints</string>
+    <string name="load_complaints">Load Complaints</string>
+    <string name="str_holder">jfbowebufbwoeufbweobfew;jbejvbrjbvrb</string>
+    <string name="mark_view">Mark as viewed</string>
+
+    <string name="got_feedback">Got some feedback?</string>
+    <string name="feedback_form">Feedback Form</string>
+
 
 </resources>

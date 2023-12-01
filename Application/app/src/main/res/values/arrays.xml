@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_items_array">
+        <item>Event 1</item>
+        <item>Event 2</item>
+        <item>Event 3</item>
+        <!-- Add more items as needed -->
+    </string-array>
+</resources>
