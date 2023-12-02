@@ -36,7 +36,7 @@ public class LoginFragmentView extends Fragment {
         return view;
     }
 
-    // Two methods to hide back button on login page
+    // Two methods to hide action bar button on login page
 //    @Override
 //    public void onResume() {
 //        super.onResume();
