@@ -1,12 +1,9 @@
 package com.example.cscb07project.ui;
 
+import android.icu.text.DateFormat;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
 
 public class Complaint {
     private String username;
@@ -15,9 +12,10 @@ public class Complaint {
     private long timeSubmitted;
     private boolean isAdminViewed;
 
-    public Complaint(){
+    public Complaint() {
 
     }
+
     public Complaint(String username, String status, String complaint) {
         this.username = username;
         this.status = status;
@@ -26,11 +24,20 @@ public class Complaint {
         timeSubmitted = System.currentTimeMillis();
         isAdminViewed = false;
     }
-    public static Complaint JsonToComplaint(String json){
+
+    public static Complaint jsonToClass(String json) {
         try {
             return new ObjectMapper().readValue(json, Complaint.class);
         } catch (JsonProcessingException e) {
             return new Complaint();
+        }
+    }
+
+    public String classToJson() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return complaint;
         }
     }
 
@@ -50,16 +57,19 @@ public class Complaint {
         return timeSubmitted;
     }
 
-    public boolean getIsAdminViewed(){
+    public boolean getIsAdminViewed() {
         return isAdminViewed;
     }
 
-    @Override
-    public String toString() {
-        try {
-            return new ObjectMapper().writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            return complaint;
+    public String viewComplaintAsString() {
+        return "Username: " + username + "\nStatus: " + status + "\nComplaint: " + complaint + "\nTime Submitted: " + DateFormat.getInstance().format(timeSubmitted) + "\nAdmin View Status:" + isAdminViewed;
+    }
+
+    public String previewComplaintAsString() {
+        if (isAdminViewed) {
+            return "Admin Reviewed, from username: " + username;
+        } else {
+            return "Admin Unreviewed, from username: " + username;
         }
     }
 }
