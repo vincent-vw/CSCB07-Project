@@ -22,7 +22,6 @@ import com.example.cscb07project.ui.Complaint;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ViewComplaintsFragment extends Fragment {
     private ViewComplaintsViewModel viewComplaintsViewModel;
@@ -54,7 +53,6 @@ public class ViewComplaintsFragment extends Fragment {
         complaints_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("1", complaintsPreviewList.get(position));
                 initializeViewSingleComplaintPage(viewComplaintsViewModel.getComplaintManager().getComplaint(Integer.parseInt(complaintsPreviewList.get(position).split(":")[0]) - 1));
             }
         });
@@ -69,8 +67,7 @@ public class ViewComplaintsFragment extends Fragment {
                 List<Complaint> complaintList = viewComplaintsViewModel.getComplaintManager().getAllComplaintsSortedBySubmitTime();
                 int complaintCount = 1;
                 for (Complaint complaint : complaintList) {
-                    //TODO good preview string?
-                    complaintsPreviewList.add(complaintCount++ + ":" + complaint.getUsername()+"add dates, is viewed by admin etc.");
+                    complaintsPreviewList.add((complaintCount++) + ":" + complaint.previewComplaintAsString());
                 }
                 viewComplaintsViewModel.getComplaintManager().refreshComplaints();
                 arrayAdapter.notifyDataSetChanged();
@@ -117,7 +114,7 @@ public class ViewComplaintsFragment extends Fragment {
         //prompt.setVisibility(View.INVISIBLE);
 
         //TODO toString() as text
-        complaint_text.setText(complaint.toString());
+        complaint_text.setText(complaint.viewComplaintAsString());
         complaint_text.requestLayout();
         complaint_text.setVisibility(View.VISIBLE);
         mark_as_viewed_button.setVisibility(View.VISIBLE);

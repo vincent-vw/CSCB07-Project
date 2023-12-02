@@ -1,12 +1,9 @@
 package com.example.cscb07project.ui;
 
+import android.icu.text.DateFormat;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
 
 public class Feedback {
     private String event;
@@ -15,6 +12,8 @@ public class Feedback {
     private int numericRating;
     private String additionalComments;
     private Long timeSubmitted;
+
+    private boolean isAdminViewed;
 
     public Feedback() {
 
@@ -31,11 +30,19 @@ public class Feedback {
         timeSubmitted = System.currentTimeMillis();
     }
 
-    public static Feedback JsonToFeedback(String json){
+    public static Feedback jsonToClass(String json) {
         try {
             return new ObjectMapper().readValue(json, Feedback.class);
         } catch (JsonProcessingException e) {
             return new Feedback();
+        }
+    }
+
+    public String classToJson() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return comment;
         }
     }
 
@@ -63,12 +70,19 @@ public class Feedback {
         return timeSubmitted;
     }
 
-    @Override
-    public String toString() {
-        try {
-            return new ObjectMapper().writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            return comment;
+    public boolean getIsAdminViewed() {
+        return isAdminViewed;
+    }
+
+    public String viewFeedbackAsString() {
+        return "Username: " + username + "\nEvent: " + event + "\nRating: " + numericRating + "\nComment: " + comment + "\nAdditional Comment: " + additionalComments + "\nTime Submitted: " + DateFormat.getInstance().format(timeSubmitted) + "\nAdmin View Status:" + isAdminViewed;
+    }
+
+    public String previewFeedbackAsString() {
+        if (isAdminViewed) {
+            return "Admin Reviewed, from username: " + username + ", event: " + event;
+        } else {
+            return "Admin Unreviewed, from username: " + username + ", event: " + event;
         }
     }
 }

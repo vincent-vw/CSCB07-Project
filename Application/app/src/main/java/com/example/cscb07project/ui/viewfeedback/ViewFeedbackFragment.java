@@ -53,7 +53,6 @@ public class ViewFeedbackFragment extends Fragment {
         feedback_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("1", feedbackPreviewList.get(position));
                 initializeViewSingleFeedbackPage(viewFeedbackViewModel.getFeedbackManager().getFeedback(Integer.parseInt(feedbackPreviewList.get(position).split(":")[0]) - 1));
             }
         });
@@ -68,8 +67,7 @@ public class ViewFeedbackFragment extends Fragment {
                 List<Feedback> complaintList = viewFeedbackViewModel.getFeedbackManager().getAllFeedbackSortedBySubmitTime();
                 int feedbackCount = 1;
                 for (Feedback feedback : complaintList) {
-                    //TODO good preview string?
-                    feedbackPreviewList.add(feedbackCount++ + ":" + feedback.getUsername()+"add dates, is viewed by admin etc.");
+                    feedbackPreviewList.add((feedbackCount++) + ":" + feedback.previewFeedbackAsString());
                 }
                 viewFeedbackViewModel.getFeedbackManager().refreshFeedback();
                 arrayAdapter.notifyDataSetChanged();
@@ -115,8 +113,7 @@ public class ViewFeedbackFragment extends Fragment {
         load_feedback_button.setVisibility(View.INVISIBLE);
         //prompt.setVisibility(View.INVISIBLE);
 
-        //TODO toString() as text
-        feedback_text.setText(feedback.toString());
+        feedback_text.setText(feedback.viewFeedbackAsString());
         feedback_text.requestLayout();
         feedback_text.setVisibility(View.VISIBLE);
         mark_as_viewed_button.setVisibility(View.VISIBLE);

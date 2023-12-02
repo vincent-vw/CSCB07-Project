@@ -36,7 +36,7 @@ public class FeedbackManager {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
                 //add complaint to map
-                feedbackList.add(Feedback.JsonToFeedback(dataSnapshot.getValue().toString()));
+                feedbackList.add(Feedback.jsonToClass(dataSnapshot.getValue().toString()));
             }
 
             @Override

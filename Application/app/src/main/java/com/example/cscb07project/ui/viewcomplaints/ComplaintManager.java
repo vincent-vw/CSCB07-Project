@@ -36,7 +36,7 @@ public class ComplaintManager {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
                 //add complaint to map
-                complaintsList.add(Complaint.JsonToComplaint(dataSnapshot.getValue().toString()));
+                complaintsList.add(Complaint.jsonToClass(dataSnapshot.getValue().toString()));
             }
 
             @Override

@@ -102,7 +102,7 @@ public class ComplaintFormFragment extends Fragment {
             Complaint complaint = new Complaint(username, status, complaintText);
 
             // Send the complaint to Firebase
-            databaseReference.child(key).setValue(complaint.toString(), new DatabaseReference.CompletionListener() {
+            databaseReference.child(key).setValue(complaint.classToJson(), new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     if (error == null) {
