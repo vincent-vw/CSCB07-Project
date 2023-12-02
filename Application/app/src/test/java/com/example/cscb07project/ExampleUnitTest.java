@@ -18,11 +18,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 @RunWith(MockitoJUnitRunner.class)
 public class ExampleUnitTest {
 
@@ -44,28 +39,28 @@ public class ExampleUnitTest {
 
     }
 
-    // every field is unfilled
+    // Every field is unfilled
     @Test
     public void testEmptySignIn () {
         presenter.signIn("", "", -1);
         verify(view).outputToast("Don't leave username, password, or selection blank.");
     }
 
-    // username is the only unfilled thing
+    // Username is the only unfilled thing
     @Test
     public void testSignInWithEmptyUsername() {
         presenter.signIn("", "password", R.id.radioButton_student_login);
         verify(view).outputToast("Don't leave username, password, or selection blank.");
     }
 
-    // password is the only unfilled thing
+    // Password is the only unfilled thing
     @Test
     public void testSignInWithEmptyPassword() {
         presenter.signIn("username", "", R.id.radioButton_student_login);
         verify(view).outputToast("Don't leave username, password, or selection blank.");
     }
 
-    // empty radio button, but username and password are filled in
+    // Empty radio button, but username and password are filled in
     @Test
     public void testSignInWithEmptyRadioButton() {
         presenter.signIn("username", "password", -1);
@@ -93,7 +88,7 @@ public class ExampleUnitTest {
         verify(view).navigate(R.id.action_nav_login_to_nav_sign_up);
     }
 
-    // testing signInFinalize with the correct student credentials
+    // Testing signInFinalize with the correct student credentials
     @Test
     public void testSignInFinalizeWithCorrectStudentCredentials () {
         when(snapshot.exists()).thenReturn(true);
@@ -106,7 +101,7 @@ public class ExampleUnitTest {
         verify(view).navigate(R.id.action_nav_login_to_nav_home);
     }
 
-    // testing signInFinalize with the wrong student credentials
+    // Testing signInFinalize with the wrong student credentials
     @Test
     public void testSignInFinalizeWithWrongStudentCredentials () {
         when(snapshot.exists()).thenReturn(true);
@@ -116,7 +111,7 @@ public class ExampleUnitTest {
         verify(view).outputToast("Incorrect password. Please try again.");
     }
 
-    // testing signInFinalize with the correct admin credentials
+    // Testing signInFinalize with the correct admin credentials
     @Test
     public void testSignInFinalizeWithCorrectAdminCredentials() {
         when(snapshot.exists()).thenReturn(true);
@@ -129,7 +124,7 @@ public class ExampleUnitTest {
         verify(view).navigate(R.id.action_nav_login_to_nav_home);
     }
 
-    // testing signInFinalize with the wrong admin credentials
+    // Testing signInFinalize with the wrong admin credentials
     @Test
     public void testSignInFinalizeWithWrongAdminCredentials() {
         when(snapshot.exists()).thenReturn(true);
@@ -138,6 +133,4 @@ public class ExampleUnitTest {
         presenter.signInFinalize(snapshot, user);
         verify(view).outputToast("Incorrect password. Please try again.");
     }
-
-
 }
