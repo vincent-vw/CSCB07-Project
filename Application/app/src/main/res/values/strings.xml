@@ -106,4 +106,21 @@
     <string name="menu_view_feedback">View Feedback</string>
     <string name="menu_view_events">View Events</string>
 
+    <string name="upcoming_events">Upcoming Events</string>
+    <string name="event">Event: </string>
+    <string name="description">Description: </string>
+    <string name="date">Date: </string>
+    <string name="time">Time: </string>
+    <string name="limit">Participant limit: </string>
+    <string name="rsvp">RSVP</string>
+
+    <string name="admin_panel">Admin Panel</string>
+    <string name="view_individual">View Individual Complaints</string>
+    <string name="load_complaints">Load Complaints</string>
+    <string name="str_holder">jfbowebufbwoeufbweobfew;jbejvbrjbvrb</string>
+    <string name="mark_view">Mark as viewed</string>
+
+    <string name="got_feedback">Got some feedback?</string>
+    <string name="feedback_form">Feedback Form</string>
+
 </resources>
