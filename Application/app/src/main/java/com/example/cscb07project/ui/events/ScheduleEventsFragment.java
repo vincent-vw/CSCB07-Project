@@ -11,9 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
-import com.example.cscb07project.databinding.FragmentScheduleEventsBinding;
 import com.example.cscb07project.ui.Date;
 import com.example.cscb07project.ui.Event;
 import com.example.cscb07project.ui.Time;
@@ -24,34 +22,38 @@ import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.TimeZone;
 
 public class ScheduleEventsFragment extends Fragment {
-    private FragmentScheduleEventsBinding binding;
+    private DatabaseReference databaseReference;
+    private EditText editTextTitle;
+    private EditText editTextDescription;
+    private EditText editTextLimit;
     private Date date;
     private Time time;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                              Bundle savedInstanceState) {
-        binding = FragmentScheduleEventsBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_schedule_events, container, false);
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        databaseReference = FirebaseDatabase.getInstance().getReference("events");
 
-        binding.getRoot().findViewById(R.id.schedule_button).setOnClickListener(new View.OnClickListener(){
+        editTextTitle = view.findViewById(R.id.editText_event_title);
+        editTextDescription = view.findViewById(R.id.editText_event_description);
+        editTextLimit = view.findViewById(R.id.editText_participant_limit);
+
+        view.findViewById(R.id.button_schedule).setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 setSchedule();
             }
         });
 
-        binding.getRoot().findViewById(R.id.button_date).setOnClickListener(new View.OnClickListener(){
+        view.findViewById(R.id.button_date).setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 MaterialDatePicker<Long> materialDatePicker = MaterialDatePicker.Builder.datePicker()
                         .setTitleText("Select Date")
@@ -73,7 +75,7 @@ public class ScheduleEventsFragment extends Fragment {
             }
         });
 
-        binding.getRoot().findViewById(R.id.button_time).setOnClickListener(new View.OnClickListener(){
+        view.findViewById(R.id.button_time).setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 MaterialTimePicker materialTimePicker = new MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_12H)
@@ -96,72 +98,64 @@ public class ScheduleEventsFragment extends Fragment {
                 materialTimePicker.show(getActivity().getSupportFragmentManager(), "timeTag");
             }
         });
+
+        return view;
     }
 
     public void setSchedule() {
-        // EditText objects
-        EditText titleText = getView().findViewById(R.id.event_title_edit_text);
-        EditText descriptionText = getView().findViewById(R.id.event_discription_edit_text);
-        EditText participantLimitText = getView().findViewById(R.id.participantlimit_edit_text);
-
         // String objects of EditText
-        String title = titleText.getText().toString();
-        String description = descriptionText.getText().toString();
-        String limit = participantLimitText.getText().toString();
+        String title = editTextTitle.getText().toString().trim();
+        String description = editTextDescription.getText().toString().trim();
+        String limit = editTextLimit.getText().toString().trim();
 
-        // create Event object
-        if (!title.isEmpty() && !description.isEmpty() && date != null
-                && time != null && !limit.isEmpty()) {
+        // Create Event object
+        if (!title.isEmpty() && !description.isEmpty() && !limit.isEmpty() && date != null
+                && time != null) {
 
-            // create event object
+            // Create event object
             Event event = new Event(title, description, date, time, limit);
 
-            // check if this event is in database
-            checkDataExists(event);
+            // Check if this event is in database, then add event
+            checkEventExistsAdd(event);
         }
         else {
-            createAnnouncement("Please don't leave any fields blank!");
+            createAnnouncement("Please fill in all required fields.");
         }
 
-        clearAllEditText(titleText, descriptionText, participantLimitText);
-        date = null;
-        time = null;
-        TextView selectedDate = (TextView) getView().findViewById(R.id.text_selected_date);
-        selectedDate.setText("Please select a date");
-        TextView selectedTime = (TextView) getView().findViewById(R.id.text_selected_time);
-        selectedTime.setText("Please select a time");
+        // Clear form
+        clearForm();
     }
 
-    public void checkDataExists(Event event) {
-        DatabaseReference ref = MainActivity.db.getReference();
-        DatabaseReference query = ref.child("events").child(event.getTitle());
+    public void checkEventExistsAdd(Event event) {
+        DatabaseReference query = databaseReference.child(event.getTitle());
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // check if there exits an event with the same title
+                // Check if there exits an event with the same title
                 if (dataSnapshot.exists()) {
-                    // get the value of date, time, description, and limit under the event in database
+                    // Get the value of date, time, description, and limit under the event in database
                     Date date = dataSnapshot.child("date").getValue(Date.class);
                     Time time = dataSnapshot.child("time").getValue(Time.class);
                     String description = dataSnapshot.child("description").getValue(String.class);
                     String limit = dataSnapshot.child("participantLimit").getValue(String.class);
 
-                    // check if these values are equal to that in the event in the parameter
+                    // Check if event details are equal
                     if (event.getDate().equals(date) && event.getTime().equals(time)
-                            && event.getDescription().equals(description) && event.getParticipantLimit().equals(limit)) {
-                        createAnnouncement("You entered a same event before!");
+                            && event.getDescription().equals(description)
+                            && event.getParticipantLimit().equals(limit)) {
+                        createAnnouncement("Event already exists.");
                     }
                     else {
-                        // if not same, set the event to the database
-                        ref.child("events").child(event.getTitle()).setValue(event);
-                        createAnnouncement("Successfully setup an event!");
+                        // If not same, set the event to the database
+                        databaseReference.child(event.getTitle()).setValue(event);
+                        createAnnouncement("Event set up successfully.");
                     }
                 }
                 else {
-                    // if there is no such a dataSnapshot, set the event to the database
-                    ref.child("events").child(event.getTitle()).setValue(event);
-                    createAnnouncement("Successfully setup an event!");
+                    // If there is no such dataSnapshot, set the event to the database
+                    databaseReference.child(event.getTitle()).setValue(event);
+                    createAnnouncement("Event set up successfully.");
                 }
             }
 
@@ -171,15 +165,19 @@ public class ScheduleEventsFragment extends Fragment {
         });
     }
 
-    public void clearAllEditText(EditText title, EditText description,
-                                 EditText limit) {
-        title.setText("");
-        description.setText("");
-        limit.setText("");
+    public void clearForm() {
+        editTextTitle.setText("");
+        editTextDescription.setText("");
+        editTextLimit.setText("");
+        date = null;
+        time = null;
+        TextView selectedDate = (TextView) getView().findViewById(R.id.text_selected_date);
+        selectedDate.setText("Please select a date");
+        TextView selectedTime = (TextView) getView().findViewById(R.id.text_selected_time);
+        selectedTime.setText("Please select a time");
     }
 
     public void createAnnouncement(String text) {
-        Toast announcement = Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
-        announcement.show();
+        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }
 }

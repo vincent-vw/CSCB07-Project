@@ -34,14 +34,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Welcome"
+                    android:text="@string/welcome"
                     android:textAppearance="?attr/textAppearanceTitleLarge" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Welcome to the Computer and Mathematical Sciences App! Check out all the features available to students at UTSC."
+                    android:text="@string/welcome_to_the_computer_and_mathematical_sciences_app_check_out_all_the_features_available_to_students_at_utsc"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary" />
             </LinearLayout>

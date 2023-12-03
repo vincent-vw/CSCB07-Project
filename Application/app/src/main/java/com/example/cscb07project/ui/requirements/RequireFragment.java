@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui.requirement;
+package com.example.cscb07project.ui.requirements;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentRequireBinding;
@@ -20,7 +21,6 @@ public class RequireFragment extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,22 +36,19 @@ public class RequireFragment extends Fragment{
         buttoncomp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Q2_comp.class);
-                startActivity(intent);
+                Navigation.findNavController(root).navigate(R.id.action_nav_require_to_nav_questions2_comp);
             }
         });
         buttonmath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Q2_math.class);
-                startActivity(intent);
+                Navigation.findNavController(root).navigate(R.id.action_nav_require_to_nav_questions2_math);
             }
         });
         buttonstat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Q2_stat.class);
-                startActivity(intent);
+                Navigation.findNavController(root).navigate(R.id.action_nav_require_to_nav_questions2_stat);
             }
         });
 

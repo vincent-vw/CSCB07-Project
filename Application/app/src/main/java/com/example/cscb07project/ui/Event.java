@@ -9,8 +9,8 @@ public class Event {
     private Long scheduledTime;
     private int participantLimit;
     private int currentParticipants;
-    public Event() {
-    }
+  
+    public Event() {}
 
     public Event(String title, String description, Long scheduledTime, int participantLimit) {
         this.title = title;

@@ -8,12 +8,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 
 import com.example.cscb07project.ui.Complaint;
@@ -21,17 +23,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-
 public class ComplaintFormFragment extends Fragment {
     private EditText editTextComplaint;
-    private EditText editTextUsername;
+    private TextView textUsername;
     private CheckBox checkBoxAnonymous;
     private DatabaseReference databaseReference;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_complaint_form, container, false);
 
@@ -40,11 +41,13 @@ public class ComplaintFormFragment extends Fragment {
 
         // Initialize UI components
         editTextComplaint = view.findViewById(R.id.editText_complaint);
-        editTextUsername = view.findViewById(R.id.editTextStudentId);
-        checkBoxAnonymous = view.findViewById(R.id.checkBoxAnonymous);
+        checkBoxAnonymous = view.findViewById(R.id.checkBox_anonymous);
+        textUsername = view.findViewById(R.id.text_username);
         Button buttonSubmit = view.findViewById(R.id.button_new_complaint);
 
-        // onClickListener for Submit
+        textUsername.setText("Posting as " + MainActivity.user.getUsername());
+
+        // onClickListener for the button
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,13 +58,10 @@ public class ComplaintFormFragment extends Fragment {
         checkBoxAnonymous.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // If anonymous is checked, clear the username and disable the EditText
-                if (isChecked) {
-                    editTextUsername.setText("");
-                    editTextUsername.setEnabled(false);
+                if(isChecked) {
+                    textUsername.setText("Posting anonymously");
                 } else {
-                    // If not anonymous, do any necessary cleanup or re-enable the EditText
-                    editTextUsername.setEnabled(true);
+                    textUsername.setText("Posting as " + MainActivity.user.getUsername());
                 }
             }
         });
@@ -70,21 +70,17 @@ public class ComplaintFormFragment extends Fragment {
     }
 
     private void submitComplaint() {
-        // Get complaint text from EditText
+        // Get complaint details from EditText
         String complaintText = editTextComplaint.getText().toString().trim();
-        String username = editTextUsername.getText().toString().trim();
+        String username;
         boolean isAnonymous = checkBoxAnonymous.isChecked();
 
         if (!complaintText.isEmpty()) {
             // Clear the username if anonymous is checked
             if (isAnonymous) {
-                username = "unavailable";
+                username = "Anonymous";
             } else {
-                // Show error message if username is empty and not anonymous
-                if (username.isEmpty()) {
-                    editTextUsername.setError("Please enter your username.");
-                    return;
-                }
+                username = MainActivity.user.getUsername();
             }
 
             // Generate a unique key for the complaint
@@ -106,19 +102,19 @@ public class ComplaintFormFragment extends Fragment {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     if (error == null) {
-                        // No error
+                        // Success
                         editTextComplaint.setText("");
-                        editTextUsername.setText("");
                         checkBoxAnonymous.setChecked(false);
-                        // Disable the username EditText if anonymous is checked
-                        editTextUsername.setEnabled(!isAnonymous);
-                        Toast.makeText(requireContext(), "Complaint submitted successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Complaint submitted successfully.", Toast.LENGTH_SHORT).show();
                     } else {
                         // Handle the error
                         Toast.makeText(requireContext(), "Failed to submit complaint. Please try again.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
+        } else {
+            // Prompting the user to fill in all required fields
+            Toast.makeText(requireContext(), "Please fill in all required fields.", Toast.LENGTH_SHORT).show();
         }
     }
 }

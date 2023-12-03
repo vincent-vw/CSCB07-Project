@@ -12,9 +12,7 @@ public class Complaint {
     private long timeSubmitted;
     private boolean isAdminViewed;
 
-    public Complaint() {
-
-    }
+    public Complaint() {}
 
     public Complaint(String username, String status, String complaint) {
         this.username = username;

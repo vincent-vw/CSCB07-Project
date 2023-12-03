@@ -35,80 +35,69 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Got a complaint?"
+                    android:text="@string/got_a_complaint"
                     android:textAppearance="?attr/textAppearanceTitleLarge" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Enter a message below to create a complaint to staff members at UTSC."
+                    android:text="@string/enter_a_message_below_to_create_a_complaint_to_staff_members_at_utsc"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Username TextInputLayout -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutStudentId"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_view_complaint_form">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextStudentId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:padding="16dp"
-            android:hint="Enter your username" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Anonymous CheckBox -->
-    <CheckBox
-        android:id="@+id/checkBoxAnonymous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Anonymous"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutStudentId" />
-
     <!-- Complaint TextInputLayout -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutComplaint"
-        android:layout_width="0dp"
+        android:id="@+id/textInputLayout_complaint"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxAnonymous"
-        android:hint="@string/complaint_hint">
+        android:layout_margin="8dp"
+        android:hint="@string/complaint_hint"
+        app:layout_constraintTop_toBottomOf="@id/card_view_complaint_form">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_complaint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:padding="16dp" />
+            android:inputType="textMultiLine" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Anonymous CheckBox -->
+    <CheckBox
+        android:id="@+id/checkBox_anonymous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/anonymous"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout_complaint" />
 
     <!-- Submit Button -->
     <Button
         android:id="@+id/button_new_complaint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/submit_button_text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutComplaint" />
+        app:layout_constraintTop_toBottomOf="@+id/text_username" />
+
+    <TextView
+        android:id="@+id/text_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/elipses"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_anonymous"
+        tools:layout_editor_absoluteX="68dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

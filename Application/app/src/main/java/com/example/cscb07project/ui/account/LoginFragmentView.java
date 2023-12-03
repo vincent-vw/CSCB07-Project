@@ -12,7 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -29,14 +28,14 @@ public class LoginFragmentView extends Fragment {
 
         presenter = new LoginFragmentPresenter(this, new LoginFragmentModel());
 
-        userText = (EditText) view.findViewById(R.id.login_username_edit_text);
-        passText = (EditText) view.findViewById(R.id.login_password_edit_text);
+        userText = (EditText) view.findViewById(R.id.editText_login_username);
+        passText = (EditText) view.findViewById(R.id.editText_login_password);
         radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup_login);
 
         return view;
     }
 
-    // Two methods to hide back button on login page
+    // Two methods to hide action bar button on login page
 //    @Override
 //    public void onResume() {
 //        super.onResume();

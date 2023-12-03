@@ -82,19 +82,91 @@
         android:id="@+id/nav_schedule_events"
         android:name="com.example.cscb07project.ui.events.ScheduleEventsFragment"
         android:label="@string/menu_schedule_events"
-        tools:layout="@layout/fragment_schedule_events" >
-        <action
-            android:id="@+id/action_nav_schedule_events_self"
-            app:destination="@id/nav_schedule_events" />
-    </fragment>
+        tools:layout="@layout/fragment_schedule_events" />
     <fragment
         android:id="@+id/nav_feedback"
-        android:name="com.example.cscb07project.ui.feedback.FeedbackFormFragment"
+        android:name="com.example.cscb07project.ui.feedbackform.FeedbackFormFragment"
         android:label="Feedback Form"
         tools:layout="@layout/fragment_feedback_form" />
     <fragment
         android:id="@+id/nav_require"
-        android:name="com.example.cscb07project.ui.requirement.RequireFragment"
+        android:name="com.example.cscb07project.ui.requirements.RequireFragment"
         android:label="@string/check_post"
-        tools:layout="@layout/fragment_require" />
+        tools:layout="@layout/fragment_require" >
+        <action
+            android:id="@+id/action_nav_require_to_nav_questions2_comp"
+            app:destination="@id/nav_questions2_comp" />
+        <action
+            android:id="@+id/action_nav_require_to_nav_questions2_math"
+            app:destination="@id/nav_questions2_math" />
+        <action
+            android:id="@+id/action_nav_require_to_nav_questions2_stat"
+            app:destination="@id/nav_questions2_stat" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_questions2_comp"
+        android:name="com.example.cscb07project.ui.requirements.Q2Comp"
+        android:label="Computer Science"
+        tools:layout="@layout/questions2_comp" >
+        <action
+            android:id="@+id/action_nav_questions2_comp_to_nav_questions3a_comp"
+            app:destination="@id/nav_questions3a_comp" />
+        <action
+            android:id="@+id/action_nav_questions2_comp_to_nav_questions3b_comp"
+            app:destination="@id/nav_questions3b_comp" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_questions2_math"
+        android:name="com.example.cscb07project.ui.requirements.Q2Math"
+        android:label="Mathematics"
+        tools:layout="@layout/questions2_math" >
+        <action
+            android:id="@+id/action_nav_questions2_math_to_nav_questions3a_math"
+            app:destination="@id/nav_questions3a_math" />
+        <action
+            android:id="@+id/action_nav_questions2_math_to_nav_questions3b_math"
+            app:destination="@id/nav_questions3b_math" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_questions2_stat"
+        android:name="com.example.cscb07project.ui.requirements.Q2Stat"
+        android:label="Statistics"
+        tools:layout="@layout/questions2_stat" >
+        <action
+            android:id="@+id/action_nav_questions2_stat_to_nav_questions3a_stat"
+            app:destination="@id/nav_questions3a_stat" />
+        <action
+            android:id="@+id/action_nav_questions2_stat_to_nav_questions3b_stat"
+            app:destination="@id/nav_questions3b_stat" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_questions3a_comp"
+        android:name="com.example.cscb07project.ui.requirements.Q3aComp"
+        android:label="Computer Science"
+        tools:layout="@layout/questions3a_comp" />
+    <fragment
+        android:id="@+id/nav_questions3a_math"
+        android:name="com.example.cscb07project.ui.requirements.Q3aMath"
+        android:label="Mathematics"
+        tools:layout="@layout/questions3a_math" />
+    <fragment
+        android:id="@+id/nav_questions3a_stat"
+        android:name="com.example.cscb07project.ui.requirements.Q3aStat"
+        android:label="Statistics"
+        tools:layout="@layout/questions3a_stat" />
+    <fragment
+        android:id="@+id/nav_questions3b_comp"
+        android:name="com.example.cscb07project.ui.requirements.Q3bComp"
+        android:label="Computer Science"
+        tools:layout="@layout/questions3b_comp" />
+    <fragment
+        android:id="@+id/nav_questions3b_math"
+        android:name="com.example.cscb07project.ui.requirements.Q3bMath"
+        android:label="Mathematics"
+        tools:layout="@layout/questions3b_math" />
+    <fragment
+        android:id="@+id/nav_questions3b_stat"
+        android:name="com.example.cscb07project.ui.requirements.Q3bStat"
+        android:label="Statistics"
+        tools:layout="@layout/questions3b_stat" />
 </navigation>

@@ -7,8 +7,7 @@ public class Date {
     private String month;
     private String day;
 
-    public Date() {
-    }
+    public Date() {}
 
     public Date(String year, String month, String day) {
         this.year = year;
