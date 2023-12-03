@@ -8,7 +8,7 @@ public class Event {
     private String description;
     private Long scheduledTime;
     private int participantLimit;
-
+    private int currentParticipants;
     public Event() {
     }
 
@@ -61,5 +61,13 @@ public class Event {
 
     public void setParticipantLimit(int participantLimit) {
         this.participantLimit = participantLimit;
+    }
+
+    public int getCurrentParticipants() {
+        return currentParticipants;
+    }
+
+    public void setCurrentParticipants(int currentParticipants) {
+        this.currentParticipants = currentParticipants;
     }
 }
