@@ -2,13 +2,13 @@ package com.example.cscb07project.ui.viewfeedback;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,11 +27,13 @@ public class ViewFeedbackFragment extends Fragment {
     private ViewFeedbackViewModel viewFeedbackViewModel;
     private FragmentViewFeedbackBinding binding;
     private View root;
-    private ListView feedback_list;
-    private Button load_feedback_button;
-    private Button mark_as_viewed_button;
-    private TextView feedback_prompt;
-    private TextView feedback_text;
+    private ListView feedbackList;
+
+    private ListView eventRatingsList;
+    private Button loadFeedbackButton;
+    private Button markAsViewedButton;
+    private TextView feedbackPrompt;
+    private TextView feedbackText;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //initialize
@@ -39,18 +41,23 @@ public class ViewFeedbackFragment extends Fragment {
         binding = FragmentViewFeedbackBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
-        feedback_list = root.findViewById(R.id.view_feedback_list);
-        load_feedback_button = root.findViewById(R.id.view_feedback_load_button);
-        mark_as_viewed_button = root.findViewById(R.id.view_feedback_view_button);
-        feedback_prompt = root.findViewById(R.id.view_feedback_prompt);
-        feedback_text = root.findViewById(R.id.view_feedback_text);
+        feedbackList = root.findViewById(R.id.view_feedback_list);
+        eventRatingsList = root.findViewById(R.id.event_ratings_list);
+        loadFeedbackButton = root.findViewById(R.id.view_feedback_load_button);
+        markAsViewedButton = root.findViewById(R.id.view_feedback_view_button);
+        feedbackPrompt = root.findViewById(R.id.view_feedback_prompt);
+        feedbackText = root.findViewById(R.id.view_feedback_text);
 
-        //complaints
+        //feedback
         List<String> feedbackPreviewList = new ArrayList<>();
-        ArrayAdapter arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, feedbackPreviewList);
-        feedback_list.setAdapter(arrayAdapter);
+        ArrayAdapter feedbackArrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, feedbackPreviewList);
+        feedbackList.setAdapter(feedbackArrayAdapter);
 
-        feedback_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        List<String> eventRatingsPreviewList = new ArrayList<>();
+        ArrayAdapter eventRatingsArrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, eventRatingsPreviewList);
+        eventRatingsList.setAdapter(eventRatingsArrayAdapter);
+
+        feedbackList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 initializeViewSingleFeedbackPage(viewFeedbackViewModel.getFeedbackManager().getFeedback(Integer.parseInt(feedbackPreviewList.get(position).split(":")[0]) - 1));
@@ -59,30 +66,33 @@ public class ViewFeedbackFragment extends Fragment {
 
         //button
 
-        load_feedback_button.setOnClickListener(new View.OnClickListener() {
+        loadFeedbackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                eventRatingsPreviewList.clear();
+                eventRatingsPreviewList.addAll(viewFeedbackViewModel.getFeedbackManager().getAllEventsSummaryAsList());
+                eventRatingsArrayAdapter.notifyDataSetChanged();
+
                 feedbackPreviewList.clear();
-                //TODO no direct way of dealing with async calls :(
                 List<Feedback> complaintList = viewFeedbackViewModel.getFeedbackManager().getAllFeedbackSortedBySubmitTime();
                 int feedbackCount = 1;
                 for (Feedback feedback : complaintList) {
                     feedbackPreviewList.add((feedbackCount++) + ":" + feedback.previewFeedbackAsString());
                 }
                 viewFeedbackViewModel.getFeedbackManager().refreshFeedback();
-                arrayAdapter.notifyDataSetChanged();
+                feedbackArrayAdapter.notifyDataSetChanged();
             }
         });
 
-        mark_as_viewed_button.setOnClickListener(new View.OnClickListener() {
+        markAsViewedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO mark as viewed update, update database
-                initializeLoadComplaintsListPage();
+                initializeLoadFeedbackListPage();
             }
         });
 
-        initializeLoadComplaintsListPage();
+        initializeLoadFeedbackListPage();
         return root;
     }
 
@@ -92,31 +102,43 @@ public class ViewFeedbackFragment extends Fragment {
         binding = null;
     }
 
-    public void initializeLoadComplaintsListPage() {
-        feedback_list.getLayoutParams().height = 2 * getScreenHeight() / 3;
-        feedback_list.getLayoutParams().width = 2 * getScreenWidth() / 3;
-        feedback_list.requestLayout();
-        feedback_list.setVisibility(View.VISIBLE);
-        load_feedback_button.setVisibility(View.VISIBLE);
-        //prompt.setVisibility(View.VISIBLE);
+    public void initializeLoadFeedbackListPage() {
+        //feedbackList.getLayoutParams().height = 2 * getScreenHeight() / 3;
+        //feedbackList.getLayoutParams().width = 2 * getScreenWidth() / 3;
+        feedbackList.requestLayout();
+        feedbackList.setVisibility(View.VISIBLE);
 
-        feedback_text.requestLayout();
-        feedback_text.setVisibility(View.INVISIBLE);
-        mark_as_viewed_button.setVisibility(View.INVISIBLE);
+        //eventRatingsList.getLayoutParams().height = 2 * getScreenHeight() / 3;
+        //eventRatingsList.getLayoutParams().width = 2 * getScreenWidth() / 3;
+        eventRatingsList.requestLayout();
+        eventRatingsList.setVisibility(View.VISIBLE);
+
+        loadFeedbackButton.setVisibility(View.VISIBLE);
+
+        //prompt.setVisibility(View.VISIBLE);
+        feedbackText.requestLayout();
+        feedbackText.setVisibility(View.INVISIBLE);
+        markAsViewedButton.setVisibility(View.INVISIBLE);
     }
 
     public void initializeViewSingleFeedbackPage(Feedback feedback) {
-        feedback_list.getLayoutParams().height = 0;
-        feedback_list.getLayoutParams().width = 0;
-        feedback_list.requestLayout();
-        feedback_list.setVisibility(View.INVISIBLE);
-        load_feedback_button.setVisibility(View.INVISIBLE);
-        //prompt.setVisibility(View.INVISIBLE);
+        //feedbackList.getLayoutParams().height = 0;
+        //feedbackList.getLayoutParams().width = 0;
+        feedbackList.requestLayout();
+        feedbackList.setVisibility(View.INVISIBLE);
 
-        feedback_text.setText(feedback.viewFeedbackAsString());
-        feedback_text.requestLayout();
-        feedback_text.setVisibility(View.VISIBLE);
-        mark_as_viewed_button.setVisibility(View.VISIBLE);
+        //eventRatingsList.getLayoutParams().height = 0;
+        //eventRatingsList.getLayoutParams().width = 0;
+        eventRatingsList.requestLayout();
+        eventRatingsList.setVisibility(View.INVISIBLE);
+
+        loadFeedbackButton.setVisibility(View.INVISIBLE);
+
+        //prompt.setVisibility(View.INVISIBLE);
+        feedbackText.setText(feedback.viewFeedbackAsString());
+        feedbackText.requestLayout();
+        feedbackText.setVisibility(View.VISIBLE);
+        markAsViewedButton.setVisibility(View.VISIBLE);
     }
 
     public int getScreenWidth() {
