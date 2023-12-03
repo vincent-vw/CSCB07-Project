@@ -79,7 +79,6 @@ public class ViewFeedbackFragment extends Fragment {
                 for (Feedback feedback : complaintList) {
                     feedbackPreviewList.add((feedbackCount++) + ":" + feedback.previewFeedbackAsString());
                 }
-                viewFeedbackViewModel.getFeedbackManager().refreshFeedback();
                 feedbackArrayAdapter.notifyDataSetChanged();
             }
         });
