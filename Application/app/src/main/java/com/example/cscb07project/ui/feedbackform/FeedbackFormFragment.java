@@ -18,9 +18,11 @@ import com.example.cscb07project.R;
 
 import com.example.cscb07project.ui.Feedback;
 import com.google.android.material.slider.Slider;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class FeedbackFormFragment extends Fragment {
     private EditText editTextEvent;
@@ -69,31 +71,50 @@ public class FeedbackFormFragment extends Fragment {
 
         // Check for empty fields (except for additional comments)
         if (!TextUtils.isEmpty(event) && !TextUtils.isEmpty(comment)) {
-            // Generate a unique key for the feedback
-            String key = databaseReference.push().getKey();
 
             // Create an instance of Feedback
             Feedback feedback = new Feedback(event, comment, username, numericRating,
                     additionalComments);
 
-            // Send the feedback to Firebase
-            databaseReference.child(key).setValue(feedback.classToJson(), new DatabaseReference.CompletionListener() {
-                @Override
-                public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                    if (error == null) {
-                        // Success
-                        clearForm();
-                        Toast.makeText(requireContext(), "Feedback submitted successfully.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        // Handle the error
-                        Toast.makeText(requireContext(), "Failed to submit feedback. Please try again.", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+            checkEventExistsAddFeedback(feedback);
         } else {
             // Prompting the user to fill in all required fields
             Toast.makeText(requireContext(), "Please fill in all required fields.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void checkEventExistsAddFeedback(Feedback feedback) {
+        DatabaseReference query = FirebaseDatabase.getInstance().getReference("events").child(feedback.getEvent());
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // Generate a unique key for the feedback
+                    String key = databaseReference.push().getKey();
+                    // Send the feedback to Firebase
+                    databaseReference.child(key).setValue(feedback.classToJson(), new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                            if (error == null) {
+                                // Success
+                                clearForm();
+                                Toast.makeText(requireContext(), "Feedback submitted successfully.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Handle the error
+                                Toast.makeText(requireContext(), "Failed to submit feedback. Please try again.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(requireContext(), "Event does not exist.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     private void clearForm() {

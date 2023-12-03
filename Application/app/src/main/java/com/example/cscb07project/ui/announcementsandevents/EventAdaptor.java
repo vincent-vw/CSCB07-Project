@@ -26,14 +26,14 @@ public class EventAdaptor extends FirebaseRecyclerAdapter<Event, EventAdaptor.Ev
     // Function to bind the view in Card view (here "Event.xml") with data in model class (here "Event.java")
     @Override
     protected void onBindViewHolder(@NonNull EventAdaptor.EventsViewHolder holder, int position, @NonNull Event model) {
-        holder.title.setText(model.getTitle());
-        holder.description.setText(model.getDescription());
-        holder.participantLimit.setText("Participant limit: " + model.getParticipantLimit());
-        holder.date.setText("Date: " + model.getDate().getDay()
-                + "/" + model.getDate().getMonth()
-                + "/" + model.getDate().getYear());
-        holder.time.setText("Time: " + model.getTime().getHour() + ":"
-                + model.getTime().getMinute());
+//        holder.title.setText(model.getTitle());
+//        holder.description.setText(model.getDescription());
+//        holder.participantLimit.setText("Participant limit: " + model.getParticipantLimit());
+//        holder.date.setText("Date: " + model.getDate().getDay()
+//                + "/" + model.getDate().getMonth()
+//                + "/" + model.getDate().getYear());
+//        holder.time.setText("Time: " + model.getTime().getHour() + ":"
+//                + model.getTime().getMinute());
     }
 
     @NonNull

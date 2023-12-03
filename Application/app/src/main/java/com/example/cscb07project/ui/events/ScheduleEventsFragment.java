@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.cscb07project.R;
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -49,7 +51,11 @@ public class ScheduleEventsFragment extends Fragment {
 
         view.findViewById(R.id.button_schedule).setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
-                setSchedule();
+                try {
+                    setSchedule();
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -102,23 +108,21 @@ public class ScheduleEventsFragment extends Fragment {
         return view;
     }
 
-    public void setSchedule() {
+    public void setSchedule() throws ParseException {
         // String objects of EditText
         String title = editTextTitle.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
         String limit = editTextLimit.getText().toString().trim();
 
-        // Create Event object
         if (!title.isEmpty() && !description.isEmpty() && !limit.isEmpty() && date != null
                 && time != null) {
 
-            // Create event object
-            Event event = new Event(title, description, date, time, limit);
+            // Create Event object
+            Event event = new Event(title, description, date, time, Integer.parseInt(limit));
 
             // Check if this event is in database, then add event
             checkEventExistsAdd(event);
-        }
-        else {
+        } else {
             createAnnouncement("Please fill in all required fields.");
         }
 
@@ -126,36 +130,49 @@ public class ScheduleEventsFragment extends Fragment {
         clearForm();
     }
 
-    public void checkEventExistsAdd(Event event) {
+    private void checkEventExistsAdd(Event event) {
         DatabaseReference query = databaseReference.child(event.getTitle());
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Check if there exits an event with the same title
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Check if there exists an event with the same title
                 if (dataSnapshot.exists()) {
-                    // Get the value of date, time, description, and limit under the event in database
-                    Date date = dataSnapshot.child("date").getValue(Date.class);
-                    Time time = dataSnapshot.child("time").getValue(Time.class);
-                    String description = dataSnapshot.child("description").getValue(String.class);
-                    String limit = dataSnapshot.child("participantLimit").getValue(String.class);
-
-                    // Check if event details are equal
-                    if (event.getDate().equals(date) && event.getTime().equals(time)
-                            && event.getDescription().equals(description)
-                            && event.getParticipantLimit().equals(limit)) {
-                        createAnnouncement("Event already exists.");
-                    }
-                    else {
-                        // If not same, set the event to the database
-                        databaseReference.child(event.getTitle()).setValue(event);
-                        createAnnouncement("Event set up successfully.");
-                    }
+//                    // Get the value of date, time, description, and limit under the event in database
+//                    Date date = dataSnapshot.child("date").getValue(Date.class);
+//                    Time time = dataSnapshot.child("time").getValue(Time.class);
+//                    String description = dataSnapshot.child("description").getValue(String.class);
+//                    String limit = dataSnapshot.child("participantLimit").getValue(String.class);
+//
+//                    // Check if event details are equal
+//                    if (event.getDate().equals(date) && event.getTime().equals(time)
+//                            && event.getDescription().equals(description)
+//                            && event.getParticipantLimit().equals(limit)) {
+//                        createAnnouncement("Event already exists.");
+//                    }
+//                    else {
+//                        // If not same, set the event to the database
+//                        databaseReference.child(event.getTitle()).setValue(event);
+//                        createAnnouncement("Event set up successfully.");
+//                    }
+                    createAnnouncement("Event already exists.");
                 }
                 else {
                     // If there is no such dataSnapshot, set the event to the database
-                    databaseReference.child(event.getTitle()).setValue(event);
-                    createAnnouncement("Event set up successfully.");
+//                    databaseReference.child(event.getTitle()).setValue(event);
+                    databaseReference.child(event.getTitle()).setValue(event.classToJson(), new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                            if (error == null) {
+                                // Success
+                                createAnnouncement("Event set up successfully.");
+                            } else {
+                                // Handle the error
+                                createAnnouncement("Failed to create event. Please try again.");
+                            }
+
+                        }
+                    });
                 }
             }
 

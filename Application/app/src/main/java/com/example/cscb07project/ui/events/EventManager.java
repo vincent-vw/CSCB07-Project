@@ -32,11 +32,11 @@ public class EventManager {
 
     public void refreshEvents() {
         eventsList = new ArrayList<>();
-        //TODO need better way of getting database instance
+        // TODO need better way of getting database instance
         FirebaseDatabase.getInstance("https://cscb07project-c6a1c-default-rtdb.firebaseio.com/").getReference("events").orderByKey().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                //add complaint to map
+                // Add event to map
                 eventsList.add(Event.jsonToClass(dataSnapshot.getValue().toString()));
             }
 
@@ -62,7 +62,7 @@ public class EventManager {
         });
     }
 
-    public List<Event> getAllComplaintsSortedBySubmitTime() {
+    public List<Event> getAllEventsSortedBySubmitTime() {
         Collections.sort(eventsList, new Comparator<Event>() {
             @Override
             public int compare(Event o1, Event o2) {
@@ -78,5 +78,5 @@ public class EventManager {
         return eventsList;
     }
 
-    //TODO check event exists functino, list add the scheduled events function
+    //TODO check event exists function, list add the scheduled events function
 }

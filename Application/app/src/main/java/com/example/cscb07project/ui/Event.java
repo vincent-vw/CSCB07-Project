@@ -3,6 +3,10 @@ package com.example.cscb07project.ui;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class Event {
     private String title;
     private String description;
@@ -17,6 +21,19 @@ public class Event {
         this.description = description;
         this.scheduledTime = scheduledTime;
         this.participantLimit = participantLimit;
+    }
+
+    public Event(String title, String description, Date date, Time time, int participantLimit) throws ParseException {
+        this.title = title;
+        this.description = description;
+        this.participantLimit = participantLimit;
+
+        // Convert date and time to UNIX timestamp
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault());
+        java.util.Date d = format.parse(date.getYear() + "/" + date.getMonth() + "/" +
+                date.getDay() + " " + time.getHour() + ":" + time.getMinute());
+        assert d != null;
+        this.scheduledTime = d.getTime();
     }
 
     public static Event jsonToClass(String json) {
