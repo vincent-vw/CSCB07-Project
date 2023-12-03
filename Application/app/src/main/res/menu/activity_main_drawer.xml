@@ -7,39 +7,39 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/baseline_home_24"
             android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_announcements_and_events"
+            android:icon="@drawable/baseline_event_24"
+            android:title="@string/menu_announcements_and_events" />
         <item
             android:id="@+id/nav_create_announcement"
             android:icon="@android:drawable/ic_btn_speak_now"
             android:title="@string/menu_create_announcement" />
         <item
+            android:id="@+id/nav_schedule_events"
+            android:icon="@drawable/baseline_edit_calendar_24"
+            android:title="@string/menu_schedule_events" />
+        <item
             android:id="@+id/nav_view_complaints"
-            android:icon="@android:drawable/arrow_down_float"
+            android:icon="@drawable/baseline_mood_bad_24"
             android:title="@string/menu_view_complaints" />
         <item
             android:id="@+id/nav_view_feedback"
-            android:icon="@android:drawable/arrow_down_float"
+            android:icon="@drawable/baseline_feedback_24"
             android:title="@string/menu_view_feedback" />
         <item
-            android:id="@+id/nav_announcements_and_events"
-            android:icon="@android:drawable/picture_frame"
-            android:title="@string/menu_announcements_and_events" />
-        <item
             android:id="@+id/nav_complaint_form"
-            android:icon="@android:drawable/ic_dialog_alert"
+            android:icon="@drawable/baseline_thumb_down_24"
             android:title="Complaint Form" />
-        <item
-            android:id="@+id/nav_schedule_events"
-            android:icon="@android:drawable/ic_dialog_alert"
-            android:title="@string/menu_schedule_events" />
         <item
             android:id="@+id/nav_feedback"
             android:icon="@android:drawable/ic_dialog_email"
             android:title="Feedback Form" />
         <item
             android:id="@+id/nav_require"
-            android:icon="@android:drawable/ic_menu_add"
+            android:icon="@drawable/baseline_assessment_24"
             android:title="@string/POSt" />
     </group>
 </menu>

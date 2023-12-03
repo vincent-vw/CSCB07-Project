@@ -1,6 +1,5 @@
 package com.example.cscb07project.ui.requirements;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,21 +18,12 @@ public class Q2Stat extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.questions2_stat, container, false);
 
-        Button buttonMin = view.findViewById(R.id.button_min_stat);
-
-        buttonMin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_nav_questions2_stat_to_nav_questions3a_stat);
-            }
-        });
-
         Button buttonMaj = view.findViewById(R.id.button_maj_stat);
 
         buttonMaj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_nav_questions2_stat_to_nav_questions3b_stat);
+                Navigation.findNavController(view).navigate(R.id.action_nav_questions2_stat_to_nav_questions3a_stat);
             }
         });
 
@@ -42,7 +32,7 @@ public class Q2Stat extends Fragment {
         buttonSpec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_nav_questions2_stat_to_nav_questions3c_stat);
+                Navigation.findNavController(view).navigate(R.id.action_nav_questions2_stat_to_nav_questions3b_stat);
             }
         });
 

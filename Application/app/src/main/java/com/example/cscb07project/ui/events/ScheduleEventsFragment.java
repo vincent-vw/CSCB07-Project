@@ -26,7 +26,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -45,7 +44,7 @@ public class ScheduleEventsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.getRoot().findViewById(R.id.schedule_button).setOnClickListener(new View.OnClickListener(){
+        binding.getRoot().findViewById(R.id.button_schedule).setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 setSchedule();
             }
@@ -100,9 +99,9 @@ public class ScheduleEventsFragment extends Fragment {
 
     public void setSchedule() {
         // EditText objects
-        EditText titleText = getView().findViewById(R.id.event_title_edit_text);
-        EditText descriptionText = getView().findViewById(R.id.event_discription_edit_text);
-        EditText participantLimitText = getView().findViewById(R.id.participantlimit_edit_text);
+        EditText titleText = getView().findViewById(R.id.editText_event_title);
+        EditText descriptionText = getView().findViewById(R.id.editText_event_description);
+        EditText participantLimitText = getView().findViewById(R.id.editText_participant_limit);
 
         // String objects of EditText
         String title = titleText.getText().toString();

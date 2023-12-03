@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,26 +14,6 @@
         android:theme="@style/Theme.CSCB07Project"
         tools:targetApi="31">
         <!-- android:name: class name of activity -->
-        <activity
-            android:name=".ui.requirements.Q3aMath"/>
-        <activity
-            android:name=".ui.requirements.Q3bMath"/>
-        <activity
-            android:name=".ui.requirements.Q3aStat"/>
-        <activity
-            android:name=".ui.requirements.Q3bStat"/>
-        <activity
-            android:name=".ui.requirements.Q3cStat"/>
-        <activity
-            android:name=".ui.requirements.Q3aComp" />
-        <activity
-            android:name=".ui.requirements.Q3bComp" />
-        <activity
-            android:name=".ui.requirements.Q2Math" />
-        <activity
-            android:name=".ui.requirements.Q2Stat" />
-        <activity
-            android:name=".ui.requirements.Q2Comp" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

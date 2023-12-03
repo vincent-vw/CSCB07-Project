@@ -85,7 +85,7 @@
         tools:layout="@layout/fragment_schedule_events" />
     <fragment
         android:id="@+id/nav_feedback"
-        android:name="com.example.cscb07project.ui.feedback.FeedbackFormFragment"
+        android:name="com.example.cscb07project.ui.feedbackform.FeedbackFormFragment"
         android:label="Feedback Form"
         tools:layout="@layout/fragment_feedback_form" />
     <fragment
@@ -138,9 +138,6 @@
         <action
             android:id="@+id/action_nav_questions2_stat_to_nav_questions3b_stat"
             app:destination="@id/nav_questions3b_stat" />
-        <action
-            android:id="@+id/action_nav_questions2_stat_to_nav_questions3c_stat"
-            app:destination="@id/nav_questions3c_stat" />
     </fragment>
     <fragment
         android:id="@+id/nav_questions3a_comp"
@@ -172,9 +169,4 @@
         android:name="com.example.cscb07project.ui.requirements.Q3bStat"
         android:label="Statistics"
         tools:layout="@layout/questions3b_stat" />
-    <fragment
-        android:id="@+id/nav_questions3c_stat"
-        android:name="com.example.cscb07project.ui.requirements.Q3cStat"
-        android:label="Statistics"
-        tools:layout="@layout/questions3c_stat" />
 </navigation>
