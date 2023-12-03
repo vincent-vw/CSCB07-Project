@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui.feedback;
+package com.example.cscb07project.ui.feedbackform;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -41,11 +41,11 @@ public class FeedbackFormFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference("feedback");
 
         // Initialize UI components
-        editTextEvent = view.findViewById(R.id.editTextEvent);
-        editTextComment = view.findViewById(R.id.editTextComment);
-        sliderNumericRating = view.findViewById(R.id.sliderNumericRating);
-        editTextAdditionalComments = view.findViewById(R.id.editTextAdditionalComments);
-        buttonSubmitFeedback = view.findViewById(R.id.buttonSubmitFeedback);
+        editTextEvent = view.findViewById(R.id.editText_event);
+        editTextComment = view.findViewById(R.id.editText_comment);
+        sliderNumericRating = view.findViewById(R.id.slider_numeric_rating);
+        editTextAdditionalComments = view.findViewById(R.id.editText_additional_comments);
+        buttonSubmitFeedback = view.findViewById(R.id.button_submit_feedback);
 
         // onClickListener for the button
         buttonSubmitFeedback.setOnClickListener(new View.OnClickListener() {

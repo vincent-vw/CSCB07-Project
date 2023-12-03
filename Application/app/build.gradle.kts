@@ -46,10 +46,13 @@ dependencies {
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("com.firebaseui:firebase-ui-database:8.0.2")
     implementation("com.google.android.material:material:1.10.0")
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.mockito:mockito-core:4.2.0")
+    androidTestImplementation("junit:junit:4.13.2")
+    androidTestImplementation("org.mockito:mockito-core:4.2.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:4.2.0")
+    testImplementation("org.mockito:mockito-junit-jupiter:4.2.0")
 
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")

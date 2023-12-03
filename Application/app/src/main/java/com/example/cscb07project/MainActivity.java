@@ -1,5 +1,9 @@
 package com.example.cscb07project;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +16,10 @@ import com.example.cscb07project.ui.User;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     public static FirebaseDatabase db;
     public static User user;
+    boolean isCalled = false; // To prevent initial firing of event listener
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +70,28 @@ public class MainActivity extends AppCompatActivity {
         // Link to realtime database
         db = FirebaseDatabase.getInstance("https://cscb07project-c6a1c-default-rtdb.firebaseio.com/");
 
+        // Notification for new announcements
+        createNotificationChannelAnnouncement();
         DatabaseReference query = db.getReference().child("announcements");
+        isCalled = false;
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    Toast myToast = Toast.makeText(MainActivity.this, "Announcements posted.", Toast.LENGTH_SHORT);
-                    myToast.show();
+                if(isCalled) {
+                    if (snapshot.exists()) {
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "announcement");
+                        builder.setContentTitle("New Announcement Posted");
+                        builder.setSmallIcon(R.drawable.baseline_notifications_24);
+                        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
+                        if (ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        managerCompat.notify(1, builder.build());
+                    }
+                } else {
+                    isCalled = true;
                 }
             }
 
@@ -75,6 +99,20 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
             }
         });
+    }
+
+    // Credit to: https://developer.android.com/develop/ui/views/notifications/build-notification
+    private void createNotificationChannelAnnouncement() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "announcementChannel";
+            String description = "Channel for announcements";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("announcement", name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
     @Override
@@ -90,17 +128,4 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-
-//        if (id == R.id.nav_complaint_form) {
-//            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-//            navController.navigate(R.id.nav_complaint_form);  // Use the same ID here
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 }

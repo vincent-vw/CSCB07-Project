@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.requirement.RequireFragment">
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.requirements.RequireFragment">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/text_program_prompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:text="@string/applying_to"
             android:textAlignment="center"
@@ -18,43 +27,139 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.478"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="126dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button_comp"
-            android:layout_width="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_comp"
+            style="?attr/materialCardViewFilledStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/comp_program"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"/>
+            android:layout_margin="8dp"
+            app:layout_constraintTop_toBottomOf="@id/text_program_prompt"
+            tools:layout_editor_absoluteX="8dp">
 
-        <Button
-            android:id="@+id/button_math"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/welcome" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Computer Science"
+                        android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+                    <Button
+                        android:id="@+id/button_comp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="View requirements"
+                        tools:layout_editor_absoluteX="164dp"
+                        tools:layout_editor_absoluteY="164dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_math"
+            style="?attr/materialCardViewFilledStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/math_program"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_comp" />
+            android:layout_margin="8dp"
+            app:layout_constraintTop_toBottomOf="@id/card_view_comp"
+            tools:layout_editor_absoluteX="8dp">
 
-        <Button
-            android:id="@+id/button_stat"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/welcome" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mathematics"
+                        android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+                    <Button
+                        android:id="@+id/button_math"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="View requirements"
+                        tools:layout_editor_absoluteX="164dp"
+                        tools:layout_editor_absoluteY="164dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_stat"
+            style="?attr/materialCardViewFilledStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/stat_program"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_math" />
+            android:layout_margin="8dp"
+            app:layout_constraintTop_toBottomOf="@id/card_view_math"
+            tools:layout_editor_absoluteX="8dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/welcome" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Statistics"
+                        android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+                    <Button
+                        android:id="@+id/button_stat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="View requirements"
+                        tools:layout_editor_absoluteX="164dp"
+                        tools:layout_editor_absoluteY="164dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
