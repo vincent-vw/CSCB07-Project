@@ -7,8 +7,7 @@ public class Event {
     private Time time;
     private String participantLimit;
 
-    public Event() {
-    }
+    public Event() {}
 
     public Event(String title, String description, Date date, Time time, String participantLimit) {
         this.title = title;

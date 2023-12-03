@@ -35,14 +35,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Got a complaint?"
+                    android:text="@string/got_a_complaint"
                     android:textAppearance="?attr/textAppearanceTitleLarge" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Enter a message below to create a complaint to staff members at UTSC."
+                    android:text="@string/enter_a_message_below_to_create_a_complaint_to_staff_members_at_utsc"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary" />
             </LinearLayout>
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginTop="8dp"
-        android:text="Anonymous"
+        android:text="@string/anonymous"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="..."
+        android:text="@string/elipses"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_anonymous"
         tools:layout_editor_absoluteX="68dp" />
 

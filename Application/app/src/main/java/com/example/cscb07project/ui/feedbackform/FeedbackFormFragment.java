@@ -27,7 +27,6 @@ public class FeedbackFormFragment extends Fragment {
     private EditText editTextComment;
     private Slider sliderNumericRating;
     private EditText editTextAdditionalComments;
-    private Button buttonSubmitFeedback;
     private DatabaseReference databaseReference;
 
     @Override
@@ -45,7 +44,7 @@ public class FeedbackFormFragment extends Fragment {
         editTextComment = view.findViewById(R.id.editText_comment);
         sliderNumericRating = view.findViewById(R.id.slider_numeric_rating);
         editTextAdditionalComments = view.findViewById(R.id.editText_additional_comments);
-        buttonSubmitFeedback = view.findViewById(R.id.button_submit_feedback);
+        Button buttonSubmitFeedback = view.findViewById(R.id.button_submit_feedback);
 
         // onClickListener for the button
         buttonSubmitFeedback.setOnClickListener(new View.OnClickListener() {
@@ -63,8 +62,10 @@ public class FeedbackFormFragment extends Fragment {
         String event = editTextEvent.getText().toString().trim();
         String comment = editTextComment.getText().toString().trim();
         int numericRating = (int)sliderNumericRating.getValue();
-        String username = MainActivity.user.getUsername();
         String additionalComments = editTextAdditionalComments.getText().toString().trim();
+
+        // Get username
+        String username = MainActivity.user.getUsername();
 
         // Check for empty fields (except for additional comments)
         if (!TextUtils.isEmpty(event) && !TextUtils.isEmpty(comment)) {
@@ -72,7 +73,8 @@ public class FeedbackFormFragment extends Fragment {
             String key = databaseReference.push().getKey();
 
             // Create an instance of Feedback
-            Feedback feedback = new Feedback(event, comment, username, numericRating, additionalComments);
+            Feedback feedback = new Feedback(event, comment, username, numericRating,
+                    additionalComments);
 
             // Send the feedback to Firebase
             databaseReference.child(key).setValue(feedback.classToJson(), new DatabaseReference.CompletionListener() {
@@ -81,7 +83,7 @@ public class FeedbackFormFragment extends Fragment {
                     if (error == null) {
                         // Success
                         clearForm();
-                        Toast.makeText(requireContext(), "Feedback submitted successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Feedback submitted successfully.", Toast.LENGTH_SHORT).show();
                     } else {
                         // Handle the error
                         Toast.makeText(requireContext(), "Failed to submit feedback. Please try again.", Toast.LENGTH_SHORT).show();
@@ -90,7 +92,7 @@ public class FeedbackFormFragment extends Fragment {
             });
         } else {
             // Prompting the user to fill in all required fields
-            Toast.makeText(requireContext(), "Please fill in all required fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Please fill in all required fields.", Toast.LENGTH_SHORT).show();
         }
     }
 

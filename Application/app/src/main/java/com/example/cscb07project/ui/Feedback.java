@@ -12,12 +12,9 @@ public class Feedback {
     private int numericRating;
     private String additionalComments;
     private Long timeSubmitted;
-
     private boolean isAdminViewed;
 
-    public Feedback() {
-
-    }
+    public Feedback() {}
 
     public Feedback(String event, String comment, String username, int numericRating, String additionalComments) {
         this.event = event;
@@ -28,6 +25,8 @@ public class Feedback {
 
         // Format of time
         timeSubmitted = System.currentTimeMillis();
+
+        isAdminViewed = false;
     }
 
     public static Feedback jsonToClass(String json) {

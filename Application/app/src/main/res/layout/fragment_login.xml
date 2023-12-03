@@ -34,14 +34,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Log in to your account"
+                    android:text="@string/log_in_to_your_account"
                     android:textAppearance="?attr/textAppearanceTitleLarge" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Log in to your account by typing your username and password, then select the type of account."
+                    android:text="@string/log_in_to_your_account_by_typing_your_username_and_password_then_select_the_type_of_account"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary" />
             </LinearLayout>
@@ -75,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Username"
+        android:hint="@string/username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_login">
@@ -93,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginTop="8dp"
-        android:hint="Password"
+        android:hint="@string/password"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,13 +119,14 @@
         <RadioButton
             android:id="@+id/radioButton_student_login"
             android:layout_width="match_parent"
-            android:text="Student" />
+            android:layout_height="wrap_content"
+            android:text="@string/student" />
 
         <RadioButton
             android:id="@+id/radioButton_admin_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Admin" />
+            android:text="@string/admin" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

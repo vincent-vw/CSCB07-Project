@@ -32,6 +32,7 @@ public class ComplaintFormFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_complaint_form, container, false);
 
@@ -46,7 +47,7 @@ public class ComplaintFormFragment extends Fragment {
 
         textUsername.setText("Posting as " + MainActivity.user.getUsername());
 
-        // onClickListener for Submit
+        // onClickListener for the button
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +70,7 @@ public class ComplaintFormFragment extends Fragment {
     }
 
     private void submitComplaint() {
-        // Get complaint text from EditText
+        // Get complaint details from EditText
         String complaintText = editTextComplaint.getText().toString().trim();
         String username;
         boolean isAnonymous = checkBoxAnonymous.isChecked();
@@ -101,16 +102,19 @@ public class ComplaintFormFragment extends Fragment {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     if (error == null) {
-                        // No error
+                        // Success
                         editTextComplaint.setText("");
                         checkBoxAnonymous.setChecked(false);
-                        Toast.makeText(requireContext(), "Complaint submitted successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Complaint submitted successfully.", Toast.LENGTH_SHORT).show();
                     } else {
                         // Handle the error
                         Toast.makeText(requireContext(), "Failed to submit complaint. Please try again.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
+        } else {
+            // Prompting the user to fill in all required fields
+            Toast.makeText(requireContext(), "Please fill in all required fields.", Toast.LENGTH_SHORT).show();
         }
     }
 }

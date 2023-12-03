@@ -32,11 +32,11 @@
         <item
             android:id="@+id/nav_complaint_form"
             android:icon="@drawable/baseline_thumb_down_24"
-            android:title="Complaint Form" />
+            android:title="@string/complaint_form" />
         <item
             android:id="@+id/nav_feedback"
             android:icon="@android:drawable/ic_dialog_email"
-            android:title="Feedback Form" />
+            android:title="@string/feedback_form" />
         <item
             android:id="@+id/nav_require"
             android:icon="@drawable/baseline_assessment_24"
