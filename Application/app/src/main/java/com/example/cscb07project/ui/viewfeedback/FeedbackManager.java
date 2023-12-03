@@ -13,10 +13,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class FeedbackManager {
     private static FeedbackManager feedbackManager;
     private List<Feedback> feedbackList;
+    private Map<String, List<Integer>> eventRatings;
 
     private FeedbackManager() {
         refreshFeedback();
@@ -31,12 +34,17 @@ public class FeedbackManager {
 
     public void refreshFeedback() {
         feedbackList = new ArrayList<>();
+        eventRatings = new TreeMap<>();
         //TODO need better way of getting database instance
         FirebaseDatabase.getInstance("https://cscb07project-c6a1c-default-rtdb.firebaseio.com/").getReference("feedback").orderByKey().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                //add complaint to map
-                feedbackList.add(Feedback.jsonToClass(dataSnapshot.getValue().toString()));
+                Feedback feedback = Feedback.jsonToClass(dataSnapshot.getValue().toString());
+                feedbackList.add(feedback);
+                if (!eventRatings.containsKey(feedback.getEvent())) {
+                    eventRatings.put(feedback.getEvent(), new ArrayList<>());
+                }
+                eventRatings.get(feedback.getEvent()).add(feedback.getNumericRating());
             }
 
             @Override
@@ -79,5 +87,24 @@ public class FeedbackManager {
 
     public Feedback getFeedback(int position) {
         return feedbackList.get(position);
+    }
+
+    public List<String> getAllEventsSummaryAsList() {
+        List<String> list = new ArrayList<>();
+        for (String event : eventRatings.keySet()) {
+            List<Integer> ratings = eventRatings.get(event);
+            //ratings elements always > 0
+            list.add(event + ": " + ratings.size() + " feedback with an average rating of " + computeRatingAverage(ratings));
+        }
+        return list;
+    }
+
+    private double computeRatingAverage(List<Integer> ratings) {
+        double n = 0.0;
+        for (int r : ratings) {
+            n += r;
+        }
+        n /= ratings.size();
+        return n;
     }
 }
