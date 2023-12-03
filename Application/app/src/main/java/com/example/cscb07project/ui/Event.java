@@ -1,21 +1,38 @@
 package com.example.cscb07project.ui;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Event {
     private String title;
     private String description;
-    private Date date;
-    private Time time;
-    private String participantLimit;
+    private Long scheduledTime;
+    private int participantLimit;
 
     public Event() {
     }
 
-    public Event(String title, String description, Date date, Time time, String participantLimit) {
+    public Event(String title, String description, Long scheduledTime, int participantLimit) {
         this.title = title;
         this.description = description;
-        this.date = date;
-        this.time = time;
+        this.scheduledTime = scheduledTime;
         this.participantLimit = participantLimit;
+    }
+
+    public static Event jsonToClass(String json) {
+        try {
+            return new ObjectMapper().readValue(json, Event.class);
+        } catch (JsonProcessingException e) {
+            return new Event();
+        }
+    }
+
+    public String classToJson() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return "";
+        }
     }
 
     public String getTitle() {
@@ -34,27 +51,15 @@ public class Event {
         this.description = description;
     }
 
-    public Date getDate() {
-        return date;
+    public Long getScheduledTime() {
+        return scheduledTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
-    }
-
-    public String getParticipantLimit() {
+    public int getParticipantLimit() {
         return participantLimit;
     }
 
-    public void setParticipantLimit(String participantLimit) {
+    public void setParticipantLimit(int participantLimit) {
         this.participantLimit = participantLimit;
     }
 }

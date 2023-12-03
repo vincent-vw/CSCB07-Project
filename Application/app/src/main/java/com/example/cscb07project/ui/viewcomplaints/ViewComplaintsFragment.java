@@ -68,7 +68,6 @@ public class ViewComplaintsFragment extends Fragment {
                 for (Complaint complaint : complaintList) {
                     complaintsPreviewList.add((complaintCount++) + ":" + complaint.previewComplaintAsString());
                 }
-                viewComplaintsViewModel.getComplaintManager().refreshComplaints();
                 arrayAdapter.notifyDataSetChanged();
             }
         });
