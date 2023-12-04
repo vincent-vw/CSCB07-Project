@@ -35,9 +35,9 @@ public class ViewEventsFragment extends Fragment {
         // Display the Recycler view linearly
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         // Class from FirebaseUI to make a query to the database to fetch data
-        FirebaseRecyclerOptions<Event> options
-                = new FirebaseRecyclerOptions.Builder<Event>()
-                .setQuery(databaseReference, Event.class)
+        FirebaseRecyclerOptions<String> options
+                = new FirebaseRecyclerOptions.Builder<String>()
+                .setQuery(databaseReference, String.class)
                 .build();
         // Adaptor
         adaptor = new EventAdaptor(options);

@@ -1,5 +1,6 @@
 package com.example.cscb07project.ui.announcementsandevents;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,26 +15,32 @@ import com.example.cscb07project.ui.Event;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 // Credit to: https://www.geeksforgeeks.org/how-to-populate-recyclerview-with-firebase-data-using-firebaseui-in-android-studio/
 
 // FirebaseRecyclerAdapter is a class provided by FirebaseUI
-public class EventAdaptor extends FirebaseRecyclerAdapter<Event, EventAdaptor.EventsViewHolder> {
+public class EventAdaptor extends FirebaseRecyclerAdapter<String, EventAdaptor.EventsViewHolder> {
 
-    public EventAdaptor(@NonNull FirebaseRecyclerOptions<Event> options) {
+    public EventAdaptor(@NonNull FirebaseRecyclerOptions<String> options) {
         super(options);
     }
 
-    // Function to bind the view in Card view (here "Event.xml") with data in model class (here "Event.java")
+    // Function to bind the view in Card view (here "Event.xml") with data in model class (here "String.java")
+    @SuppressLint("SetTextI18n")
     @Override
-    protected void onBindViewHolder(@NonNull EventAdaptor.EventsViewHolder holder, int position, @NonNull Event model) {
-//        holder.title.setText(model.getTitle());
-//        holder.description.setText(model.getDescription());
-//        holder.participantLimit.setText("Participant limit: " + model.getParticipantLimit());
-//        holder.date.setText("Date: " + model.getDate().getDay()
-//                + "/" + model.getDate().getMonth()
-//                + "/" + model.getDate().getYear());
-//        holder.time.setText("Time: " + model.getTime().getHour() + ":"
-//                + model.getTime().getMinute());
+    protected void onBindViewHolder(@NonNull EventAdaptor.EventsViewHolder holder, int position, @NonNull String model) {
+        Event event = Event.jsonToClass(model);
+        holder.title.setText(event.getTitle());
+        holder.description.setText(event.getDescription());
+        holder.participantLimit.setText("Participant limit: " + event.getParticipantLimit());
+        Calendar cal = event.getScheduledTimeConverted();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
+        holder.date.setText("Date: " + dateFormat.format(cal.getTime()));
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        holder.time.setText("Time: " + timeFormat.format(cal.getTime()));
     }
 
     @NonNull

@@ -5,7 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class Event {
     private String title;
@@ -70,6 +74,13 @@ public class Event {
 
     public Long getScheduledTime() {
         return scheduledTime;
+    }
+
+    public Calendar getScheduledTimeConverted() {
+        java.util.Date date = new java.util.Date(scheduledTime);
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("EST"));
+        cal.setTime(date);
+        return cal;
     }
 
     public int getParticipantLimit() {
