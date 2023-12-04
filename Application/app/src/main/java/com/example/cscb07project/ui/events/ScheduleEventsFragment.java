@@ -108,7 +108,7 @@ public class ScheduleEventsFragment extends Fragment {
         return view;
     }
 
-    public void setSchedule() throws ParseException {
+    private void setSchedule() throws ParseException {
         // String objects of EditText
         String title = editTextTitle.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
@@ -138,28 +138,9 @@ public class ScheduleEventsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Check if there exists an event with the same title
                 if (dataSnapshot.exists()) {
-//                    // Get the value of date, time, description, and limit under the event in database
-//                    Date date = dataSnapshot.child("date").getValue(Date.class);
-//                    Time time = dataSnapshot.child("time").getValue(Time.class);
-//                    String description = dataSnapshot.child("description").getValue(String.class);
-//                    String limit = dataSnapshot.child("participantLimit").getValue(String.class);
-//
-//                    // Check if event details are equal
-//                    if (event.getDate().equals(date) && event.getTime().equals(time)
-//                            && event.getDescription().equals(description)
-//                            && event.getParticipantLimit().equals(limit)) {
-//                        createAnnouncement("Event already exists.");
-//                    }
-//                    else {
-//                        // If not same, set the event to the database
-//                        databaseReference.child(event.getTitle()).setValue(event);
-//                        createAnnouncement("Event set up successfully.");
-//                    }
                     createAnnouncement("Event already exists.");
                 }
                 else {
-                    // If there is no such dataSnapshot, set the event to the database
-//                    databaseReference.child(event.getTitle()).setValue(event);
                     databaseReference.child(event.getTitle()).setValue(event.classToJson(), new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
@@ -182,7 +163,7 @@ public class ScheduleEventsFragment extends Fragment {
         });
     }
 
-    public void clearForm() {
+    private void clearForm() {
         editTextTitle.setText("");
         editTextDescription.setText("");
         editTextLimit.setText("");
@@ -194,7 +175,7 @@ public class ScheduleEventsFragment extends Fragment {
         selectedTime.setText("Please select a time");
     }
 
-    public void createAnnouncement(String text) {
+    private void createAnnouncement(String text) {
         Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }
 }

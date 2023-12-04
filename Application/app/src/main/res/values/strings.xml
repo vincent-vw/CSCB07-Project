@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CSCB07Project</string>
+    <string name="app_name">CMS App</string>
     <string name="nav_header_title">Not Signed In</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -68,5 +68,6 @@
     <string name="password">Password</string>
     <string name="student">Student</string>
     <string name="admin">Admin</string>
+    <string name="sign_out">Sign out</string>
 
 </resources>

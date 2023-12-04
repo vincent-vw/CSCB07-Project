@@ -2,6 +2,7 @@ package com.example.cscb07project;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,12 +35,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+
 public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     public static FirebaseDatabase db;
     public static User user;
-    boolean isCalled = false; // To prevent initial firing of event listener
+    // To prevent initial firing of event listeners
+    boolean isCalledAnnouncementListener = false;
+    boolean isCalledEventListener = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +77,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Notification for new announcements
         createNotificationChannelAnnouncement();
-        DatabaseReference query = db.getReference().child("announcements");
-        isCalled = false;
-        query.addValueEventListener(new ValueEventListener() {
+        DatabaseReference queryAnnouncements = db.getReference().child("announcements");
+        queryAnnouncements.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                if(isCalled) {
+                if(isCalledAnnouncementListener) {
                     if (snapshot.exists()) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "announcement");
                         builder.setContentTitle("New Announcement Posted");
@@ -91,7 +95,36 @@ public class MainActivity extends AppCompatActivity {
                         managerCompat.notify(1, builder.build());
                     }
                 } else {
-                    isCalled = true;
+                    isCalledAnnouncementListener = true;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
+
+        // Notification for new events
+        createNotificationChannelEvent();
+        DatabaseReference queryEvents = db.getReference().child("events");
+        queryEvents.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if(isCalledEventListener) {
+                    if (snapshot.exists()) {
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "event");
+                        builder.setContentTitle("New Event Posted");
+                        builder.setSmallIcon(R.drawable.baseline_notifications_24);
+                        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
+                        if (ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        managerCompat.notify(2, builder.build());
+                    }
+                } else {
+                    isCalledEventListener = true;
                 }
             }
 
@@ -115,6 +148,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void createNotificationChannelEvent() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "eventChannel";
+            String description = "Channel for events";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("event", name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -127,5 +173,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void signOut(MenuItem item) {
+        // Restart app
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        this.finishAffinity();
     }
 }

@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cscb07project.R;
-import com.example.cscb07project.ui.Announcement;
 import com.example.cscb07project.ui.Event;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -36,7 +35,7 @@ public class EventAdaptor extends FirebaseRecyclerAdapter<String, EventAdaptor.E
         holder.title.setText(event.getTitle());
         holder.description.setText(event.getDescription());
         holder.participantLimit.setText("Participant limit: " + event.getParticipantLimit());
-        Calendar cal = event.getScheduledTimeConverted();
+        Calendar cal = event.convertScheduledTime();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
         holder.date.setText("Date: " + dateFormat.format(cal.getTime()));
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
