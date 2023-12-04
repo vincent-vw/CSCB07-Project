@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentViewComplaintsBinding;
 import com.example.cscb07project.ui.Complaint;
@@ -33,6 +34,12 @@ public class ViewComplaintsFragment extends Fragment {
     private TextView complaintText;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        if (MainActivity.user.getIdentity().equals("student")) {
+            View view = inflater.inflate(R.layout.fragment_deny_access, container, false);
+            return view;
+        }
+
         //initialize
         viewComplaintsViewModel = new ViewModelProvider(this).get(ViewComplaintsViewModel.class);
         binding = FragmentViewComplaintsBinding.inflate(inflater, container, false);
@@ -41,7 +48,6 @@ public class ViewComplaintsFragment extends Fragment {
         complaintsList = root.findViewById(R.id.view_complaint_list);
         loadConplaintsButton = root.findViewById(R.id.view_complaint_load_button);
         markAsViewedButton = root.findViewById(R.id.view_complaint_view_button);
-        prompt = root.findViewById(R.id.view_complaint_prompt);
         complaintText = root.findViewById(R.id.view_complaint_text);
 
         //complaints
@@ -66,7 +72,7 @@ public class ViewComplaintsFragment extends Fragment {
                 List<Complaint> complaintList = viewComplaintsViewModel.getComplaintManager().getAllComplaintsSortedBySubmitTime();
                 int complaintCount = 1;
                 for (Complaint complaint : complaintList) {
-                    complaintsPreviewList.add((complaintCount++) + ":" + complaint.previewComplaintAsString());
+                    complaintsPreviewList.add((complaintCount++) + ": " + complaint.previewComplaintAsString());
                 }
                 arrayAdapter.notifyDataSetChanged();
             }
@@ -91,8 +97,8 @@ public class ViewComplaintsFragment extends Fragment {
     }
 
     public void initializeLoadComplaintsListPage() {
-        complaintsList.getLayoutParams().height = 2 * getScreenHeight() / 3;
-        complaintsList.getLayoutParams().width = 2 * getScreenWidth() / 3;
+//        complaintsList.getLayoutParams().height = 2 * getScreenHeight() / 3;
+//        complaintsList.getLayoutParams().width = 2 * getScreenWidth() / 3;
         complaintsList.requestLayout();
         complaintsList.setVisibility(View.VISIBLE);
         loadConplaintsButton.setVisibility(View.VISIBLE);
@@ -104,8 +110,8 @@ public class ViewComplaintsFragment extends Fragment {
     }
 
     public void initializeViewSingleComplaintPage(Complaint complaint) {
-        complaintsList.getLayoutParams().height = 0;
-        complaintsList.getLayoutParams().width = 0;
+//        complaintsList.getLayoutParams().height = 0;
+//        complaintsList.getLayoutParams().width = 0;
         complaintsList.requestLayout();
         complaintsList.setVisibility(View.INVISIBLE);
         loadConplaintsButton.setVisibility(View.INVISIBLE);

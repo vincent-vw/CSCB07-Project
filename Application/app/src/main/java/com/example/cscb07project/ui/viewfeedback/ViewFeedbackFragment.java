@@ -16,9 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentViewFeedbackBinding;
 import com.example.cscb07project.ui.Feedback;
+import com.google.android.material.divider.MaterialDivider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,12 @@ public class ViewFeedbackFragment extends Fragment {
     private TextView feedbackText;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        if (MainActivity.user.getIdentity().equals("student")) {
+            View view = inflater.inflate(R.layout.fragment_deny_access, container, false);
+            return view;
+        }
+
         //initialize
         viewFeedbackViewModel = new ViewModelProvider(this).get(ViewFeedbackViewModel.class);
         binding = FragmentViewFeedbackBinding.inflate(inflater, container, false);
@@ -45,7 +53,6 @@ public class ViewFeedbackFragment extends Fragment {
         eventRatingsList = root.findViewById(R.id.event_ratings_list);
         loadFeedbackButton = root.findViewById(R.id.view_feedback_load_button);
         markAsViewedButton = root.findViewById(R.id.view_feedback_view_button);
-        feedbackPrompt = root.findViewById(R.id.view_feedback_prompt);
         feedbackText = root.findViewById(R.id.view_feedback_text);
 
         //feedback
@@ -77,7 +84,7 @@ public class ViewFeedbackFragment extends Fragment {
                 List<Feedback> complaintList = viewFeedbackViewModel.getFeedbackManager().getAllFeedbackSortedBySubmitTime();
                 int feedbackCount = 1;
                 for (Feedback feedback : complaintList) {
-                    feedbackPreviewList.add((feedbackCount++) + ":" + feedback.previewFeedbackAsString());
+                    feedbackPreviewList.add((feedbackCount++) + ": " + feedback.previewFeedbackAsString());
                 }
                 feedbackArrayAdapter.notifyDataSetChanged();
             }

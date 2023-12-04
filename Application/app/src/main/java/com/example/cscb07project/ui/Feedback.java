@@ -74,14 +74,14 @@ public class Feedback {
     }
 
     public String viewFeedbackAsString() {
-        return "Username: " + username + "\nEvent: " + event + "\nRating: " + numericRating + "\nComment: " + comment + "\nAdditional Comment: " + additionalComments + "\nTime Submitted: " + DateFormat.getInstance().format(timeSubmitted) + "\nAdmin View Status:" + isAdminViewed;
+        return "Username: " + username + "\nEvent: " + event + "\nRating: " + numericRating + "\nComment: " + comment + "\nAdditional Comment: " + additionalComments + "\nTime Submitted: " + DateFormat.getInstance().format(timeSubmitted) + "\nAdmin View Status: " + isAdminViewed;
     }
 
     public String previewFeedbackAsString() {
         if (isAdminViewed) {
-            return "Admin Reviewed, from username: " + username + ", event: " + event;
+            return "Admin reviewed; from: " + username + "; event: " + event;
         } else {
-            return "Admin Unreviewed, from username: " + username + ", event: " + event;
+            return "Admin unreviewed; from: " + username + "; event: " + event;
         }
     }
 }

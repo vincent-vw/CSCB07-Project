@@ -60,14 +60,14 @@ public class Complaint {
     }
 
     public String viewComplaintAsString() {
-        return "Username: " + username + "\nStatus: " + status + "\nComplaint: " + complaint + "\nTime Submitted: " + DateFormat.getInstance().format(timeSubmitted) + "\nAdmin View Status:" + isAdminViewed;
+        return "Username: " + username + "\nStatus: " + status + "\nComplaint: " + complaint + "\nTime Submitted: " + DateFormat.getInstance().format(timeSubmitted) + "\nAdmin View Status: " + isAdminViewed;
     }
 
     public String previewComplaintAsString() {
         if (isAdminViewed) {
-            return "Admin Reviewed, from username: " + username;
+            return "Admin reviewed; from: " + username;
         } else {
-            return "Admin Unreviewed, from username: " + username;
+            return "Admin unreviewed; from: " + username;
         }
     }
 }

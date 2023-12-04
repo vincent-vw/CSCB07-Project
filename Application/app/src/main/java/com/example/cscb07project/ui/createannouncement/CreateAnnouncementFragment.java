@@ -22,6 +22,12 @@ public class CreateAnnouncementFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        if (MainActivity.user.getIdentity().equals("student")) {
+            View view = inflater.inflate(R.layout.fragment_deny_access, container, false);
+            return view;
+        }
+
         View view = inflater.inflate(R.layout.fragment_create_announcement, container, false);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("announcements");

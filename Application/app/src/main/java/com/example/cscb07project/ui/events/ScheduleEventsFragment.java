@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.ui.Date;
 import com.example.cscb07project.ui.Event;
@@ -41,6 +42,12 @@ public class ScheduleEventsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        if (MainActivity.user.getIdentity().equals("student")) {
+            View view = inflater.inflate(R.layout.fragment_deny_access, container, false);
+            return view;
+        }
+
         View view = inflater.inflate(R.layout.fragment_schedule_events, container, false);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("events");
