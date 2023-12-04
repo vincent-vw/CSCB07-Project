@@ -31,6 +31,11 @@
         android:label="@string/menu_view_feedback"
         tools:layout="@layout/fragment_view_feedback" />
     <fragment
+        android:id="@+id/nav_rsvp_event"
+        android:name="com.example.cscb07project.ui.rsvpevent.RSVPEventFragment"
+        android:label="@string/rsvp_event"
+        tools:layout="@layout/fragment_event_rsvp" />
+    <fragment
         android:id="@+id/nav_login"
         android:name="com.example.cscb07project.ui.account.LoginFragmentView"
         android:label="@string/menu_login"
@@ -80,7 +85,7 @@
         tools:layout="@layout/fragment_complaint_form" />
     <fragment
         android:id="@+id/nav_schedule_events"
-        android:name="com.example.cscb07project.ui.events.ScheduleEventsFragment"
+        android:name="com.example.cscb07project.ui.scheduleevents.ScheduleEventsFragment"
         android:label="@string/menu_schedule_events"
         tools:layout="@layout/fragment_schedule_events" />
     <fragment

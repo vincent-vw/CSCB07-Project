@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui;
+package com.example.cscb07project.ui.complaint;
 
 import android.icu.text.DateFormat;
 
@@ -12,7 +12,8 @@ public class Complaint {
     private long timeSubmitted;
     private boolean isAdminViewed;
 
-    public Complaint() {}
+    public Complaint() {
+    }
 
     public Complaint(String username, String status, String complaint) {
         this.username = username;
@@ -57,6 +58,10 @@ public class Complaint {
 
     public boolean getIsAdminViewed() {
         return isAdminViewed;
+    }
+
+    public void setAdminViewed() {
+        isAdminViewed = true;
     }
 
     public String viewComplaintAsString() {

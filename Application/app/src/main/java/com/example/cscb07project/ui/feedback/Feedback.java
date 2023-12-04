@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui;
+package com.example.cscb07project.ui.feedback;
 
 import android.icu.text.DateFormat;
 

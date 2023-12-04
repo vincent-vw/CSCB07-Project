@@ -1,25 +1,35 @@
 package com.example.cscb07project.ui.rsvpevent;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.example.cscb07project.ui.Event;
-
-import java.util.List;
-import java.util.ArrayList;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cscb07project.R;
-import com.example.cscb07project.databinding.FragmentRequireBinding;
+import com.example.cscb07project.databinding.FragmentEventRsvpBinding;
+import com.example.cscb07project.ui.event.Event;
 
-public class RSVPEventFragment extends Fragment{
-    private FragmentRequireBinding binding;
+import java.util.ArrayList;
+import java.util.List;
+
+public class RSVPEventFragment extends Fragment {
+    private RSVPEventViewModel rsvpEventViewModel;
+    private FragmentEventRsvpBinding binding;
+    private View root;
+    private Button eventLoadButton;
+    private Spinner spinner;
+    private TextView eventDescription;
+    private Event currentEvent = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,26 +39,49 @@ public class RSVPEventFragment extends Fragment{
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentRequireBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        //initialize
+        rsvpEventViewModel = new ViewModelProvider(this).get(RSVPEventViewModel.class);
+        binding = FragmentEventRsvpBinding.inflate(inflater, container, false);
+        root = binding.getRoot();
 
-        Spinner spinner = root.findViewById(R.id.spinner);
+        eventLoadButton = root.findViewById(R.id.event_load);
+        spinner = root.findViewById(R.id.spinner);
+        eventDescription = root.findViewById(R.id.event_description);
 
-        //listing the events
-        List<Event> eventList = null; //add the list of event titles
+        List<String> eventsPreviewList = new ArrayList<>();
+        ArrayAdapter<String> eventAdapter = new ArrayAdapter<>(requireContext(),
+                android.R.layout.simple_spinner_item, eventsPreviewList);
 
-        List<String> eventTitles = new ArrayList<>();
-        for (Event event : eventList) {
-            eventTitles.add(event.getTitle());
-        }
+        eventAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(eventAdapter);
+        //TODO spinner drop down
 
-        String[] titlesArray = eventTitles.toArray(new String[0]);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                currentEvent = rsvpEventViewModel.getEventManager().getEvent(Integer.parseInt(eventsPreviewList.get(position).split(":")[0]) - 1);
+                eventDescription.setText(currentEvent.viewEventAsString());
+            }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
-                android.R.layout.simple_spinner_item, titlesArray);
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                eventDescription.setText("Please select an event!");
+            }
+        });
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        //load button
+        eventLoadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                eventsPreviewList.clear();
+                List<Event> eventList = rsvpEventViewModel.getEventManager().getAllEventsSortedByTime();
+                int eventCount = 1;
+                for (Event event : eventList) {
+                    eventsPreviewList.add((eventCount++) + ": " + event.previewEventAsString());
+                }
+                eventAdapter.notifyDataSetChanged();
+            }
+        });
 
         /*
         create functionality that shows the event details when an event is selected in spinner
@@ -60,7 +93,16 @@ public class RSVPEventFragment extends Fragment{
         buttonrsvp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*when they click rsvp, it makes the rsvp for the event */
+                //TODO get current event, check if enrolled/max participants reached, add the participant, update event, display toast
+                if (currentEvent == null) {
+                    //reject
+                } else if (currentEvent.maxParticipantsReached()) {
+                    //reject
+                } else if (currentEvent.isUserEnrolled(null)) {//TODO get current user
+                    //reject
+                } else {
+                    //update the event, toast "success"
+                }
             }
         });
 

@@ -69,5 +69,6 @@
     <string name="student">Student</string>
     <string name="admin">Admin</string>
     <string name="sign_out">Sign out</string>
+    <string name="rsvp_event">RSVP Event</string>
 
 </resources>

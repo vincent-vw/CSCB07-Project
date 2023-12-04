@@ -1,10 +1,8 @@
-package com.example.cscb07project.ui.events;
+package com.example.cscb07project.ui.event;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.cscb07project.ui.Complaint;
-import com.example.cscb07project.ui.Event;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -62,7 +60,7 @@ public class EventManager {
         });
     }
 
-    public List<Event> getAllEventsSortedBySubmitTime() {
+    public List<Event> getAllEventsSortedByTime() {
         Collections.sort(eventsList, new Comparator<Event>() {
             @Override
             public int compare(Event o1, Event o2) {
@@ -78,5 +76,7 @@ public class EventManager {
         return eventsList;
     }
 
-    //TODO check event exists function, list add the scheduled events function
+    public Event getEvent(int position) {
+        return eventsList.get(position);
+    }
 }
