@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -121,6 +122,36 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        Log.d("Menu", "onPrepareOptionsMenu called");
+
+        MenuItem viewComplaintsMenuItem = menu.findItem(R.id.nav_view_complaints);
+        MenuItem viewFeedbackMenuItem = menu.findItem(R.id.nav_view_feedback);
+        MenuItem scheduleEventsMenuItem = menu.findItem(R.id.nav_schedule_events);
+        MenuItem ComplaintFormMenuItem = menu.findItem(R.id.nav_complaint_form);
+        MenuItem FeedbackFormMenuItem = menu.findItem(R.id.nav_feedback);
+        // Check user's identity and hide/show menu items accordingly
+        if (user != null) {
+            if ("student".equals(user.getIdentity())) {
+                viewComplaintsMenuItem.setVisible(false);
+                viewFeedbackMenuItem.setVisible(false);
+                scheduleEventsMenuItem.setVisible(false);
+            } else if ("admin".equals(user.getIdentity())) {
+                ComplaintFormMenuItem.setVisible(false);
+                FeedbackFormMenuItem.setVisible(false);
+            }
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+
+    /*private void setMenuItemVisibility(MenuItem item, boolean isVisible) {
+        if (item != null) {
+            item.setVisible(isVisible);
+        }
+    }*/
 
     @Override
     public boolean onSupportNavigateUp() {
