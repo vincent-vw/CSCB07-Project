@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,8 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentViewFeedbackBinding;
-import com.example.cscb07project.ui.Feedback;
-import com.google.android.material.divider.MaterialDivider;
+import com.example.cscb07project.ui.feedback.Feedback;
 
 import java.util.ArrayList;
 import java.util.List;

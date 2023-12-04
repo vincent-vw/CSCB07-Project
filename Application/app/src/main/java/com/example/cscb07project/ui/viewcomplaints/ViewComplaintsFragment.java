@@ -18,7 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentViewComplaintsBinding;
-import com.example.cscb07project.ui.Complaint;
+import com.example.cscb07project.ui.complaint.Complaint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +32,7 @@ public class ViewComplaintsFragment extends Fragment {
     private Button markAsViewedButton;
     private TextView prompt;
     private TextView complaintText;
+    private Complaint currentComplaint = null;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -58,7 +59,8 @@ public class ViewComplaintsFragment extends Fragment {
         complaintsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                initializeViewSingleComplaintPage(viewComplaintsViewModel.getComplaintManager().getComplaint(Integer.parseInt(complaintsPreviewList.get(position).split(":")[0]) - 1));
+                currentComplaint = viewComplaintsViewModel.getComplaintManager().getComplaint(Integer.parseInt(complaintsPreviewList.get(position).split(":")[0]) - 1);
+                initializeViewSingleComplaintPage();
             }
         });
 
@@ -82,6 +84,8 @@ public class ViewComplaintsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //TODO mark as viewed update, update database
+                currentComplaint.setAdminViewed();
+                //TODO update the complaint to database, how
                 initializeLoadComplaintsListPage();
             }
         });
@@ -109,7 +113,7 @@ public class ViewComplaintsFragment extends Fragment {
         markAsViewedButton.setVisibility(View.INVISIBLE);
     }
 
-    public void initializeViewSingleComplaintPage(Complaint complaint) {
+    public void initializeViewSingleComplaintPage() {
 //        complaintsList.getLayoutParams().height = 0;
 //        complaintsList.getLayoutParams().width = 0;
         complaintsList.requestLayout();
@@ -118,7 +122,7 @@ public class ViewComplaintsFragment extends Fragment {
         //prompt.setVisibility(View.INVISIBLE);
 
         //TODO toString() as text
-        complaintText.setText(complaint.viewComplaintAsString());
+        complaintText.setText(currentComplaint.viewComplaintAsString());
         complaintText.requestLayout();
         complaintText.setVisibility(View.VISIBLE);
         markAsViewedButton.setVisibility(View.VISIBLE);

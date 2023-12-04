@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui.events;
+package com.example.cscb07project.ui.scheduleevents;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.ui.Date;
-import com.example.cscb07project.ui.Event;
+import com.example.cscb07project.ui.event.Event;
 import com.example.cscb07project.ui.Time;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;

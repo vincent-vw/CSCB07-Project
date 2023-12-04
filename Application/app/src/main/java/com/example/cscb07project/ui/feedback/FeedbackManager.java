@@ -1,9 +1,8 @@
-package com.example.cscb07project.ui.viewfeedback;
+package com.example.cscb07project.ui.feedback;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.cscb07project.ui.Feedback;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

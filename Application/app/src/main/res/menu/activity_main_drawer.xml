@@ -30,6 +30,10 @@
             android:icon="@drawable/baseline_feedback_24"
             android:title="@string/menu_view_feedback" />
         <item
+            android:id="@+id/nav_rsvp_event"
+            android:icon="@drawable/baseline_feedback_24"
+            android:title="@string/rsvp_event" />
+        <item
             android:id="@+id/nav_complaint_form"
             android:icon="@drawable/baseline_thumb_down_24"
             android:title="@string/complaint_form" />

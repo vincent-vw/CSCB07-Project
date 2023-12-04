@@ -1,11 +1,17 @@
-package com.example.cscb07project.ui;
+package com.example.cscb07project.ui.event;
 
+import android.icu.text.DateFormat;
+
+import com.example.cscb07project.ui.Date;
+import com.example.cscb07project.ui.Time;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -14,15 +20,18 @@ public class Event {
     private String description;
     private Long scheduledTime;
     private int participantLimit;
-    private int currentParticipants;
-  
-    public Event() {}
+    private int currentParticipantCount;
+    private List<String> participants;
+
+    public Event() {
+    }
 
     public Event(String title, String description, Long scheduledTime, int participantLimit) {
         this.title = title;
         this.description = description;
         this.scheduledTime = scheduledTime;
         this.participantLimit = participantLimit;
+        participants = new ArrayList<>();
     }
 
     public Event(String title, String description, Date date, Time time, int participantLimit) throws ParseException {
@@ -74,6 +83,18 @@ public class Event {
         return scheduledTime;
     }
 
+    public List<String> getParticipants() {
+        return participants;
+    }
+
+    public void addParticipant(String username) {
+        if (participants == null) {
+            participants = new ArrayList<>();
+        }
+        currentParticipantCount++;
+        participants.add(username);
+    }
+
     public Calendar convertScheduledTime() {
         java.util.Date date = new java.util.Date(scheduledTime);
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("EST"));
@@ -89,11 +110,27 @@ public class Event {
         this.participantLimit = participantLimit;
     }
 
-    public int getCurrentParticipants() {
-        return currentParticipants;
+    public int getCurrentParticipantCount() {
+        return currentParticipantCount;
     }
 
-    public void setCurrentParticipants(int currentParticipants) {
-        this.currentParticipants = currentParticipants;
+    public void setCurrentParticipantCount(int currentParticipantCount) {
+        this.currentParticipantCount = currentParticipantCount;
+    }
+
+    public String previewEventAsString() {
+        return title + ", at " + DateFormat.getInstance().format(scheduledTime);
+    }
+
+    public String viewEventAsString() {
+        return title + ":\nDescription:" + description + "\nTime:" + DateFormat.getInstance().format(scheduledTime) + " Participant Limit:" + currentParticipantCount + "/" + participantLimit;
+    }
+
+    public boolean maxParticipantsReached() {
+        return currentParticipantCount >= participantLimit;
+    }
+
+    public boolean isUserEnrolled(String user) {
+        return participants.contains(user);
     }
 }

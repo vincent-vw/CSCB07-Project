@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 
-import com.example.cscb07project.ui.Feedback;
+import com.example.cscb07project.ui.feedback.Feedback;
 import com.google.android.material.slider.Slider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
