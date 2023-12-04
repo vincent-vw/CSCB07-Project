@@ -103,6 +103,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Check user identity and hide features based on role
+        if (user != null) {
+            if ("admin".equals(user.getIdentity())) {
+                // calling a function that hides all menu items that admins should not see
+                hideAdminFeatures();
+            } else {
+                // calling a function that hides all menu items that students should not see
+                hideStudentFeatures();
+            }
+        }
+
+
         // Notification for new events
         createNotificationChannelEvent();
         DatabaseReference queryEvents = db.getReference().child("events");
@@ -165,6 +177,45 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    private void hideAdminFeatures() {
+        // Get the navigation view
+        NavigationView navigationView = binding.navView;
+
+        MenuItem complaintFormMenuItem = navigationView.getMenu().findItem(R.id.nav_complaint_form);
+        MenuItem feedbackMenuItem = navigationView.getMenu().findItem(R.id.nav_feedback);
+
+        // Hide the menu items for complaint form and feedback form
+        if (complaintFormMenuItem != null) {
+            complaintFormMenuItem.setVisible(false);
+        }
+
+        if (feedbackMenuItem != null) {
+            feedbackMenuItem.setVisible(false);
+        }
+    }
+
+    private void hideStudentFeatures() {
+
+        NavigationView navigationView = binding.navView;
+
+        // basic setup
+        MenuItem complaintViewMenuItem = navigationView.getMenu().findItem(R.id.nav_view_complaints);
+        MenuItem feedbackViewMenuItem = navigationView.getMenu().findItem(R.id.nav_view_feedback);
+        MenuItem scheduleEventMenuItem = navigationView.getMenu().findItem(R.id.nav_schedule_events);
+
+        // Hide the menu items for complaint view, feedback view and schedule event page
+        if (complaintViewMenuItem != null) {
+            complaintViewMenuItem.setVisible(false);
+        }
+
+        if (feedbackViewMenuItem != null) {
+            feedbackViewMenuItem.setVisible(false);
+        }
+        if (scheduleEventMenuItem != null){
+            scheduleEventMenuItem.setVisible(false);
+        }
     }
 
     @Override
