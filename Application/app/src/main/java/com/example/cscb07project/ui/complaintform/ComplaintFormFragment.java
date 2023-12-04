@@ -25,8 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ComplaintFormFragment extends Fragment {
     private EditText editTextComplaint;
-    private TextView textUsername;
     private CheckBox checkBoxAnonymous;
+    private TextView textUsername;
     private DatabaseReference databaseReference;
 
     @Override

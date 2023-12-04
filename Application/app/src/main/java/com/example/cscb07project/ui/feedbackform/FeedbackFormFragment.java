@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ public class FeedbackFormFragment extends Fragment {
     private EditText editTextComment;
     private Slider sliderNumericRating;
     private EditText editTextAdditionalComments;
+    private TextView textUsername;
     private DatabaseReference databaseReference;
 
     @Override
@@ -46,7 +48,10 @@ public class FeedbackFormFragment extends Fragment {
         editTextComment = view.findViewById(R.id.editText_comment);
         sliderNumericRating = view.findViewById(R.id.slider_numeric_rating);
         editTextAdditionalComments = view.findViewById(R.id.editText_additional_comments);
+        textUsername = view.findViewById(R.id.text_username);
         Button buttonSubmitFeedback = view.findViewById(R.id.button_submit_feedback);
+
+        textUsername.setText("Posting as " + MainActivity.user.getUsername());
 
         // onClickListener for the button
         buttonSubmitFeedback.setOnClickListener(new View.OnClickListener() {
