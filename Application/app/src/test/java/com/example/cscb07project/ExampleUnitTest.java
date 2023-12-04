@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.eq;
+
+
+
 
 import com.example.cscb07project.ui.User;
 import com.example.cscb07project.ui.account.LoginFragmentModel;
@@ -38,6 +42,48 @@ public class ExampleUnitTest {
         snapshot = Mockito.mock(DataSnapshot.class);
 
     }
+
+    // Null checks
+    @Test
+    public void testSignInWithNullUsername() {
+        presenter.signIn(null, "password", R.id.radioButton_student_login);
+        verify(view).outputToast("Don't leave username, password, or selection blank.");
+    }
+
+    @Test
+    public void testSignInWithNullPassword() {
+        presenter.signIn("username", null, R.id.radioButton_student_login);
+        verify(view).outputToast("Don't leave username, password, or selection blank.");
+    }
+
+    @Test
+    public void testSignInWithBothNull() {
+        presenter.signIn(null, null, R.id.radioButton_student_login);
+        verify(view).outputToast("Don't leave username, password, or selection blank.");
+    }
+
+
+    @Test
+    public void testSignInFinalizeWithNullUser() {
+        presenter.signInFinalize(snapshot, null);
+        verify(view).outputToast("Don't leave username, password, or selection blank.");
+    }
+
+    @Test
+    public void testSignInFinalizeWithNullSnapshot() {
+        presenter.signInFinalize(null, new User("test", "test123", "student"));
+        verify(view).outputToast("No username found. Please sign up.");
+        verify(view).navigate(R.id.action_nav_login_to_nav_sign_up);
+    }
+
+    @Test
+    public void testSignInFinalizeWithAllNull() {
+        presenter.signInFinalize(null, null);
+        verify(view).outputToast("Don't leave username, password, or selection blank.");
+    }
+
+    // ------------ General SignIn testing starts here----------------
+
 
     // Every field is unfilled
     @Test
@@ -79,6 +125,8 @@ public class ExampleUnitTest {
         verify(model).queryDB(any(LoginFragmentPresenter.class), any(User.class));
     }
 
+    //------------ general tests for SignInFinalize method ------------
+
     @Test
     public void testNoSnapShotExists () {
         when(snapshot.exists()).thenReturn(false);
@@ -86,6 +134,15 @@ public class ExampleUnitTest {
         presenter.signInFinalize(snapshot, user);
         verify(view).outputToast("No username found. Please sign up.");
         verify(view).navigate(R.id.action_nav_login_to_nav_sign_up);
+    }
+
+    @Test
+    public void testSignInFinalizeWithEmptyPassword() {
+        when(snapshot.exists()).thenReturn(true);
+        when(snapshot.getValue(User.class)).thenReturn(new User("test", "", "student"));
+        User user = new User("test", "test123", "student");
+        presenter.signInFinalize(snapshot, user);
+        verify(view).outputToast("Incorrect password. Please try again.");
     }
 
     // Testing signInFinalize with the correct student credentials
@@ -111,6 +168,7 @@ public class ExampleUnitTest {
         verify(view).outputToast("Incorrect password. Please try again.");
     }
 
+
     // Testing signInFinalize with the correct admin credentials
     @Test
     public void testSignInFinalizeWithCorrectAdminCredentials() {
@@ -133,4 +191,5 @@ public class ExampleUnitTest {
         presenter.signInFinalize(snapshot, user);
         verify(view).outputToast("Incorrect password. Please try again.");
     }
+
 }

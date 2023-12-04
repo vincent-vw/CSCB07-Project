@@ -18,7 +18,7 @@ public class LoginFragmentPresenter extends Fragment {
     }
 
     public void signIn(String username, String password, int checkedRadioButtonId) {
-        if (!username.isEmpty() && !password.isEmpty() && checkedRadioButtonId != -1) {
+        if (username != null && password != null && !username.isEmpty() && !password.isEmpty()  && checkedRadioButtonId != -1) {
             String identity = "";
             if (checkedRadioButtonId == R.id.radioButton_student_login) {
                 identity = "student";
@@ -33,11 +33,16 @@ public class LoginFragmentPresenter extends Fragment {
     }
 
     public void signInFinalize(DataSnapshot dataSnapshot, User user) {
-        if (dataSnapshot.exists()) {
+        if (user == null) {
+            view.outputToast("Don't leave username, password, or selection blank.");
+            return;
+        }
+
+        if (dataSnapshot != null && dataSnapshot.exists()) {
             User userFromDB = dataSnapshot.getValue(User.class);
             assert userFromDB != null;
 
-            if (user.getPassword().equals(userFromDB.getPassword())) {
+            if (userFromDB != null && user.getPassword().equals(userFromDB.getPassword())) {
                 MainActivity.user = user;
                 view.signInSuccessful(user);
                 view.outputToast("Successfully logged in! Welcome, " + user.getUsername() + "!");
