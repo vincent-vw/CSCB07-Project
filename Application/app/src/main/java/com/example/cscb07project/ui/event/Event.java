@@ -30,8 +30,7 @@ public class Event {
     private int currentParticipantCount;
     private ArrayList<String> participants;
 
-    public Event() {
-    }
+    public Event() {}
 
     public Event(String title, String description, Long scheduledTime, int participantLimit) {
         this.title = title;
@@ -75,16 +74,8 @@ public class Event {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Long getScheduledTime() {
@@ -93,6 +84,14 @@ public class Event {
 
     public List<String> getParticipants() {
         return participants;
+    }
+
+    public int getParticipantLimit() {
+        return participantLimit;
+    }
+
+    public int getCurrentParticipantCount() {
+        return currentParticipantCount;
     }
 
     public void addParticipant(String username) {
@@ -108,22 +107,6 @@ public class Event {
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("EST"));
         cal.setTime(date);
         return cal;
-    }
-
-    public int getParticipantLimit() {
-        return participantLimit;
-    }
-
-    public void setParticipantLimit(int participantLimit) {
-        this.participantLimit = participantLimit;
-    }
-
-    public int getCurrentParticipantCount() {
-        return currentParticipantCount;
-    }
-
-    public void setCurrentParticipantCount(int currentParticipantCount) {
-        this.currentParticipantCount = currentParticipantCount;
     }
 
     public String previewEventAsString() {

@@ -17,16 +17,8 @@ public class Time {
         return hour;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour;
-    }
-
     public String getMinute() {
         return minute;
-    }
-
-    public void setMinute(String minute) {
-        this.minute = minute;
     }
 
     @Override

@@ -17,7 +17,6 @@ public class Complaint {
         this.username = username;
         this.status = status;
         this.complaint = complaint;
-
         timeSubmitted = System.currentTimeMillis();
     }
 

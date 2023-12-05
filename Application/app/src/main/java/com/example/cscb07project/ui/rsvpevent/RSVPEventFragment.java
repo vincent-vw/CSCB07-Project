@@ -31,17 +31,16 @@ public class RSVPEventFragment extends Fragment {
     private RSVPEventViewModel rsvpEventViewModel;
     private FragmentEventRsvpBinding binding;
     private View root;
-    private Button eventLoadButton;
+    private Button buttonEventLoad;
     private Spinner spinner;
     private TextView eventDescription;
-    private Button buttonrsvp;
+    private Button buttonRSVP;
     private Event currentEvent = null;
     private DatabaseReference databaseReference;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,10 +51,10 @@ public class RSVPEventFragment extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("events");
 
-        eventLoadButton = root.findViewById(R.id.event_load);
+        buttonEventLoad = root.findViewById(R.id.event_load);
         spinner = root.findViewById(R.id.spinner);
         eventDescription = root.findViewById(R.id.event_description);
-        buttonrsvp = root.findViewById(R.id.button_rsvp);
+        buttonRSVP = root.findViewById(R.id.button_rsvp);
 
         List<String> eventsPreviewList = new ArrayList<>();
         ArrayAdapter<String> eventAdapter = new ArrayAdapter<>(requireContext(),
@@ -77,11 +76,11 @@ public class RSVPEventFragment extends Fragment {
             }
         });
 
-        eventLoadButton.setOnClickListener(new View.OnClickListener() {
+        buttonEventLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 spinner.setVisibility(View.VISIBLE);
-                buttonrsvp.setVisibility(View.VISIBLE);
+                buttonRSVP.setVisibility(View.VISIBLE);
                 eventsPreviewList.clear();
                 List<Event> eventList = rsvpEventViewModel.getEventManager().getAllEventsSortedByTime();
                 int eventCount = 1;
@@ -92,10 +91,9 @@ public class RSVPEventFragment extends Fragment {
             }
         });
 
-        buttonrsvp.setOnClickListener(new View.OnClickListener() {
+        buttonRSVP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO get current event, check if enrolled/max participants reached, add the participant, update event, display toast
                 if (currentEvent == null) {
                     Toast.makeText(getActivity(), "Event not selected.", Toast.LENGTH_SHORT).show();
                 } else if (currentEvent.getScheduledTime() < System.currentTimeMillis()) {

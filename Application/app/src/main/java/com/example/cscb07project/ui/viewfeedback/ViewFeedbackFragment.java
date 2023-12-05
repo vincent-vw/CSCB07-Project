@@ -1,6 +1,5 @@
 package com.example.cscb07project.ui.viewfeedback;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -21,9 +18,6 @@ import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentViewFeedbackBinding;
 import com.example.cscb07project.ui.feedback.Feedback;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +28,7 @@ public class ViewFeedbackFragment extends Fragment {
     private View root;
     private ListView feedbackList;
     private ListView eventRatingsList;
-    private Button loadFeedbackButton;
+    private Button buttonLoadFeedback;
     private Button markAsViewedButton;
     private TextView feedbackText;
 
@@ -45,18 +39,16 @@ public class ViewFeedbackFragment extends Fragment {
             return view;
         }
 
-        //initialize
         viewFeedbackViewModel = new ViewModelProvider(this).get(ViewFeedbackViewModel.class);
         binding = FragmentViewFeedbackBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
         feedbackList = root.findViewById(R.id.view_feedback_list);
         eventRatingsList = root.findViewById(R.id.event_ratings_list);
-        loadFeedbackButton = root.findViewById(R.id.view_feedback_load_button);
+        buttonLoadFeedback = root.findViewById(R.id.view_feedback_load_button);
         markAsViewedButton = root.findViewById(R.id.view_feedback_view_button);
         feedbackText = root.findViewById(R.id.view_feedback_text);
 
-        //feedback
         List<String> feedbackPreviewList = new ArrayList<>();
         ArrayAdapter feedbackArrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, feedbackPreviewList);
         feedbackList.setAdapter(feedbackArrayAdapter);
@@ -72,9 +64,7 @@ public class ViewFeedbackFragment extends Fragment {
             }
         });
 
-        //button
-
-        loadFeedbackButton.setOnClickListener(new View.OnClickListener() {
+        buttonLoadFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 eventRatingsPreviewList.clear();
@@ -115,7 +105,7 @@ public class ViewFeedbackFragment extends Fragment {
         eventRatingsList.requestLayout();
         eventRatingsList.setVisibility(View.VISIBLE);
 
-        loadFeedbackButton.setVisibility(View.VISIBLE);
+        buttonLoadFeedback.setVisibility(View.VISIBLE);
 
         feedbackText.requestLayout();
         feedbackText.setVisibility(View.INVISIBLE);
@@ -129,7 +119,7 @@ public class ViewFeedbackFragment extends Fragment {
         eventRatingsList.requestLayout();
         eventRatingsList.setVisibility(View.INVISIBLE);
 
-        loadFeedbackButton.setVisibility(View.INVISIBLE);
+        buttonLoadFeedback.setVisibility(View.INVISIBLE);
 
         feedbackText.setText(feedback.viewFeedbackAsString());
         feedbackText.requestLayout();

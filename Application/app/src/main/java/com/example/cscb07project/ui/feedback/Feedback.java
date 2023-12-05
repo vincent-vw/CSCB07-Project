@@ -22,7 +22,6 @@ public class Feedback {
         this.numericRating = numericRating;
         this.additionalComments = additionalComments;
 
-        // Format of time
         timeSubmitted = System.currentTimeMillis();
     }
 

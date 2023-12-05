@@ -27,7 +27,7 @@ public class ViewComplaintsFragment extends Fragment {
     private FragmentViewComplaintsBinding binding;
     private View root;
     private ListView complaintsList;
-    private Button loadComplaintsButton;
+    private Button buttonLoadComplaints;
     private Button markAsViewedButton;
     private TextView complaintText;
     private Complaint currentComplaint = null;
@@ -39,17 +39,15 @@ public class ViewComplaintsFragment extends Fragment {
             return view;
         }
 
-        //initialize
         viewComplaintsViewModel = new ViewModelProvider(this).get(ViewComplaintsViewModel.class);
         binding = FragmentViewComplaintsBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
         complaintsList = root.findViewById(R.id.view_complaint_list);
-        loadComplaintsButton = root.findViewById(R.id.view_complaint_load_button);
+        buttonLoadComplaints = root.findViewById(R.id.view_complaint_load_button);
         markAsViewedButton = root.findViewById(R.id.view_complaint_view_button);
         complaintText = root.findViewById(R.id.view_complaint_text);
 
-        //complaints
         List<String> complaintsPreviewList = new ArrayList<>();
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, complaintsPreviewList);
         complaintsList.setAdapter(arrayAdapter);
@@ -62,9 +60,7 @@ public class ViewComplaintsFragment extends Fragment {
             }
         });
 
-        //button
-
-        loadComplaintsButton.setOnClickListener(new View.OnClickListener() {
+        buttonLoadComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 complaintsPreviewList.clear();
@@ -97,7 +93,8 @@ public class ViewComplaintsFragment extends Fragment {
     public void initializeLoadComplaintsListPage() {
         complaintsList.requestLayout();
         complaintsList.setVisibility(View.VISIBLE);
-        loadComplaintsButton.setVisibility(View.VISIBLE);
+
+        buttonLoadComplaints.setVisibility(View.VISIBLE);
 
         complaintText.requestLayout();
         complaintText.setVisibility(View.INVISIBLE);
@@ -107,7 +104,8 @@ public class ViewComplaintsFragment extends Fragment {
     public void initializeViewSingleComplaintPage() {
         complaintsList.requestLayout();
         complaintsList.setVisibility(View.INVISIBLE);
-        loadComplaintsButton.setVisibility(View.INVISIBLE);
+
+        buttonLoadComplaints.setVisibility(View.INVISIBLE);
 
         complaintText.setText(currentComplaint.viewComplaintAsString());
         complaintText.requestLayout();
