@@ -12,7 +12,6 @@ public class Feedback {
     private int numericRating;
     private String additionalComments;
     private Long timeSubmitted;
-    private boolean isAdminViewed;
 
     public Feedback() {}
 
@@ -25,8 +24,6 @@ public class Feedback {
 
         // Format of time
         timeSubmitted = System.currentTimeMillis();
-
-        isAdminViewed = false;
     }
 
     public static Feedback jsonToClass(String json) {
@@ -69,20 +66,12 @@ public class Feedback {
         return timeSubmitted;
     }
 
-    public boolean getIsAdminViewed() {
-        return isAdminViewed;
-    }
-
     public String viewFeedbackAsString() {
-        return "Username: " + username + "\nEvent: " + event + "\nRating: " + numericRating + "\nComment: " + comment + "\nAdditional Comment: " + additionalComments + "\nTime Submitted: " + DateFormat.getInstance().format(timeSubmitted) + "\nAdmin View Status: " + isAdminViewed;
+        return "Username: " + username + "\nEvent: " + event + "\nRating: " + numericRating + "\nComment: " + comment + "\nAdditional Comment: " + additionalComments + "\nTime Submitted: " + DateFormat.getInstance().format(timeSubmitted);
     }
 
     public String previewFeedbackAsString() {
-        if (isAdminViewed) {
-            return "Admin reviewed; from: " + username + "; event: " + event;
-        } else {
-            return "Admin unreviewed; from: " + username + "; event: " + event;
-        }
+        return "From: " + username + "; event: " + event;
     }
 }
 

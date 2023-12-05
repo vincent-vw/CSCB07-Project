@@ -94,7 +94,6 @@ public class ViewFeedbackFragment extends Fragment {
         markAsViewedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO mark as viewed update, update database
                 initializeLoadFeedbackListPage();
             }
         });

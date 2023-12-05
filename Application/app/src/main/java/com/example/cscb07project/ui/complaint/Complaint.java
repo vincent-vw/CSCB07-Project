@@ -10,7 +10,6 @@ public class Complaint {
     private String status;
     private String complaint;
     private long timeSubmitted;
-    private boolean isAdminViewed;
 
     public Complaint() {}
 
@@ -20,7 +19,6 @@ public class Complaint {
         this.complaint = complaint;
 
         timeSubmitted = System.currentTimeMillis();
-        isAdminViewed = false;
     }
 
     public static Complaint jsonToClass(String json) {
@@ -55,23 +53,11 @@ public class Complaint {
         return timeSubmitted;
     }
 
-    public boolean getIsAdminViewed() {
-        return isAdminViewed;
-    }
-
-    public void setAdminViewed() {
-        isAdminViewed = true;
-    }
-
     public String viewComplaintAsString() {
-        return "Username: " + username + "\nStatus: " + status + "\nComplaint: " + complaint + "\nTime Submitted: " + DateFormat.getInstance().format(timeSubmitted) + "\nAdmin View Status: " + isAdminViewed;
+        return "Username: " + username + "\nStatus: " + status + "\nComplaint: " + complaint + "\nTime Submitted: " + DateFormat.getInstance().format(timeSubmitted);
     }
 
     public String previewComplaintAsString() {
-        if (isAdminViewed) {
-            return "Admin reviewed; from: " + username;
-        } else {
-            return "Admin unreviewed; from: " + username;
-        }
+        return "From: " + username;
     }
 }

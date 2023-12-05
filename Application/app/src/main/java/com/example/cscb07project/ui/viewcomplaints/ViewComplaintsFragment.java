@@ -1,6 +1,5 @@
 package com.example.cscb07project.ui.viewcomplaints;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,9 +27,8 @@ public class ViewComplaintsFragment extends Fragment {
     private FragmentViewComplaintsBinding binding;
     private View root;
     private ListView complaintsList;
-    private Button loadConplaintsButton;
+    private Button loadComplaintsButton;
     private Button markAsViewedButton;
-    private TextView prompt;
     private TextView complaintText;
     private Complaint currentComplaint = null;
 
@@ -47,7 +45,7 @@ public class ViewComplaintsFragment extends Fragment {
         root = binding.getRoot();
 
         complaintsList = root.findViewById(R.id.view_complaint_list);
-        loadConplaintsButton = root.findViewById(R.id.view_complaint_load_button);
+        loadComplaintsButton = root.findViewById(R.id.view_complaint_load_button);
         markAsViewedButton = root.findViewById(R.id.view_complaint_view_button);
         complaintText = root.findViewById(R.id.view_complaint_text);
 
@@ -66,11 +64,10 @@ public class ViewComplaintsFragment extends Fragment {
 
         //button
 
-        loadConplaintsButton.setOnClickListener(new View.OnClickListener() {
+        loadComplaintsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 complaintsPreviewList.clear();
-                //TODO no direct way of dealing with async calls :(
                 List<Complaint> complaintList = viewComplaintsViewModel.getComplaintManager().getAllComplaintsSortedBySubmitTime();
                 int complaintCount = 1;
                 for (Complaint complaint : complaintList) {
@@ -83,9 +80,6 @@ public class ViewComplaintsFragment extends Fragment {
         markAsViewedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO mark as viewed update, update database
-                currentComplaint.setAdminViewed();
-                //TODO update the complaint to database, how
                 initializeLoadComplaintsListPage();
             }
         });
@@ -101,12 +95,9 @@ public class ViewComplaintsFragment extends Fragment {
     }
 
     public void initializeLoadComplaintsListPage() {
-//        complaintsList.getLayoutParams().height = 2 * getScreenHeight() / 3;
-//        complaintsList.getLayoutParams().width = 2 * getScreenWidth() / 3;
         complaintsList.requestLayout();
         complaintsList.setVisibility(View.VISIBLE);
-        loadConplaintsButton.setVisibility(View.VISIBLE);
-        //prompt.setVisibility(View.VISIBLE);
+        loadComplaintsButton.setVisibility(View.VISIBLE);
 
         complaintText.requestLayout();
         complaintText.setVisibility(View.INVISIBLE);
@@ -114,25 +105,13 @@ public class ViewComplaintsFragment extends Fragment {
     }
 
     public void initializeViewSingleComplaintPage() {
-//        complaintsList.getLayoutParams().height = 0;
-//        complaintsList.getLayoutParams().width = 0;
         complaintsList.requestLayout();
         complaintsList.setVisibility(View.INVISIBLE);
-        loadConplaintsButton.setVisibility(View.INVISIBLE);
-        //prompt.setVisibility(View.INVISIBLE);
+        loadComplaintsButton.setVisibility(View.INVISIBLE);
 
-        //TODO toString() as text
         complaintText.setText(currentComplaint.viewComplaintAsString());
         complaintText.requestLayout();
         complaintText.setVisibility(View.VISIBLE);
         markAsViewedButton.setVisibility(View.VISIBLE);
-    }
-
-    public int getScreenWidth() {
-        return Resources.getSystem().getDisplayMetrics().widthPixels;
-    }
-
-    public int getScreenHeight() {
-        return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 }

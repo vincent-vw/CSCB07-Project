@@ -30,7 +30,6 @@ public class ComplaintManager {
 
     public void refreshComplaints() {
         complaintsList = new ArrayList<>();
-        //TODO need better way of getting database instance
         FirebaseDatabase.getInstance("https://cscb07project-c6a1c-default-rtdb.firebaseio.com/").getReference("complaints").orderByKey().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
