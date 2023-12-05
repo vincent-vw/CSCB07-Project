@@ -9,15 +9,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentEventRsvpBinding;
 import com.example.cscb07project.ui.event.Event;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +34,9 @@ public class RSVPEventFragment extends Fragment {
     private Button eventLoadButton;
     private Spinner spinner;
     private TextView eventDescription;
+    private Button buttonrsvp;
     private Event currentEvent = null;
+    private DatabaseReference databaseReference;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,14 +46,16 @@ public class RSVPEventFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        //initialize
         rsvpEventViewModel = new ViewModelProvider(this).get(RSVPEventViewModel.class);
         binding = FragmentEventRsvpBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("events");
+
         eventLoadButton = root.findViewById(R.id.event_load);
         spinner = root.findViewById(R.id.spinner);
         eventDescription = root.findViewById(R.id.event_description);
+        buttonrsvp = root.findViewById(R.id.button_rsvp);
 
         List<String> eventsPreviewList = new ArrayList<>();
         ArrayAdapter<String> eventAdapter = new ArrayAdapter<>(requireContext(),
@@ -54,7 +63,6 @@ public class RSVPEventFragment extends Fragment {
 
         eventAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(eventAdapter);
-        //TODO spinner drop down
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -69,10 +77,11 @@ public class RSVPEventFragment extends Fragment {
             }
         });
 
-        //load button
         eventLoadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                spinner.setVisibility(View.VISIBLE);
+                buttonrsvp.setVisibility(View.VISIBLE);
                 eventsPreviewList.clear();
                 List<Event> eventList = rsvpEventViewModel.getEventManager().getAllEventsSortedByTime();
                 int eventCount = 1;
@@ -83,25 +92,30 @@ public class RSVPEventFragment extends Fragment {
             }
         });
 
-        /*
-        create functionality that shows the event details when an event is selected in spinner
-        pressing rsvp button should create a rsvp
-        */
-
-        Button buttonrsvp = root.findViewById(R.id.button_rsvp);
-
         buttonrsvp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO get current event, check if enrolled/max participants reached, add the participant, update event, display toast
                 if (currentEvent == null) {
-                    //reject
+                    Toast.makeText(getActivity(), "Event not selected.", Toast.LENGTH_SHORT).show();
+                } else if (currentEvent.getScheduledTime() < System.currentTimeMillis()) {
+                    Toast.makeText(getActivity(), "This event has already past.", Toast.LENGTH_SHORT).show();
                 } else if (currentEvent.maxParticipantsReached()) {
-                    //reject
-                } else if (currentEvent.isUserEnrolled(null)) {//TODO get current user
-                    //reject
+                    Toast.makeText(getActivity(), "Max number of participants has been reached.", Toast.LENGTH_SHORT).show();
+                } else if (currentEvent.isUserEnrolled(MainActivity.user.getUsername())) {
+                    Toast.makeText(getActivity(), "You have already enrolled in this event.", Toast.LENGTH_SHORT).show();
                 } else {
-                    //update the event, toast "success"
+                    currentEvent.addParticipant(MainActivity.user.getUsername());
+                    databaseReference.child(currentEvent.getTitle()).setValue(currentEvent.classToJson(), new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                            if (error == null) {
+                                Toast.makeText(getActivity(), "Successfully RSVPed to the event.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getActivity(), "Failed to RSVP to the event. Please try again.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });

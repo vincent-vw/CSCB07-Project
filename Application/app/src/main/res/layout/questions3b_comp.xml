@@ -32,7 +32,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Major/Specialist in Computer Science"
+                android:text="@string/major_specialist_in_computer_science"
                 android:textAppearance="?attr/textAppearanceTitleLarge" />
 
             <TextView
@@ -58,14 +58,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="For students in the Computer Science admission category:"
+                android:text="@string/for_students_in_the_computer_science_admission_category"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="You will be admitted to your choice of the Computer Science Major or the Software Engineering and Comprehensive streams of the Computer Science Specialist if you achieve all of the following grades."
+                android:text="@string/you_will_be_admitted_to_your_choice_of_the_computer_science_major_or_the_software_engineering_and_comprehensive_streams_of_the_computer_science_specialist_if_you_achieve_all_of_the_following_grades"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary" />
 
@@ -73,7 +73,7 @@
                 android:id="@+id/checkBox10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="A GPA of at least 2.5 across the following five courses: CSC/MATA67, CSCA48, MATA22, MATA31, MATA37" />
+                android:text="@string/a_gpa_of_at_least_2_5_across_the_following_five_courses_csc_mata67_csca48_mata22_mata31_mata37" />
 
             <CheckBox
                 android:id="@+id/checkBox3"
@@ -96,14 +96,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="For students in other admission categories:"
+                android:text="@string/for_students_in_other_admission_categories"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Students will be selected for admission to these spaces based on their grades in CSC/MATA67, CSCA48, MATA22, MATA37."
+                android:text="@string/students_will_be_selected_for_admission_to_these_spaces_based_on_their_grades_in_csc_mata67_csca48_mata22_mata37"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary" />
 
@@ -111,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Students in the Mathematics or Statistics admission categories may apply for one of these extra spaces upon completion of the required courses."
+                android:text="@string/students_in_the_mathematics_or_statistics_admission_categories_may_apply_for_one_of_these_extra_spaces_upon_completion_of_the_required_courses"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary" />
 
@@ -119,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Students in admission categories from outside CMS are eligible to apply for one of these extra spaces upon completion of the required courses if they achieve at least an A- in both CSC/MATA67 and MATA31 the first time that they complete those courses."
+                android:text="@string/students_in_admission_categories_from_outside_cms_are_eligible_to_apply_for_one_of_these_extra_spaces_upon_completion_of_the_required_courses_if_they_achieve_at_least_an_a_in_both_csc_mata67_and_mata31_the_first_time_that_they_complete_those_courses"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary" />
 

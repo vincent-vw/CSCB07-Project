@@ -24,7 +24,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Specialist in Mathematics"
+                android:text="@string/specialist_in_mathematics"
                 android:textAppearance="?attr/textAppearanceTitleLarge" />
 
             <TextView
@@ -50,20 +50,20 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="For students in the Mathematics admission category:"
+                android:text="@string/for_students_in_the_mathematics_admission_category"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <CheckBox
                 android:id="@+id/checkBox29"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="A GPA of at least 2.5 across the following four courses: CSC/MATA67, MATA22, MATA31, MATA37." />
+                android:text="@string/a_gpa_of_at_least_2_5_across_the_following_four_courses_csc_mata67_mata22_mata31_mata37" />
 
             <CheckBox
                 android:id="@+id/checkBox30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="A grade of at least B in two of CSC/MATA67, MAT A22, MATA37." />
+                android:text="@string/a_grade_of_at_least_b_in_two_of_csc_mata67_mat_a22_mata37" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

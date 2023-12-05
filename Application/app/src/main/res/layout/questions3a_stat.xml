@@ -24,7 +24,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Major in Statistics"
+                android:text="@string/major_in_statistics"
                 android:textAppearance="?attr/textAppearanceTitleLarge" />
 
             <TextView
@@ -50,14 +50,14 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="For students in the Statistics admission category:"
+                android:text="@string/for_students_in_the_statistics_admission_category"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <CheckBox
                 android:id="@+id/checkBox1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="A GPA of at least 2.3 across the following four courses: CSCA08/A20, MATA22, MATA30/A31, MATA36/A37." />
+                android:text="@string/a_gpa_of_at_least_2_3_across_the_following_four_courses_csca08_a20_mata22_mata30_a31_mata36_a37" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

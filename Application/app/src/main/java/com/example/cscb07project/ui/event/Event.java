@@ -2,10 +2,17 @@ package com.example.cscb07project.ui.event;
 
 import android.icu.text.DateFormat;
 
+import androidx.annotation.NonNull;
+
 import com.example.cscb07project.ui.Date;
 import com.example.cscb07project.ui.Time;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,7 +28,7 @@ public class Event {
     private Long scheduledTime;
     private int participantLimit;
     private int currentParticipantCount;
-    private List<String> participants;
+    private ArrayList<String> participants;
 
     public Event() {
     }
@@ -45,6 +52,7 @@ public class Event {
                 date.getDay() + " " + time.getHour() + ":" + time.getMinute());
         assert d != null;
         this.scheduledTime = d.getTime();
+        participants = new ArrayList<>();
     }
 
     public static Event jsonToClass(String json) {
@@ -119,18 +127,18 @@ public class Event {
     }
 
     public String previewEventAsString() {
-        return title + ", at " + DateFormat.getInstance().format(scheduledTime);
+        return title + " at " + DateFormat.getInstance().format(scheduledTime);
     }
 
     public String viewEventAsString() {
-        return title + ":\nDescription:" + description + "\nTime:" + DateFormat.getInstance().format(scheduledTime) + " Participant Limit:" + currentParticipantCount + "/" + participantLimit;
+        return title + "\nDescription: " + description + "\nTime: " + DateFormat.getInstance().format(scheduledTime) + "\nNumber of participants: " + currentParticipantCount + "/" + participantLimit;
     }
 
     public boolean maxParticipantsReached() {
         return currentParticipantCount >= participantLimit;
     }
 
-    public boolean isUserEnrolled(String user) {
-        return participants.contains(user);
+    public boolean isUserEnrolled(String username) {
+        return participants.contains(username);
     }
 }
