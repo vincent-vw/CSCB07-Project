@@ -112,5 +112,12 @@
     <string name="a_grade_of_at_least_b_in_two_of_csc_mata67_mat_a22_mata37">A grade of at least B in two of CSC/MATA67, MAT A22, MATA37.</string>
     <string name="specialist_in_statistics">Specialist in Statistics</string>
     <string name="a_gpa_of_at_least_2_5_across_the_following_four_courses_csca08_csc_mata67_mata22_mata31_mata37">A GPA of at least 2.5 across the following four courses: CSCA08, CSC/MATA67, MATA22, MATA31, MATA37.</string>
-
+    <string name="rsvp_event">RSVP Event</string>
+    <string name="admin_panel">Admin Panel</string>
+    <string name="view_complaint">View Complaints</string>
+    <string name="view_feedback">View Feedback</string>
+    <string name="load_events">Load Events</string>
+    <string name="load_complaints">Load Complaints</string>
+    <string name="mark_view">Mark as viewed</string>
+    <string name="load_feedback">Load feedback</string>
 </resources>
