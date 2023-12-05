@@ -34,7 +34,6 @@ public class FeedbackManager {
     public void refreshFeedback() {
         feedbackList = new ArrayList<>();
         eventRatings = new TreeMap<>();
-        //TODO need better way of getting database instance
         FirebaseDatabase.getInstance("https://cscb07project-c6a1c-default-rtdb.firebaseio.com/").getReference("feedback").orderByKey().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
@@ -92,7 +91,6 @@ public class FeedbackManager {
         List<String> list = new ArrayList<>();
         for (String event : eventRatings.keySet()) {
             List<Integer> ratings = eventRatings.get(event);
-            //ratings elements always > 0
             list.add(event + ": " + ratings.size() + " feedback with an average rating of " + computeRatingAverage(ratings));
         }
         return list;

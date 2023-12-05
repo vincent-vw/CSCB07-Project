@@ -22,7 +22,6 @@ public class AnnouncementAdaptor extends FirebaseRecyclerAdapter<Announcement, A
         super(options);
     }
 
-    // Function to bind the view in Card view (here "Announcement.xml") with data in model class (here "Announcement.java")
     @Override
     protected void onBindViewHolder(@NonNull AnnouncementAdaptor.AnnouncementsViewHolder holder, int position, @NonNull Announcement model) {
         holder.username.setText(model.getUsername());
@@ -36,7 +35,6 @@ public class AnnouncementAdaptor extends FirebaseRecyclerAdapter<Announcement, A
         return new AnnouncementsViewHolder(view);
     }
 
-    // Subclass to create references to the views in "announcement.xml"
     static class AnnouncementsViewHolder extends RecyclerView.ViewHolder {
         TextView username, announcement;
         public AnnouncementsViewHolder(@NonNull View itemView) {

@@ -10,8 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,6 +21,9 @@ import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentViewFeedbackBinding;
 import com.example.cscb07project.ui.feedback.Feedback;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +33,9 @@ public class ViewFeedbackFragment extends Fragment {
     private FragmentViewFeedbackBinding binding;
     private View root;
     private ListView feedbackList;
-
     private ListView eventRatingsList;
     private Button loadFeedbackButton;
     private Button markAsViewedButton;
-    private TextView feedbackPrompt;
     private TextView feedbackText;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -107,49 +110,31 @@ public class ViewFeedbackFragment extends Fragment {
     }
 
     public void initializeLoadFeedbackListPage() {
-        //feedbackList.getLayoutParams().height = 2 * getScreenHeight() / 3;
-        //feedbackList.getLayoutParams().width = 2 * getScreenWidth() / 3;
         feedbackList.requestLayout();
         feedbackList.setVisibility(View.VISIBLE);
 
-        //eventRatingsList.getLayoutParams().height = 2 * getScreenHeight() / 3;
-        //eventRatingsList.getLayoutParams().width = 2 * getScreenWidth() / 3;
         eventRatingsList.requestLayout();
         eventRatingsList.setVisibility(View.VISIBLE);
 
         loadFeedbackButton.setVisibility(View.VISIBLE);
 
-        //prompt.setVisibility(View.VISIBLE);
         feedbackText.requestLayout();
         feedbackText.setVisibility(View.INVISIBLE);
         markAsViewedButton.setVisibility(View.INVISIBLE);
     }
 
     public void initializeViewSingleFeedbackPage(Feedback feedback) {
-        //feedbackList.getLayoutParams().height = 0;
-        //feedbackList.getLayoutParams().width = 0;
         feedbackList.requestLayout();
         feedbackList.setVisibility(View.INVISIBLE);
 
-        //eventRatingsList.getLayoutParams().height = 0;
-        //eventRatingsList.getLayoutParams().width = 0;
         eventRatingsList.requestLayout();
         eventRatingsList.setVisibility(View.INVISIBLE);
 
         loadFeedbackButton.setVisibility(View.INVISIBLE);
 
-        //prompt.setVisibility(View.INVISIBLE);
         feedbackText.setText(feedback.viewFeedbackAsString());
         feedbackText.requestLayout();
         feedbackText.setVisibility(View.VISIBLE);
         markAsViewedButton.setVisibility(View.VISIBLE);
-    }
-
-    public int getScreenWidth() {
-        return Resources.getSystem().getDisplayMetrics().widthPixels;
-    }
-
-    public int getScreenHeight() {
-        return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 }

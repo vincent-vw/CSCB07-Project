@@ -20,14 +20,12 @@ import java.util.Locale;
 
 // Credit to: https://www.geeksforgeeks.org/how-to-populate-recyclerview-with-firebase-data-using-firebaseui-in-android-studio/
 
-// FirebaseRecyclerAdapter is a class provided by FirebaseUI
 public class EventAdaptor extends FirebaseRecyclerAdapter<String, EventAdaptor.EventsViewHolder> {
 
     public EventAdaptor(@NonNull FirebaseRecyclerOptions<String> options) {
         super(options);
     }
 
-    // Function to bind the view in Card view (here "Event.xml") with data in model class (here "String.java")
     @SuppressLint("SetTextI18n")
     @Override
     protected void onBindViewHolder(@NonNull EventAdaptor.EventsViewHolder holder, int position, @NonNull String model) {
@@ -49,7 +47,6 @@ public class EventAdaptor extends FirebaseRecyclerAdapter<String, EventAdaptor.E
         return new EventsViewHolder(view);
     }
 
-    // Subclass to create references to the views in "event.xml"
     static class EventsViewHolder extends RecyclerView.ViewHolder {
         TextView title, description, participantLimit, date, time;
         public EventsViewHolder(@NonNull View itemView) {

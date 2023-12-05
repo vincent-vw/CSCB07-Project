@@ -15,13 +15,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AnnouncementsAndEventsFragment extends Fragment {
-    private DatabaseReference databaseReference;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_announcements_and_events, container, false);
-
-        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         view.findViewById(R.id.button_view_announcements).setOnClickListener(new View.OnClickListener() {
             @Override
