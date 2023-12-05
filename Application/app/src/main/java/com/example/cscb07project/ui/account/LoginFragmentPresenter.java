@@ -33,26 +33,31 @@ public class LoginFragmentPresenter extends Fragment {
     }
 
     public void signInFinalize(DataSnapshot dataSnapshot, User user) {
-        if (user == null) {
+        if (user == null || user.getUsername() == null || user.getPassword() == null) {
             view.outputToast("Don't leave username, password, or selection blank.");
             return;
         }
 
         if (dataSnapshot != null && dataSnapshot.exists()) {
             User userFromDB = dataSnapshot.getValue(User.class);
-            assert userFromDB != null;
 
-            if (userFromDB != null && user.getPassword().equals(userFromDB.getPassword())) {
-                MainActivity.user = user;
-                view.signInSuccessful(user);
-                view.outputToast("Successfully logged in! Welcome, " + user.getUsername() + "!");
-                view.navigate(R.id.action_nav_login_to_nav_home);
+            if (userFromDB != null && user.getUsername().equals(userFromDB.getUsername())) {
+                if (user.getPassword().equals(userFromDB.getPassword())) {
+                    MainActivity.user = user;
+                    view.signInSuccessful(user);
+                    view.outputToast("Successfully logged in! Welcome, " + user.getUsername() + "!");
+                    view.navigate(R.id.action_nav_login_to_nav_home);
+                } else {
+                    view.outputToast("Incorrect password. Please try again.");
+                }
             } else {
-                view.outputToast("Incorrect password. Please try again.");
+                view.outputToast("Incorrect username or no username found. Please try again or sign up.");
+                view.navigate(R.id.action_nav_login_to_nav_sign_up);
             }
         } else {
             view.outputToast("No username found. Please sign up.");
             view.navigate(R.id.action_nav_login_to_nav_sign_up);
         }
     }
+
 }

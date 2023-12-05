@@ -121,7 +121,7 @@ public class ExampleUnitTest {
 
     @Test
     public void testAdminSignIn() {
-        presenter.signIn("test", "test123", R.id.radioButton_admin_login);
+        presenter.signIn("adminName", "adminPassword", R.id.radioButton_admin_login);
         verify(model).queryDB(any(LoginFragmentPresenter.class), any(User.class));
     }
 
@@ -158,7 +158,7 @@ public class ExampleUnitTest {
         verify(view).navigate(R.id.action_nav_login_to_nav_home);
     }
 
-    // Testing signInFinalize with the wrong student credentials
+    // Testing signInFinalize with the wrong student password
     @Test
     public void testSignInFinalizeWithWrongStudentCredentials () {
         when(snapshot.exists()).thenReturn(true);
@@ -166,6 +166,17 @@ public class ExampleUnitTest {
         User user = new User("test", "test123", "student");
         presenter.signInFinalize(snapshot, user);
         verify(view).outputToast("Incorrect password. Please try again.");
+    }
+
+
+    // Testing signInFinalize with the wrong student username
+    @Test
+    public void testSignInFinalizeWithWrongStudentCredentials2 () {
+        when(snapshot.exists()).thenReturn(true);
+        when(snapshot.getValue(User.class)).thenReturn(new User("t", "test123", "student"));
+        User user = new User("test", "test123", "student");
+        presenter.signInFinalize(snapshot, user);
+        verify(view).outputToast("Incorrect username or no username found. Please try again or sign up.");
     }
 
 
@@ -182,7 +193,7 @@ public class ExampleUnitTest {
         verify(view).navigate(R.id.action_nav_login_to_nav_home);
     }
 
-    // Testing signInFinalize with the wrong admin credentials
+    // Testing signInFinalize with the wrong admin password
     @Test
     public void testSignInFinalizeWithWrongAdminCredentials() {
         when(snapshot.exists()).thenReturn(true);
@@ -190,6 +201,16 @@ public class ExampleUnitTest {
         User user = new User("adminUser", "incorrectPassword", "admin");
         presenter.signInFinalize(snapshot, user);
         verify(view).outputToast("Incorrect password. Please try again.");
+    }
+
+    // Testing signInFinalize with the wrong admin username
+    @Test
+    public void testSignInFinalizeWithWrongAdminCredentials2() {
+        when(snapshot.exists()).thenReturn(true);
+        when(snapshot.getValue(User.class)).thenReturn(new User("adminUs", "correctPassword", "admin"));
+        User user = new User("adminUser", "correctPassword", "admin");
+        presenter.signInFinalize(snapshot, user);
+        verify(view).outputToast("Incorrect username or no username found. Please try again or sign up.");
     }
 
 }
